@@ -6,7 +6,8 @@ export const company = {
   description:
     'Shandong Forge Alloy Racing Tech Co., Ltd is a cutting-edge, fully integrated enterprise dedicated to premium automotive wheel exports. We specialize in forged, flow-formed, and cast wheels, crafted to deliver unrivaled structural integrity and featherlight efficiency.',
   email: 'info@forgealloywheels.com',
-  phone: '+86 178 6062 5953',
+  phone: '86-17860625953',
+  whatsapp: '8617860625953',
   address: 'No. 168, Wheel Industry Park, Xiamen, Fujian, China',
   logo: '/forgealloy-logo.png',
   certifications: ['ISO 9001', 'DOT', 'FMVSS'],
@@ -88,6 +89,18 @@ export const wheels = [
     offset: 'Custom',
     image: 'https://images.unsplash.com/photo-1519307212971-dd9561667ffb?q=80&w=800&auto=format&fit=crop',
   },
+];
+
+export const finishes = [
+  'Gloss Black',
+  'Matte Black',
+  'Satin Black',
+  'Brushed Silver',
+  'Polished Chrome',
+  'Gloss Gunmetal',
+  'Satin Bronze',
+  'Gold Brushed',
+  'Custom Color',
 ];
 
 export const oemFeatures = [
