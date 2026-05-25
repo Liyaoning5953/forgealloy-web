@@ -29,12 +29,37 @@ export const series = [
 ];
 
 export const wheels = [
-  { id: 1, name: 'YP01', category: 'Monoblock Forged', size: '19" - 24"', finish: 'Gloss Black', pcd: '5x112 / 5x120', offset: 'Custom', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, name: 'FW202', category: '2-Piece Forged', size: '19" - 24"', finish: 'Brushed Silver', pcd: '5x112 / 5x120', offset: 'Custom', image: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, name: 'FW606', category: '2-Piece Forged', size: '20" - 26"', finish: 'Satin Bronze', pcd: '5x112 / 6x139.7', offset: 'Custom', image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, name: 'YP05', category: 'Monoblock Forged', size: '19" - 23"', finish: 'Gloss Gunmetal', pcd: '5x112 / 5x114.3', offset: 'Custom', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop' },
-  { id: 5, name: 'OFF101', category: 'Off-Road Forged', size: '17" - 22"', finish: 'Matte Black', pcd: '6x139.7 / 8x165.1', offset: 'Custom', image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800&auto=format&fit=crop' },
-  { id: 6, name: 'TRK88', category: 'Truck Forged', size: '20" - 26"', finish: 'Brushed Silver', pcd: '8x165.1 / 8x170', offset: 'Custom', image: 'https://images.unsplash.com/photo-1519307212971-dd9561667ffb?q=80&w=800&auto=format&fit=crop' },
+  { id: 1, name: 'YP01', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Gloss Black', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A7235a9d821374528a4421b88e142e882O.jpg' },
+  { id: 2, name: 'YP02', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Matte Gunmetal', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A4b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 3, name: 'YP03', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Brushed Silver', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A1b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 4, name: 'YP09', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Gloss Bronze', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A3b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 5, name: 'FW202', category: '2-Piece Forged', size: '19" - 26"', finish: 'Polished Lip', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A5b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 6, name: 'FW268', category: '2-Piece Forged', size: '19" - 26"', finish: 'Brushed Gold', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A6b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 7, name: 'FW2017-M', category: '2-Piece Forged', size: '19" - 26"', finish: 'Candy Red', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A8b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+  { id: 8, name: 'OFF-ROAD-01', category: 'Off-Road Forged', size: '17" - 24"', finish: 'Matte Black', pcd: '6x139.7', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/A9b2b0e77d54446c8a2b8e23e23d115e2y.jpg' },
+];
+
+export const finishes = [
+  'Gloss Black',
+  'Matte Black',
+  'Satin Black',
+  'Brushed Silver',
+  'Polished Chrome',
+  'Gloss Gunmetal',
+  'Satin Bronze',
+  'Gold Brushed',
+  'Custom Color',
+];
+
+export const oemFeatures = [
+  { name: 'CUSTOM DESIGN', icon: 'Settings' },
+  { name: 'OEM LOGO', icon: 'ShieldCheck' },
+  { name: 'PRIVATE BRAND', icon: 'User' },
+  { name: 'LOW MOQ', icon: 'BarChart' },
+  { name: 'FAST DELIVERY', icon: 'Truck' },
+  { name: 'STRICT QC', icon: 'CheckCircle' },
+];
+?q=80&w=800&auto=format&fit=crop' },
   { id: 7, name: 'YP09', category: 'Monoblock Forged', size: '20" - 22"', finish: 'Gloss Bronze', pcd: '5x112 / 5x130', offset: 'Custom', image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop' },
   { id: 8, name: 'FW303', category: '2-Piece Forged', size: '21" - 24"', finish: 'Polished Silver', pcd: '5x114.3 / 5x120', offset: 'Custom', image: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=800&auto=format&fit=crop' },
   { id: 9, name: 'OFF202', category: 'Off-Road Forged', size: '18" - 20"', finish: 'Matte Bronze', pcd: '6x135 / 6x139.7', offset: 'Custom', image: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=800&auto=format&fit=crop' },

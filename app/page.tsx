@@ -299,7 +299,14 @@ export default function ForgedWheelCatalog() {
               </div>
             </section>
 
-            {/* OUR WHEEL SERIES */}
+             {/* TRUST BANNER (48H / 15D / LIFETIME) */}
+             <section className="py-20 bg-black">
+                <div className="max-w-[1600px] mx-auto px-10">
+                   <img src={(company as any).images.banner} alt="Lead Time and Warranty" className="w-full rounded-[40px] shadow-2xl border border-white/5" />
+                </div>
+             </section>
+
+             {/* OUR WHEEL SERIES */}
             <section id="series" className="py-40 bg-zinc-950">
               <div className="max-w-[1600px] mx-auto px-10">
                 <div className="mb-20">
@@ -380,31 +387,78 @@ export default function ForgedWheelCatalog() {
               </div>
             </section>
 
-            {/* OEM / ODM SOLUTIONS */}
-            <section id="oem" className="relative py-48 bg-zinc-950 overflow-hidden">
-               <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10" />
-               <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=2000&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-10" alt="OEM" />
-               <div className="relative z-20 max-w-[1600px] mx-auto px-10">
-                  <div className="max-w-3xl mb-24">
-                    <h2 className="text-7xl font-black mb-8 uppercase tracking-tighter leading-[0.9]">OEM / <span className="text-red-600">ODM</span><br />Solutions</h2>
-                    <p className="text-2xl text-zinc-400 font-medium leading-relaxed uppercase tracking-wider">World-class customized forged wheel production for industry leaders.</p>
-                  </div>
-                  <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 mb-24">
-                    {oemFeatures.map((feat) => {
-                      const IconComp = IconMap[feat.icon];
-                      return (
-                        <div key={feat.name} className="flex flex-col items-center gap-6 group">
-                          <div className="p-8 bg-white/5 rounded-3xl border border-white/10 group-hover:border-red-600 group-hover:bg-red-600/10 transition-all duration-500">
-                            <IconComp size={48} className="text-zinc-500 group-hover:text-red-500 transition-colors" />
-                          </div>
-                          <p className="text-[12px] font-black tracking-[4px] text-center uppercase text-zinc-400 group-hover:text-white transition-colors">{feat.name}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <button className="bg-red-600 px-16 py-7 rounded-full font-black tracking-[5px] text-[15px] hover:bg-red-500 transition shadow-2xl uppercase">Contact OEM Department</button>
-               </div>
-            </section>
+             {/* PRODUCTION PROCESS */}
+             <section id="oem" className="py-40 bg-zinc-950 border-t border-white/5">
+                <div className="max-w-[1600px] mx-auto px-10">
+                   <div className="max-w-4xl mb-24">
+                      <p className="text-red-600 font-black tracking-[6px] text-sm mb-6 uppercase">Manufacturing Excellence</p>
+                      <h2 className="text-7xl lg:text-9xl font-black mb-10 uppercase tracking-tighter leading-[0.8]">Production <span className="text-white">Process</span></h2>
+                      <p className="text-2xl text-zinc-400 font-medium leading-relaxed uppercase tracking-wider">From aerospace-grade aluminum to high-precision CNC machining.</p>
+                   </div>
+                   
+                   <div className="grid lg:grid-cols-2 gap-20 mb-32 items-center">
+                      <div className="space-y-12">
+                         <div className="bg-white/5 p-12 rounded-[48px] border border-white/10">
+                            <h3 className="text-3xl font-black mb-8 uppercase tracking-tight text-white">12-Step <span className="text-red-600">Precision</span></h3>
+                            <p className="text-zinc-500 text-[14px] font-black leading-relaxed mb-12 uppercase tracking-[2px]">Our integrated manufacturing workflow ensures zero-defect quality and maximum structural integrity.</p>
+                            <img src={(company as any).images.process} alt="Process Map" className="w-full rounded-3xl" />
+                         </div>
+                      </div>
+                      <div className="grid grid-cols-1 gap-12">
+                         <div className="bg-white/5 p-12 rounded-[48px] border border-white/10 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            <h3 className="text-2xl font-black mb-4 uppercase text-white">Advanced Machinery</h3>
+                            <p className="text-zinc-500 text-[12px] font-black tracking-[2px] mb-8 uppercase">State-of-the-art CNC centers and forging presses.</p>
+                            <img src={(company as any).images.manufacturing} alt="Manufacturing" className="w-full rounded-2xl grayscale group-hover:grayscale-0 transition duration-700" />
+                         </div>
+                      </div>
+                   </div>
+
+                   <div className="grid lg:grid-cols-2 gap-20">
+                      <div className="bg-zinc-900/50 p-12 rounded-[56px] border border-white/5 group">
+                         <h3 className="text-3xl font-black mb-10 uppercase tracking-tight text-white">Customization <span className="text-red-600">Options</span></h3>
+                         <div className="flex flex-col lg:flex-row gap-12 items-center">
+                            <div className="lg:w-1/2">
+                               <p className="text-zinc-500 text-[12px] font-black leading-relaxed mb-10 uppercase tracking-[2px]">PCD, Offset, CB, Color, and Engraving. We bring your vision to life.</p>
+                               <ul className="space-y-4 text-[13px] font-black uppercase tracking-[3px] text-zinc-300">
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-red-600 rounded-full" /> Size / Width / Offset</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-red-600 rounded-full" /> PCD / Center Bore</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-red-600 rounded-full" /> Custom Engraving</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-red-600 rounded-full" /> Aerodynamic Rings</li>
+                               </ul>
+                            </div>
+                            <img src={(company as any).images.customization} alt="Customization" className="lg:w-1/2 rounded-3xl shadow-2xl" />
+                         </div>
+                      </div>
+                      <div className="bg-zinc-900/50 p-12 rounded-[56px] border border-white/5 group">
+                         <h3 className="text-3xl font-black mb-10 uppercase tracking-tight text-white">Packaging <span className="text-red-600">Protection</span></h3>
+                         <div className="flex flex-col lg:flex-row gap-12 items-center">
+                            <div className="lg:w-1/2">
+                               <p className="text-zinc-500 text-[12px] font-black leading-relaxed mb-10 uppercase tracking-[2px]">5-Fold effective protection ensures your wheels arrive in pristine condition.</p>
+                               <ul className="space-y-4 text-[13px] font-black uppercase tracking-[3px] text-zinc-300">
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-green-500 rounded-full" /> Protective Cap</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-green-500 rounded-full" /> Dust Bag</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-green-500 rounded-full" /> Sponge Foam</li>
+                                  <li className="flex items-center gap-4"><div className="w-2 h-2 bg-green-500 rounded-full" /> High-strength Carton</li>
+                               </ul>
+                            </div>
+                            <img src={(company as any).images.packaging} alt="Packaging" className="lg:w-1/2 rounded-3xl shadow-2xl" />
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </section>
+
+             {/* OEM / ODM SOLUTIONS (Mini Version) */}
+             <section className="py-24 bg-black border-y border-white/5">
+                <div className="max-w-[1600px] mx-auto px-10 flex flex-col lg:flex-row justify-between items-center gap-12">
+                   <div>
+                      <h3 className="text-4xl font-black uppercase tracking-tighter">Ready for <span className="text-red-600">OEM Cooperation?</span></h3>
+                      <p className="text-zinc-500 text-[12px] font-black tracking-[4px] uppercase mt-4">24H Design Service | 15 Days Production | Global Logistics</p>
+                   </div>
+                   <button onClick={() => setShowInquiryModal(true)} className="bg-red-600 px-16 py-7 rounded-full font-black tracking-[5px] text-[15px] hover:bg-red-500 transition shadow-2xl uppercase">Start Project Inquiry</button>
+                </div>
+             </section>
 
             {/* GALLERY & INSPIRATION */}
             <section id="gallery" className="py-40 bg-black">
@@ -467,8 +521,9 @@ export default function ForgedWheelCatalog() {
             <footer id="footer" className="bg-zinc-950 pt-48 pb-20 border-t border-white/5">
               <div className="max-w-[1600px] mx-auto px-10 grid lg:grid-cols-4 gap-24 mb-40">
                 <div className="space-y-12">
-                  <h2 className="text-4xl font-black italic tracking-tighter flex items-center gap-3 uppercase">
-                    <span className="bg-red-600 px-3 py-1 rounded not-italic">F</span> ForgeAlloy
+                  <h2 className="text-4xl font-black italic tracking-tighter flex items-center gap-4 uppercase">
+                    <img src={company.logo} alt={company.name} className="h-8 w-auto rounded" />
+                    <span>ForgeAlloy</span>
                   </h2>
                   <p className="text-zinc-500 text-sm leading-relaxed font-bold uppercase tracking-[2px]">{company.tagline}</p>
                   <div className="flex gap-6">
@@ -560,3 +615,4 @@ export default function ForgedWheelCatalog() {
     </div>
   );
 }
+
