@@ -432,6 +432,4 @@ export default function ForgeAlloyWebsite() {
       </a>
     </div>
   );
-}  </div>
-  );
 }
