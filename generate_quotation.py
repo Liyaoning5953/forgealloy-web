@@ -45,6 +45,11 @@ def generate():
         [2, 'Customized Ceramic Cup and Saucer (300ml)', 50, 2.99, '=C14*D14'],
         [3, 'Customized Ceramic Cup and Saucer (70ml)', 50, 1.94, '=C15*D15'],
         [4, 'Customized Ceramic Cup and Saucer (200ml)', 50, 2.39, '=C16*D16'],
+        [5, 'Customized Ceramic Mug (150ml)', 120, 1.09, '=C17*D17'],
+        [6, 'Customized Ceramic Mug (Belly Model, 300ml)', 120, 1.16, '=C18*D18'],
+        [7, 'Customized Ceramic Mug (250ml)', 100, 1.12, '=C19*D19'],
+        [8, 'Glass Espresso Coffee Cup (130ml)', 72, 0.68, '=C20*D20'],
+        [9, 'Glass Espresso Coffee Cup (240ml)', 48, 0.83, '=C21*D21'],
     ]
 
     t = build_table(

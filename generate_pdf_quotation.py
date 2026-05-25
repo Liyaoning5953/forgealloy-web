@@ -55,7 +55,12 @@ def generate_pdf():
         ["2", get_image("temp_images/img4.jpg"), "Customized Ceramic Cup and Saucer (300ml)", "50", "2.99", "149.50"],
         ["3", get_image("temp_images/img2.jpg"), "Customized Ceramic Cup and Saucer (70ml)", "50", "1.94", "97.00"],
         ["4", get_image("temp_images/img3.jpg"), "Customized Ceramic Cup and Saucer (200ml)", "50", "2.39", "119.50"],
-        ["", "", "", "", "<b>Total:</b>", "<b>$615.30</b>"]
+        ["5", get_image("temp_images/img5.jpg"), "Customized Ceramic Mug (150ml)", "120", "1.09", "130.80"],
+        ["6", get_image("temp_images/img5.jpg"), "Customized Ceramic Mug (Belly Model, 300ml)", "120", "1.16", "139.20"],
+        ["7", get_image("temp_images/img5.jpg"), "Customized Ceramic Mug (250ml)", "100", "1.12", "112.00"],
+        ["8", get_image("temp_images/img6.jpg"), "Glass Espresso Coffee Cup (130ml)", "72", "0.68", "48.96"],
+        ["9", get_image("temp_images/img6.jpg"), "Glass Espresso Coffee Cup (240ml)", "48", "0.83", "39.84"],
+        ["", "", "", "", "<b>Total:</b>", "<b>$1,086.10</b>"]
     ]
 
     # Column Widths
