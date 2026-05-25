@@ -55,6 +55,16 @@ export const wheels = [
   { id: 6, name: 'TRK88', category: 'Truck Forged', size: '20" - 28"', finish: 'Brushed Silver', pcd: '8x165.1 / 8x170', offset: 'Custom', image: 'https://sc01.alicdn.com/kf/Hab3dc042b25645cdb8045d2d51ffa366V.jpg' },
   { id: 7, name: 'YP02', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Matte Gunmetal', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hbe9bf065670c44e9ac46fb0c6ff846b7Q.jpg' },
   { id: 8, name: 'FW268', category: 'Multi-piece Forged', size: '19" - 26"', finish: 'Brushed Gold', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hb410cde27dff4d3ba1820a1773751ab6s.jpg' },
+  { id: 9, name: 'YP03', category: 'Monoblock Forged', size: '18" - 24"', finish: 'Brushed Silver', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Ha026584ee3df448e98db9d86f2b83630K.jpg' },
+  { id: 10, name: 'FW303', category: 'Multi-piece Forged', size: '21" - 24"', finish: 'Polished Silver', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/H239d24abf7b24857bd3e0009b80db062g.jpg' },
+  { id: 11, name: 'TRK99', category: 'Truck Forged', size: '22" - 28"', finish: 'Chrome', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/H98eb570d1ecc458a9050b153231205eba.png' },
+  { id: 12, name: 'YP12', category: 'Monoblock Forged', size: '19" - 21"', finish: 'Matte Black', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hddbf78b7a6bd4beca08274dd5b314a65h.jpg' },
+  { id: 13, name: 'FW404', category: 'Multi-piece Forged', size: '20" - 22"', finish: 'Satin Black', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/He16343e99dd84105a898e69b35240edb0.png' },
+  { id: 14, name: 'VXR-05', category: 'Multi-piece Forged', size: '20" - 26"', finish: 'Brushed Red', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/H6ceaf9e7b46948cb87c00eee841c00bdp.jpg' },
+  { id: 15, name: 'RSV-10', category: 'Multi-piece Forged', size: '18" - 24"', finish: 'Machined Silver', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hadff19b1f9184e959de585ecc0032b59i.jpg' },
+  { id: 16, name: 'GTM-22', category: 'Off-Road Forged', size: '17" - 24"', finish: 'Matte Black', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/H1f0376890664439ca440f47fcd99c48ch.jpg' },
+  { id: 17, name: 'TRX-88', category: 'Truck Forged', size: '22" - 28"', finish: 'Chrome', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hab3dc042b25645cdb8045d2d51ffa366V.jpg' },
+  { id: 18, name: 'YP20', category: 'Monoblock Forged', size: '20" - 24"', finish: 'Brushed Titanium', pcd: 'Custom', offset: 'Custom', image: 'https://s.alicdn.com/@sc04/kf/Hb84162171763451fbbde4b7af17a4febZ.png' },
 ];
 
 export const gallery = [
