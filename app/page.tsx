@@ -23,7 +23,11 @@ import {
   User,
   Phone,
   Mail,
-  Send
+  Send,
+  Wrench,
+  BadgeCheck,
+  Shield,
+  Truck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { company, series, wheels, categories, gallery } from '@/lib/data';
@@ -285,43 +289,49 @@ export default function ForgeAlloyWebsite() {
         </div>
       </section>
 
-      {/* OEM / ODM SOLUTIONS (Match Ref) */}
-      <section id="oem" className="relative py-48 bg-black text-white overflow-hidden">
-        <div className="absolute inset-0 z-0">
-           <img src={(company as any).images.manufacturing} className="w-full h-full object-cover opacity-20 grayscale" alt="OEM Background" />
-           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
-        </div>
-
-        <div className="max-w-[1600px] mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-32 items-center">
-           <div>
-              <h2 className="text-6xl lg:text-[90px] font-black uppercase tracking-tighter italic mb-10 leading-[0.8]">OEM / ODM <span className="text-red-600">Solutions</span></h2>
-              <p className="text-zinc-400 text-xl lg:text-2xl font-medium max-w-xl mb-16 tracking-wide uppercase leading-relaxed">
+      {/* OEM / ODM SOLUTIONS (EXACT MATCH REF) */}
+      <section id="oem" className="bg-zinc-950 py-12 lg:py-0 overflow-hidden">
+        <div className="max-w-[1600px] mx-auto grid lg:grid-cols-2 items-stretch min-h-[450px]">
+           {/* Left Content */}
+           <div className="p-8 lg:p-20 flex flex-col justify-center bg-black">
+              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic mb-6">
+                OEM / ODM <span className="text-red-600">SOLUTIONS</span>
+              </h2>
+              <p className="text-zinc-400 text-sm lg:text-base font-bold max-w-xl mb-12 tracking-wide leading-relaxed">
                  We provide one-stop customized forged wheel solutions for global brands, wholesalers and dealers.
               </p>
               
-              <div className="grid grid-cols-3 gap-y-12 gap-x-8 mb-20">
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-6 mb-12">
                  {[
-                   { icon: Settings, label: 'Custom Design' },
-                   { icon: ShieldCheck, label: 'OEM Logo' },
-                   { icon: Users, label: 'Private Brand' },
-                   { icon: BarChart, label: 'Low MOQ' },
-                   { icon: Clock, label: 'Fast Delivery' },
-                   { icon: CheckCircle, label: 'Strict QC' }
+                    { icon: Wrench, label: 'CUSTOM DESIGN' },
+                    { icon: BadgeCheck, label: 'OEM LOGO' },
+                    { icon: Shield, label: 'PRIVATE BRAND' },
+                    { icon: Gem, label: 'LOW MOQ' },
+                    { icon: Truck, label: 'FAST DELIVERY' },
+                    { icon: ShieldCheck, label: 'STRICT QC' }
                  ].map((feat, i) => (
-                   <div key={i} className="flex flex-col gap-5 group">
-                      <feat.icon size={36} className="text-zinc-600 group-hover:text-red-600 transition-colors" />
-                      <p className="text-[11px] font-black uppercase tracking-[3px] text-zinc-400 group-hover:text-white transition-colors">{feat.label}</p>
-                   </div>
+                    <div key={i} className="flex flex-col items-center text-center gap-3 group">
+                       <div className="p-2 border border-zinc-800 rounded group-hover:border-red-600 transition-colors">
+                          <feat.icon size={24} className="text-zinc-400 group-hover:text-red-600 transition-colors" />
+                       </div>
+                       <p className="text-[9px] font-black uppercase tracking-[1px] text-zinc-500 group-hover:text-white transition-colors">{feat.label}</p>
+                    </div>
                  ))}
               </div>
 
-              <button className="bg-red-600 hover:bg-red-500 transition px-16 py-6 rounded-md font-black text-sm tracking-[4px] uppercase flex items-center gap-4 group">
-                Learn More <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <button className="bg-red-600 hover:bg-red-700 transition px-10 py-4 w-fit rounded-md font-black text-[12px] tracking-[2px] uppercase flex items-center gap-4 group">
+                LEARN MORE <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
            </div>
-           <div className="relative group hidden lg:block">
-              <div className="absolute -inset-4 bg-red-600/20 blur-2xl rounded-lg opacity-0 group-hover:opacity-100 transition duration-700" />
-              <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop" className="relative rounded-lg grayscale group-hover:grayscale-0 transition duration-1000 shadow-2xl border border-white/10" alt="OEM Production" />
+
+           {/* Right Image */}
+           <div className="relative overflow-hidden hidden lg:block">
+              <img 
+                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop" 
+                className="w-full h-full object-cover grayscale opacity-60" 
+                alt="OEM Manufacturing" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
            </div>
         </div>
       </section>
