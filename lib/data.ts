@@ -38,9 +38,9 @@ export const categories = [
 ];
 
 export const series = [
-  { id: 'yp', name: 'YP SERIES', description: 'Monoblock Forged', category: 'Monoblock Forged', image: 'https://sc01.alicdn.com/kf/Ac2060c7e96074a7cb1298195df57a5fcu.jpg' },
-  { id: 'fw', name: 'FW SERIES', description: '2-Piece Forged', category: 'Multi-piece Forged', image: 'https://sc01.alicdn.com/kf/A353bed2d526c4a058690fe1d153f8be54.jpg' },
-  { id: '2p', name: '2-PIECE SERIES', description: 'Custom Forged', category: 'Multi-piece Forged', image: 'https://s.alicdn.com/@sc04/kf/H239d24abf7b24857bd3e0009b80db062g.jpg' },
+  { id: 'yp', name: 'YP SERIES', description: 'Monoblock Forged', category: 'Monoblock Forged', image: 'https://s.alicdn.com/@sc04/kf/Hb84162171763451fbbde4b7af17a4febZ.png' },
+  { id: 'fw', name: 'FW SERIES', description: '2-Piece Forged', category: 'Multi-piece Forged', image: 'https://s.alicdn.com/@sc04/kf/H31a8abcffea0425aaa8251b70cb8554bF.jpg' },
+  { id: '2p', name: '2-PIECE SERIES', description: 'Custom Forged', category: 'Multi-piece Forged', image: 'https://s.alicdn.com/@sc04/kf/Hb410cde27dff4d3ba1820a1773751ab6s.jpg' },
   { id: '3p', name: '3-PIECE SERIES', description: 'Premium Forged', category: 'Multi-piece Forged', image: 'https://s.alicdn.com/@sc04/kf/H6ceaf9e7b46948cb87c00eee841c00bdp.jpg' },
   { id: 'off', name: 'OFF-ROAD SERIES', description: 'Built For Off-Road', category: 'Off-Road Forged', image: 'https://sc01.alicdn.com/kf/Hf03b463fc038422da834df900f859460Z.jpg' },
   { id: 'truck', name: 'TRUCK SERIES', description: 'Heavy Duty Forged', category: 'Truck Forged', image: 'https://sc01.alicdn.com/kf/Hab3dc042b25645cdb8045d2d51ffa366V.jpg' },

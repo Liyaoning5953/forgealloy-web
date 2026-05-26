@@ -185,32 +185,68 @@ export default function ForgeAlloyWebsite() {
         </div>
       </section>
 
-      {/* SERIES SECTION (Keep from previous) */}
-      <section id="series" className="py-32 bg-zinc-100 text-black">
-        <div className="max-w-[1600px] mx-auto px-6 text-center mb-24">
-           <h2 className="text-5xl font-black uppercase tracking-tighter italic underline decoration-red-600 decoration-8 underline-offset-[16px]">Our Wheel Series</h2>
-        </div>
-
-        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-6 gap-6">
-          {series.map((s, i) => (
-            <div key={i} className="bg-black text-white p-8 rounded-lg flex flex-col items-center text-center group hover:bg-zinc-900 transition-all cursor-pointer shadow-2xl">
-              <div className="w-full aspect-square mb-8 overflow-hidden rounded relative">
-                <img src={s.image} className="w-full h-full object-contain group-hover:scale-110 transition duration-700" alt={s.name} />
+      {/* SERIES SECTION (WHEEL COLLECTIONS) */}
+      <section id="series" className="py-24 bg-zinc-50 text-black relative overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-6 relative">
+           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 relative">
+              <div className="relative">
+                <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic mb-4 relative z-10">WHEEL COLLECTIONS</h2>
+                <div className="absolute -top-10 -left-4 text-[100px] font-black text-zinc-200/50 italic select-none -z-0 pointer-events-none uppercase tracking-[-5px]">FORGEALLOY</div>
+                <p className="text-zinc-500 text-sm font-bold uppercase tracking-[2px]">Explore our forged wheel series</p>
               </div>
-              <h3 className="text-xl font-black uppercase italic mb-2 tracking-tighter">{s.name}</h3>
-              <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[2px] mb-8">{s.description}</p>
-              <button className="text-[11px] font-black uppercase tracking-[3px] border-b border-zinc-700 pb-1 hover:border-red-600 transition-colors">View More →</button>
-            </div>
-          ))}
+              <div className="flex items-center gap-6 mt-8 md:mt-0 relative">
+                 <button className="bg-white border-2 border-zinc-900 hover:bg-zinc-900 hover:text-white transition-all px-8 py-3 rounded-md text-[11px] font-black uppercase tracking-[2px] flex items-center gap-4 group">
+                   View All Products <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                 </button>
+                 
+                 {/* CATALOG PDF BADGE */}
+                 <div className="absolute -top-28 -right-4 lg:-right-8 flex flex-col items-center group cursor-pointer animate-bounce-slow">
+                    <div className="w-20 h-20 bg-red-600 rounded-full flex flex-col items-center justify-center text-white shadow-[0_0_30px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-transform duration-500">
+                       <Download size={24} className="mb-1" />
+                       <span className="text-[10px] font-black leading-tight text-center uppercase">Catalog<br/>PDF</span>
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             {series.map((s, idx) => (
+               <motion.div 
+                 key={s.id}
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 transition={{ delay: idx * 0.1 }}
+                 className="group bg-zinc-900 rounded-xl overflow-hidden flex h-48 hover:shadow-2xl hover:shadow-black/20 transition-all border border-transparent hover:border-white/10"
+               >
+                 <div className="w-1/2 relative overflow-hidden bg-black/40 flex items-center justify-center p-4">
+                   <img 
+                     src={s.image} 
+                     alt={s.name} 
+                     className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700" 
+                   />
+                 </div>
+                 <div className="w-1/2 p-6 flex flex-col justify-between items-start text-white">
+                    <div>
+                       <h3 className="text-xl font-black italic tracking-tighter group-hover:text-red-600 transition-colors uppercase">{s.name}</h3>
+                       <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-[2px] mt-2">{s.description}</p>
+                    </div>
+                    <button className="text-[10px] font-black uppercase tracking-[2px] flex items-center gap-2 hover:text-red-600 transition group/btn">
+                       View More <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
+                 </div>
+               </motion.div>
+             ))}
+           </div>
         </div>
       </section>
 
       {/* FEATURED WHEELS (Keep from previous) */}
-      <section id="wheels" className="py-32 bg-white text-black">
-        <div className="max-w-[1600px] mx-auto px-6 flex flex-col lg:flex-row items-end justify-between mb-24 gap-12">
-           <div>
-              <h2 className="text-5xl font-black uppercase tracking-tighter italic mb-8 underline decoration-zinc-100 decoration-[12px] underline-offset-[4px]">Featured Wheels</h2>
-              <div className="flex flex-wrap gap-3">
+      <section id="wheels" className="py-24 bg-white text-black overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-6 flex flex-col lg:flex-row items-end justify-between mb-24 gap-12 relative">
+           <div className="relative">
+              <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter italic mb-8 relative z-10">FEATURED WHEELS</h2>
+              <div className="absolute -top-10 -left-4 text-[100px] font-black text-zinc-100 italic select-none -z-0 pointer-events-none uppercase tracking-[-5px]">PERFORMANCE</div>
+              <div className="flex flex-wrap gap-3 relative z-10">
                  <button 
                   onClick={() => setSelectedCategory('ALL')}
                   className={`px-8 py-3 text-[11px] font-black uppercase tracking-[3px] border rounded-md transition ${selectedCategory === 'ALL' ? 'bg-red-600 text-white border-red-600' : 'border-zinc-200 hover:border-black'}`}>All</button>
