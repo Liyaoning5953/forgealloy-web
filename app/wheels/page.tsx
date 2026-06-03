@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, 
   ArrowRight, 
@@ -14,21 +14,27 @@ import {
   Globe,
   MessageSquare,
   Mail,
-  Filter
+  Filter,
+  Maximize2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { company, cases } from '@/lib/data';
+import { company, wheels, categories } from '@/lib/data';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
-export default function GalleryPage() {
-  const [selectedBrand, setSelectedBrand] = useState('ALL');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function WheelsPage() {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get('category') || 'ALL';
   
-  const brands = ['ALL', ...Array.from(new Set(cases.map(c => c.brand)))];
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCases = selectedBrand === 'ALL' 
-    ? cases 
-    : cases.filter(c => c.brand === selectedBrand);
+  const filteredWheels = wheels.filter(wheel => {
+    const matchesCategory = selectedCategory === 'ALL' || wheel.category === selectedCategory;
+    const matchesSearch = wheel.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="bg-black text-white min-h-screen font-sans selection:bg-red-600/30 overflow-x-hidden">
@@ -55,8 +61,8 @@ export default function GalleryPage() {
 
           <nav className="hidden xl:flex items-center gap-8 uppercase text-[12px] font-black tracking-[2px]">
             <Link href="/" className="hover:text-red-600 transition">Home</Link>
-            <Link href="/wheels" className="hover:text-red-600 transition flex items-center gap-1">Wheels <ChevronDown size={14} /></Link>
-            <Link href="/gallery" className="text-red-600 border-b-2 border-red-600 pb-1">Gallery</Link>
+            <Link href="/wheels" className="text-red-600 border-b-2 border-red-600 pb-1 flex items-center gap-1">Wheels <ChevronDown size={14} /></Link>
+            <Link href="/gallery" className="hover:text-red-600 transition">Gallery</Link>
             <Link href="/#oem" className="hover:text-red-600 transition">OEM/ODM</Link>
             <Link href="/insights" className="hover:text-red-600 transition">Insights</Link>
             <Link href="/#about" className="hover:text-red-600 transition">About Us</Link>
@@ -65,7 +71,16 @@ export default function GalleryPage() {
           </nav>
 
           <div className="flex items-center gap-6">
-            <button className="text-zinc-400 hover:text-white transition"><Search size={20} /></button>
+            <div className="relative hidden md:block">
+              <input 
+                type="text" 
+                placeholder="SEARCH MODEL..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-zinc-900 border border-white/10 rounded-full px-6 py-2 text-[10px] font-bold tracking-widest focus:outline-none focus:border-red-600 w-64 transition-all"
+              />
+              <Search size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500" />
+            </div>
             <button className="bg-red-600 hover:bg-red-500 transition px-8 py-3 rounded-md font-black text-[12px] tracking-[2px] uppercase flex items-center gap-3 group">
               Inquiry Now <Send size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -88,7 +103,7 @@ export default function GalleryPage() {
             <div className="flex justify-end"><button onClick={() => setIsMenuOpen(false)}><X size={40} /></button></div>
             <nav className="flex flex-col gap-8 text-4xl font-black uppercase tracking-tighter">
               <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <Link href="/#wheels" onClick={() => setIsMenuOpen(false)}>Wheels</Link>
+              <Link href="/wheels" onClick={() => setIsMenuOpen(false)}>Wheels</Link>
               <Link href="/gallery" onClick={() => setIsMenuOpen(false)}>Gallery</Link>
               <Link href="/#oem" onClick={() => setIsMenuOpen(false)}>OEM/ODM</Link>
               <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
@@ -101,30 +116,40 @@ export default function GalleryPage() {
       <section className="pt-48 pb-20 bg-zinc-950 border-b border-white/5">
         <div className="max-w-[1600px] mx-auto px-6">
           <h2 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter italic mb-8">
-            REAL <span className="text-red-600">INSTALLS</span>
+            WHEEL <span className="text-red-600">CATALOG</span>
           </h2>
           <p className="text-zinc-400 text-lg lg:text-xl font-medium max-w-2xl mb-12 tracking-wide leading-relaxed uppercase">
-            Bespoke forged wheels showcased on high-performance vehicles across the globe. Precision engineering meets automotive perfection.
+            Browse our comprehensive collection of precision-engineered forged wheels. From lightweight monoblock to complex multi-piece designs.
           </p>
           
           {/* FILTER BAR */}
           <div className="flex flex-wrap items-center gap-4 border-t border-white/10 pt-10">
             <div className="flex items-center gap-3 mr-6 text-zinc-500">
               <Filter size={18} />
-              <span className="text-[11px] font-black uppercase tracking-[2px]">Filter By Brand:</span>
+              <span className="text-[11px] font-black uppercase tracking-[2px]">Series:</span>
             </div>
             <div className="flex flex-wrap gap-2">
-              {brands.map(brand => (
+              <button 
+                onClick={() => setSelectedCategory('ALL')}
+                className={`px-6 py-2 rounded text-[11px] font-black uppercase tracking-[2px] transition-all ${
+                  selectedCategory === 'ALL' 
+                    ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.3)]' 
+                    : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'
+                }`}
+              >
+                ALL SERIES
+              </button>
+              {categories.map(cat => (
                 <button 
-                  key={brand}
-                  onClick={() => setSelectedBrand(brand)}
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
                   className={`px-6 py-2 rounded text-[11px] font-black uppercase tracking-[2px] transition-all ${
-                    selectedBrand === brand 
+                    selectedCategory === cat 
                       ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.3)]' 
                       : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800'
                   }`}
                 >
-                  {brand}
+                  {cat}
                 </button>
               ))}
             </div>
@@ -132,53 +157,59 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* GALLERY GRID */}
+      {/* PRODUCT GRID */}
       <section className="py-20 bg-black">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredCases.map((item, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {filteredWheels.map((item, idx) => (
               <motion.div 
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative overflow-hidden rounded-xl bg-zinc-900 border border-white/5 hover:border-red-600/30 transition-all duration-500"
+                transition={{ delay: (idx % 8) * 0.05 }}
+                className="group relative bg-zinc-900/50 rounded-xl border border-white/5 hover:border-red-600/30 transition-all duration-500 overflow-hidden"
               >
-                <div className="aspect-[16/10] overflow-hidden">
+                <div className="aspect-square p-8 flex items-center justify-center relative overflow-hidden bg-zinc-950">
                   <img 
                     src={item.image} 
-                    alt={`${item.car} with ${item.wheel}`} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-[1.5s]"
+                    alt={item.name} 
+                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                     <button className="w-full bg-white text-black py-3 rounded font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                        View Details <Maximize2 size={12} />
+                     </button>
+                  </div>
                 </div>
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-black italic uppercase tracking-tighter leading-none group-hover:text-red-600 transition-colors">
-                      {item.car}
+                <div className="p-6 border-t border-white/5">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-black italic uppercase tracking-tighter group-hover:text-red-600 transition-colors">
+                      {item.name}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-2 mb-6">
-                    <span className="px-3 py-1 bg-red-600/10 text-red-600 text-[10px] font-black uppercase tracking-widest rounded border border-red-600/20">
-                      {item.wheel}
-                    </span>
-                    <span className="text-zinc-600 text-[10px] font-black uppercase tracking-widest">
-                      {item.brand}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">
+                      {item.category}
                     </span>
                   </div>
-                  <p className="text-zinc-500 text-xs font-bold uppercase tracking-[1px] leading-relaxed line-clamp-2">
-                    {item.description}
-                  </p>
-                  <button className="mt-8 flex items-center gap-3 text-[10px] font-black uppercase tracking-[3px] text-white hover:text-red-600 transition-colors group/btn">
-                    View Full Build <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
+                  <div className="grid grid-cols-2 gap-4 border-t border-white/5 pt-4">
+                    <div>
+                      <p className="text-[8px] text-zinc-600 uppercase font-black tracking-widest mb-1">Available Sizes</p>
+                      <p className="text-[10px] font-bold text-zinc-300">{item.size}</p>
+                    </div>
+                    <div>
+                      <p className="text-[8px] text-zinc-600 uppercase font-black tracking-widest mb-1">Standard Finish</p>
+                      <p className="text-[10px] font-bold text-zinc-300">{item.finish}</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
           
-          {filteredCases.length === 0 && (
+          {filteredWheels.length === 0 && (
             <div className="py-40 text-center">
-              <p className="text-zinc-500 font-black uppercase tracking-[4px]">No projects found for this brand.</p>
+              <p className="text-zinc-500 font-black uppercase tracking-[4px]">No models found matching your criteria.</p>
             </div>
           )}
         </div>
@@ -208,8 +239,8 @@ export default function GalleryPage() {
                <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Quick Links</h4>
                <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
                   <Link href="/" className="hover:text-red-600 transition">Home</Link>
-                  <Link href="/#wheels" className="hover:text-red-600 transition">Wheels</Link>
-                  <Link href="/insights" className="hover:text-red-600 transition">Insights</Link>
+                  <Link href="/wheels" className="hover:text-red-600 transition">Wheels</Link>
+                  <Link href="/gallery" className="hover:text-red-600 transition">Gallery</Link>
                   <Link href="/#oem" className="hover:text-red-600 transition">OEM / ODM</Link>
                </nav>
             </div>
@@ -217,10 +248,10 @@ export default function GalleryPage() {
            <div className="lg:col-span-3 space-y-10">
               <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Wheel Series</h4>
               <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
-                 <Link href="/wheels?category=Monoblock Forged" className="hover:text-red-600 transition cursor-pointer">YP Series (Monoblock)</Link>
-                 <Link href="/wheels?category=Multi-piece Forged" className="hover:text-red-600 transition cursor-pointer">FW Series (2-Piece)</Link>
-                 <Link href="/wheels?category=Off-Road Forged" className="hover:text-red-600 transition cursor-pointer">Off-Road Spec Forged</Link>
-                 <Link href="/wheels?category=Truck Forged" className="hover:text-red-600 transition cursor-pointer">Truck Spec Forged</Link>
+                 <button onClick={() => setSelectedCategory('Monoblock Forged')} className="text-left hover:text-red-600 transition">YP Series (Monoblock)</button>
+                 <button onClick={() => setSelectedCategory('Multi-piece Forged')} className="text-left hover:text-red-600 transition">FW Series (2-Piece)</button>
+                 <button onClick={() => setSelectedCategory('Off-Road Forged')} className="text-left hover:text-red-600 transition">Off-Road Spec Forged</button>
+                 <button onClick={() => setSelectedCategory('Truck Forged')} className="text-left hover:text-red-600 transition">Truck Spec Forged</button>
               </nav>
            </div>
 

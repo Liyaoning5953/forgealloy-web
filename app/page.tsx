@@ -195,9 +195,12 @@ export default function ForgeAlloyWebsite() {
                         </li>
                       ))}
                    </ul>
-                   <button className="flex items-center gap-4 text-xs font-black uppercase tracking-[4px] group">
+                   <Link 
+                     href={`/wheels?category=${encodeURIComponent(item.category)}`}
+                     className="flex items-center gap-4 text-xs font-black uppercase tracking-[4px] group"
+                   >
                       Explore {item.name} <ArrowRight size={16} className="text-red-600 group-hover:translate-x-2 transition-transform" />
-                   </button>
+                   </Link>
                 </div>
              </motion.div>
            ))}
@@ -297,10 +300,10 @@ export default function ForgeAlloyWebsite() {
            <div className="lg:col-span-3 space-y-10">
               <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Wheel Series</h4>
               <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
-                 <p className="hover:text-red-600 transition cursor-pointer">YP Series (Monoblock)</p>
-                 <p className="hover:text-red-600 transition cursor-pointer">FW Series (2-Piece)</p>
-                 <p className="hover:text-red-600 transition cursor-pointer">Off-Road Spec Forged</p>
-                 <p className="hover:text-red-600 transition cursor-pointer">Truck Spec Forged</p>
+                 <Link href="/wheels?category=Monoblock Forged" className="hover:text-red-600 transition cursor-pointer">YP Series (Monoblock)</Link>
+                 <Link href="/wheels?category=Multi-piece Forged" className="hover:text-red-600 transition cursor-pointer">FW Series (2-Piece)</Link>
+                 <Link href="/wheels?category=Off-Road Forged" className="hover:text-red-600 transition cursor-pointer">Off-Road Spec Forged</Link>
+                 <Link href="/wheels?category=Truck Forged" className="hover:text-red-600 transition cursor-pointer">Truck Spec Forged</Link>
               </nav>
            </div>
 
