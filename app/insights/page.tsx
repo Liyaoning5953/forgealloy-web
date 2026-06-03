@@ -54,7 +54,7 @@ export default function InsightsPage() {
           <nav className="hidden xl:flex items-center gap-8 uppercase text-[12px] font-black tracking-[2px]">
             <Link href="/" className="hover:text-red-600 transition">Home</Link>
             <Link href="/#wheels" className="hover:text-red-600 transition flex items-center gap-1">Wheels <ChevronDown size={14} /></Link>
-            <Link href="/#gallery" className="hover:text-red-600 transition">Gallery</Link>
+            <Link href="/gallery" className="hover:text-red-600 transition">Gallery</Link>
             <Link href="/#oem" className="hover:text-red-600 transition">OEM/ODM</Link>
             <Link href="/insights" className="text-red-600 border-b-2 border-red-600 pb-1">Insights</Link>
             <Link href="/#contact" className="hover:text-red-600 transition">Contact</Link>

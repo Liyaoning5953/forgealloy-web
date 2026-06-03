@@ -186,3 +186,54 @@ export const gallery = [
   { id: 3, image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=600&auto=format&fit=crop' },
   { id: 4, image: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=600&auto=format&fit=crop' },
 ];
+
+export const cases = [
+  {
+    id: 1,
+    car: 'Porsche 911 GT3',
+    wheel: 'YP01 Monoblock',
+    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop',
+    brand: 'Porsche',
+    description: 'Ultra-lightweight YP01 monoblock forged wheels installed on a Porsche 911 GT3 for maximum track performance.'
+  },
+  {
+    id: 2,
+    car: 'BMW M4 Competition',
+    wheel: 'FW202 2-Piece',
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=1200&auto=format&fit=crop',
+    brand: 'BMW',
+    description: 'Custom FW202 2-piece wheels with polished lips, perfectly complementing the aggressive stance of the BMW M4.'
+  },
+  {
+    id: 3,
+    car: 'Mercedes-Benz G63 AMG',
+    wheel: 'OFF101 Off-Road',
+    image: 'https://images.unsplash.com/photo-1520031441872-265e4ff70366?q=80&w=1200&auto=format&fit=crop',
+    brand: 'Mercedes',
+    description: 'Heavy-duty OFF101 forged wheels providing both luxury style and rugged durability for the iconic G-Wagon.'
+  },
+  {
+    id: 4,
+    car: 'Lamborghini Huracán',
+    wheel: 'FW606 3-Piece',
+    image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop',
+    brand: 'Lamborghini',
+    description: 'Exotic FW606 multi-piece forged wheels in satin bronze, custom-built for high-speed stability and show-stopping looks.'
+  },
+  {
+    id: 5,
+    car: 'Tesla Model S Plaid',
+    wheel: 'YP05 Monoblock',
+    image: 'https://images.unsplash.com/photo-1617788138017-80ad42243c59?q=80&w=1200&auto=format&fit=crop',
+    brand: 'Tesla',
+    description: 'Aero-efficient YP05 forged wheels reducing unsprung weight for better range and sharper handling.'
+  },
+  {
+    id: 6,
+    car: 'Ford F-150 Raptor',
+    wheel: 'TRK88 Truck Series',
+    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format&fit=crop',
+    brand: 'Ford',
+    description: 'Max-load TRK88 forged wheels designed to handle the extreme torque and terrain of the F-150 Raptor.'
+  }
+];

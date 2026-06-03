@@ -54,6 +54,7 @@ export default function ArticleDetail() {
 
           <nav className="hidden xl:flex items-center gap-8 uppercase text-[11px] font-black tracking-[2px]">
             <Link href="/" className="hover:text-red-600 transition">Home</Link>
+            <Link href="/gallery" className="hover:text-red-600 transition">Gallery</Link>
             <Link href="/insights" className="text-red-600">Insights</Link>
             <Link href="/#contact" className="hover:text-red-600 transition">Inquiry</Link>
           </nav>
