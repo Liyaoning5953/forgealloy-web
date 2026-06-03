@@ -1,0 +1,64 @@
+{
+  "amz_hot_keywords_ranking_2026": {
+    "forged_wheels": {
+      "ranking_estimate": "Mid-Popularity (Automotive Rank ~50,000)",
+      "monthly_search_volume_broad": 7442,
+      "market_trend": "Increasing demand for performance upgrades",
+      "region": "North America"
+    },
+    "custom_rims": {
+      "ranking_estimate": "High-Popularity (Automotive Rank ~20,000)",
+      "monthly_search_volume_exact": 3842,
+      "market_trend": "Stable high demand for aesthetic customization",
+      "region": "North America"
+    },
+    "17_inch_forged_wheels": {
+      "ranking_estimate": "Niche/Low-Popularity (Automotive Rank ~80,000)",
+      "monthly_search_volume_exact": 2157,
+      "market_trend": "Specific to performance racing and off-road setups",
+      "region": "North America"
+    }
+  },
+  "tariff_search_870870": {
+    "hs_code": "8708.70",
+    "origin": "China",
+    "destinations": {
+      "USA": {
+        "base_rate": "2.5%",
+        "section_301_surcharge": "25.0%",
+        "section_122_surcharge_2026": "10.0%",
+        "total_estimated_duty": "37.5%",
+        "notes": "Subject to Section 301 (Trade War) and 2026 Section 122 (Trump 2.0) measures."
+      },
+      "EU": {
+        "base_rate": "4.5%",
+        "total_estimated_duty": "4.5%",
+        "notes": "Standard TARIC rate for road wheels and parts."
+      },
+      "Australia": {
+        "base_rate": "5.0%",
+        "chafta_rate": "0.0%",
+        "total_estimated_duty": "0.0%",
+        "notes": "Zero duty under China-Australia Free Trade Agreement (ChAFTA)."
+      }
+    }
+  },
+  "voc_buyer_pain_points": [
+    {
+      "point": "Lead Time",
+      "description": "Custom forged wheels often require 4 to 12 weeks for production and another 2 to 4 weeks for international shipping. Buyers report frustration with delays exceeding 5 months in some cases.",
+      "criticality": "High"
+    },
+    {
+      "point": "Fitment Accuracy",
+      "description": "Ensuring exact hub bore, offset (ET), and bolt pattern (PCD) for specific vehicle models is a major concern. Incorrect fitment leads to vibration, fender rubbing, or brake caliper clearance issues.",
+      "criticality": "High"
+    },
+    {
+      "point": "Material Certification & Quality",
+      "description": "Buyers seek verification of 6061-T6 aluminum forging quality. Concerns exist regarding the authenticity of JWL, VIA, and TÜV certifications on wheels sourced directly from overseas manufacturers.",
+      "criticality": "Medium-High"
+    }
+  ],
+  "data_source_date": "2026-05-17"
+}

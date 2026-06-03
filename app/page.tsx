@@ -130,10 +130,10 @@ export default function ForgeAlloyWebsite() {
           >
             <h2 className="text-7xl lg:text-[140px] font-black leading-[0.8] mb-8 tracking-tighter uppercase italic">
               FORGED TO<br />
-              <span className="text-red-600">PERFORM</span>
+              <span className="text-red-600">STAND OUT</span>
             </h2>
             <p className="text-zinc-400 text-lg lg:text-xl font-medium max-w-xl mb-16 tracking-wide leading-relaxed uppercase">
-              Precision forged wheels for luxury, performance and off-road vehicles.
+              {company.tagline}
             </p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
@@ -168,24 +168,19 @@ export default function ForgeAlloyWebsite() {
 
         {/* STATS STRIP */}
         <div className="absolute bottom-0 left-0 right-0 bg-white/5 backdrop-blur-md border-t border-white/10 py-12">
-          <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              { value: '500+', label: 'Wheel Designs', icon: Globe },
-              { value: '10+', label: 'Years Experience', icon: Clock },
-              { value: '80+', label: 'Countries Served', icon: Globe },
-              { value: '100%', label: 'Quality Guarantee', icon: ShieldCheck }
-            ].map((s, i) => (
-              <div key={i} className="flex items-center gap-8">
-                <div className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center">
-                   <s.icon size={28} className="text-zinc-500" />
-                </div>
-                <div>
-                   <h3 className="text-4xl font-black tracking-tighter leading-none mb-1 uppercase">{s.value}</h3>
-                   <p className="text-[11px] font-black uppercase tracking-[3px] text-zinc-500">{s.label}</p>
-                </div>
+        <div className="max-w-[1600px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
+          {company.stats.map((s, i) => (
+            <div key={i} className="flex items-center gap-8">
+              <div className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center">
+                 <Globe size={28} className="text-zinc-500" />
               </div>
-            ))}
-          </div>
+              <div>
+                 <h3 className="text-4xl font-black tracking-tighter leading-none mb-1 uppercase">{s.value}</h3>
+                 <p className="text-[11px] font-black uppercase tracking-[3px] text-zinc-500">{s.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
         </div>
       </section>
 
