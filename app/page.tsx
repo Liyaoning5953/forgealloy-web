@@ -30,7 +30,8 @@ import {
   Truck
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { company, series, wheels, categories, gallery } from '@/lib/data';
+import { company, series, wheels, categories, gallery, insights } from '@/lib/data';
+import Link from 'next/link';
 
 export default function ForgeAlloyWebsite() {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -75,6 +76,7 @@ export default function ForgeAlloyWebsite() {
             <a href="#wheels" className="hover:text-red-600 transition flex items-center gap-1">Wheels <ChevronDown size={14} /></a>
             <a href="#gallery" className="hover:text-red-600 transition">Gallery</a>
             <a href="#oem" className="hover:text-red-600 transition">OEM/ODM</a>
+            <Link href="/insights" className="hover:text-red-600 transition">Insights</Link>
             <a href="#about" className="hover:text-red-600 transition">About Us</a>
             <a href="#dealer" className="hover:text-red-600 transition">Dealer</a>
             <a href="#contact" className="hover:text-red-600 transition">Contact</a>
@@ -386,6 +388,45 @@ export default function ForgeAlloyWebsite() {
         </div>
       </section>
 
+      {/* LATEST INSIGHTS SECTION */}
+      <section className="py-32 bg-zinc-900">
+        <div className="max-w-[1600px] mx-auto px-6">
+           <div className="flex items-end justify-between mb-20">
+              <div>
+                <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter italic mb-4">Latest <span className="text-red-600">Insights</span></h2>
+                <p className="text-zinc-500 text-sm font-bold uppercase tracking-[4px]">Wheel Tech & Industry News</p>
+              </div>
+              <Link href="/insights" className="hidden md:flex items-center gap-4 text-[11px] font-black uppercase tracking-[2px] border-b-2 border-red-600 pb-2 hover:text-red-600 transition">
+                View All Articles <ArrowRight size={16} />
+              </Link>
+           </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {insights.slice(0, 3).map((post, idx) => (
+                <motion.article 
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="group cursor-pointer"
+                >
+                  <Link href={`/insights/${post.slug}`}>
+                    <div className="relative aspect-video overflow-hidden rounded-xl mb-8 border border-white/5">
+                      <img src={post.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000" alt={post.title} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                      <div className="absolute top-4 left-4 bg-red-600 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded">
+                        {post.category}
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-black italic uppercase tracking-tighter mb-4 group-hover:text-red-600 transition-colors leading-tight">{post.title}</h3>
+                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-[2px]">{post.date}</p>
+                  </Link>
+                </motion.article>
+              ))}
+           </div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer id="contact" className="bg-zinc-950 text-white pt-40 pb-20 border-t border-white/5 relative overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 grid lg:grid-cols-12 gap-24 relative z-10">
@@ -406,15 +447,15 @@ export default function ForgeAlloyWebsite() {
               </div>
            </div>
 
-           <div className="lg:col-span-2 space-y-10">
-              <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Quick Links</h4>
-              <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
-                 <a href="#" className="hover:text-red-600 transition">Home</a>
-                 <a href="#wheels" className="hover:text-red-600 transition">Wheels</a>
-                 <a href="#gallery" className="hover:text-red-600 transition">Gallery</a>
-                 <a href="#oem" className="hover:text-red-600 transition">OEM / ODM</a>
-              </nav>
-           </div>
+            <div className="lg:col-span-2 space-y-10">
+               <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Quick Links</h4>
+               <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
+                  <a href="#" className="hover:text-red-600 transition">Home</a>
+                  <a href="#wheels" className="hover:text-red-600 transition">Wheels</a>
+                  <Link href="/insights" className="hover:text-red-600 transition">Insights</Link>
+                  <a href="#oem" className="hover:text-red-600 transition">OEM / ODM</a>
+               </nav>
+            </div>
 
            <div className="lg:col-span-3 space-y-10">
               <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Wheel Series</h4>

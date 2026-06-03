@@ -53,6 +53,57 @@ export const categories = [
   'Truck Forged'
 ];
 
+export const insights = [
+  {
+    slug: 'aerospace-grade-6061-t6-forged-wheels-guide',
+    title: 'The Ultimate Guide to Aerospace-Grade 6061-T6 Forged Wheels',
+    date: 'June 01, 2026',
+    excerpt: 'Discover why 6061-T6 aluminum is the gold standard for high-performance forged wheels and how it impacts safety and durability.',
+    category: 'Engineering',
+    image: 'https://images.unsplash.com/photo-1486467562924-c19fb70d4840?q=80&w=2070&auto=format&fit=crop',
+    content: `
+      <h2>The Standard of Excellence: 6061-T6 Aluminum</h2>
+      <p>In the world of professional racing and luxury automotive customization, one material stands above the rest: 6061-T6 aerospace-grade aluminum. But what makes this alloy so special for forged wheels?</p>
+      <h3>Strength-to-Weight Ratio</h3>
+      <p>6061-T6 is renowned for its exceptional strength-to-weight ratio. By using high-pressure forging processes, we compress the crystalline structure of the aluminum, eliminating porosity and creating a grain flow that follows the shape of the wheel. This results in a rim that is significantly lighter yet stronger than any cast alternative.</p>
+      <h3>Thermal Conductivity</h3>
+      <p>High-performance driving generates massive amounts of heat, particularly in the braking system. Forged 6061-T6 aluminum has superior thermal conductivity, helping to dissipate heat away from the brakes, reducing brake fade and improving overall vehicle safety.</p>
+    `
+  },
+  {
+    slug: 'monoblock-vs-multi-piece-forged-wheels',
+    title: 'Monoblock vs. Multi-piece Forged Wheels: Which is Right for You?',
+    date: 'May 28, 2026',
+    excerpt: 'Comparing the structural integrity, weight, and customization options of Monoblock and 2/3-Piece forged wheels.',
+    category: 'Technical',
+    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200&auto=format&fit=crop',
+    content: `
+      <h2>Structural Differences: One Piece or Many?</h2>
+      <p>Choosing between Monoblock and Multi-piece wheels is one of the most common dilemmas for car enthusiasts. Both have distinct advantages depending on your goals.</p>
+      <h3>Monoblock Forged: The Performance King</h3>
+      <p>Monoblock wheels are machined from a single solid forging. This makes them the lightest and stiffest possible wheel option, ideal for track-focused cars where every gram of unsprung weight matters.</p>
+      <h3>Multi-piece Forged: Ultimate Customization</h3>
+      <p>2-piece and 3-piece wheels consist of a center disk and rim barrels bolted together. This modularity allows for extreme offsets, deep lips, and contrasting finishes between the lip and the disk, making them the favorite for luxury show cars.</p>
+    `
+  },
+  {
+    slug: 'how-custom-forged-wheels-enhance-performance',
+    title: 'How Custom Forged Wheels Enhance Vehicle Performance and Safety',
+    date: 'May 22, 2026',
+    excerpt: 'Learn how reducing unsprung weight through forged wheels improves acceleration, braking, and fuel efficiency.',
+    category: 'Performance',
+    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop',
+    content: `
+      <h2>The Physics of Performance: Unsprung Weight</h2>
+      <p>Upgrading to forged wheels is one of the most effective ways to transform your vehicle's handling. The secret lies in the reduction of "unsprung weight."</p>
+      <h3>Faster Acceleration and Braking</h3>
+      <p>Since the engine doesn't have to work as hard to rotate a lighter wheel, your acceleration improves. Similarly, the braking system can stop the lighter rotating mass more quickly and with less effort.</p>
+      <h3>Improved Suspension Response</h3>
+      <p>Lighter wheels allow the suspension to react more quickly to bumps and road imperfections, keeping the tire in better contact with the road and providing a more composed, comfortable ride.</p>
+    `
+  }
+];
+
 export const series = [
   { 
     id: 'yp', 
