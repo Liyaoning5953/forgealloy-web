@@ -22,6 +22,7 @@ import { company, wheels, categories } from '@/lib/data';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+// 将包含搜索逻辑的内容提取到子组件中
 function WheelsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || 'ALL';
@@ -248,10 +249,10 @@ function WheelsContent() {
            <div className="lg:col-span-3 space-y-10">
               <h4 className="text-[14px] font-black uppercase tracking-[5px] text-white underline decoration-red-600 decoration-4 underline-offset-8">Wheel Series</h4>
               <nav className="flex flex-col gap-6 text-[12px] font-black uppercase tracking-[4px] text-zinc-500">
-                 <button onClick={() => setSelectedCategory('Monoblock Forged')} className="text-left hover:text-red-600 transition">YP Series (Monoblock)</button>
-                 <button onClick={() => setSelectedCategory('Multi-piece Forged')} className="text-left hover:text-red-600 transition">FW Series (2-Piece)</button>
-                 <button onClick={() => setSelectedCategory('Off-Road Forged')} className="text-left hover:text-red-600 transition">Off-Road Spec Forged</button>
-                 <button onClick={() => setSelectedCategory('Truck Forged')} className="text-left hover:text-red-600 transition">Truck Spec Forged</button>
+                 <Link href="/wheels?category=Monoblock Forged" className="hover:text-red-600 transition text-left">YP Series (Monoblock)</Link>
+                 <Link href="/wheels?category=Multi-piece Forged" className="hover:text-red-600 transition text-left">FW Series (2-Piece)</Link>
+                 <Link href="/wheels?category=Off-Road Forged" className="hover:text-red-600 transition text-left">Off-Road Spec Forged</Link>
+                 <Link href="/wheels?category=Truck Forged" className="hover:text-red-600 transition text-left">Truck Spec Forged</Link>
               </nav>
            </div>
 
@@ -286,9 +287,10 @@ function WheelsContent() {
   );
 }
 
+// 核心修复：为整个页面添加 Suspense 边界
 export default function WheelsPage() {
   return (
-    <Suspense fallback={<div className="bg-black min-h-screen flex items-center justify-center text-white">Loading...</div>}>
+    <Suspense fallback={<div className="bg-black min-h-screen flex items-center justify-center text-white uppercase tracking-[4px] font-black">Loading Catalog...</div>}>
       <WheelsContent />
     </Suspense>
   );
