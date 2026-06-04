@@ -20,6 +20,13 @@ import { company, insights } from '@/lib/data';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 
+// 添加 generateStaticParams 以支持静态导出
+export async function generateStaticParams() {
+  return insights.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export default function ArticleDetail() {
   const params = useParams();
   const router = useRouter();
