@@ -216,7 +216,7 @@ export default function ForgeAlloyWebsite() {
         
         <div className="relative z-10 max-w-[1600px] mx-auto px-6">
            <div className="text-center mb-32">
-              <h3 className="text-6xl lg:text-8xl font-black italic uppercase tracking-tighter mb-8 text-white">BESPOKE <span className="text-red-600">MANUFACTURING</span></h3>
+              <h3 className="text-6xl lg:text-8xl font-black italic uppercase tracking-tighter mb-8 text-white">BESPOKE <span className="text-red-600">PRODUCTION</span></h3>
               <p className="text-zinc-400 font-bold uppercase tracking-[4px] max-w-2xl mx-auto">Turnkey OEM/ODM solutions for brands, fleets, and specialized tuning shops.</p>
            </div>
 

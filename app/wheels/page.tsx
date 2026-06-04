@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, Suspense } from 'react';
 import { 
   Search, 
   ArrowRight, 
@@ -22,7 +22,7 @@ import { company, wheels, categories } from '@/lib/data';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-export default function WheelsPage() {
+function WheelsContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') || 'ALL';
   
@@ -283,5 +283,13 @@ export default function WheelsPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function WheelsPage() {
+  return (
+    <Suspense fallback={<div className="bg-black min-h-screen flex items-center justify-center text-white">Loading...</div>}>
+      <WheelsContent />
+    </Suspense>
   );
 }
