@@ -28,3 +28,7 @@ temp_images/
 !package.json
 !package-lock.json
 !tsconfig.json
+
+# ---- Vite site (rebuilt 2026-09) ----
+/dist/
+!/public/**

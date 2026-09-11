@@ -1,0 +1,99 @@
+/* ForgeAlloy design tokens — single source of truth. No inline hex outside this file. */
+:root {
+  /* Surfaces — light luxury (Forgiato-inspired), dark bands opt in via --bg-dark */
+  --bg-canvas: #f6f6f7;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-inset: #ececee;
+  --bg-overlay: rgba(246, 246, 247, 0.9);
+
+  /* Text */
+  --fg: #101013;
+  --fg-body: #3f3f46;
+  --fg-muted: #71717a;
+  --fg-inverse: #f6f6f7;
+
+  /* Accent — molten forge-heat orange. One accent, <=2 visible uses per screen. */
+  --accent: #e8430c;
+  --accent-bright: #ff6a2b;
+  --accent-dim: rgba(232, 67, 12, 0.22);
+  --accent-on: #ffffff;
+
+  /* Borders */
+  --border: rgba(16, 16, 19, 0.1);
+  --border-strong: rgba(16, 16, 19, 0.24);
+
+  /* Dark context (hero / strength / CTA bands / footer) */
+  --bg-dark: #0a0a0b;
+  --bg-dark-surface: #121214;
+  --fg-dark: #ececec;
+  --fg-dark-body: #b8b8bd;
+  --fg-dark-muted: #7a7a82;
+  --border-dark: rgba(255, 255, 255, 0.08);
+  --border-dark-strong: rgba(255, 255, 255, 0.18);
+
+  /* Semantic */
+  --success: #2fbf71;
+  --warn: #f5a623;
+  --danger: #e5484d;
+
+  /* Typography */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --text-display: clamp(44px, 7vw, 84px);
+  --text-h1: clamp(32px, 4.6vw, 54px);
+  --text-h2: clamp(24px, 3vw, 38px);
+  --text-h3: clamp(18px, 2vw, 22px);
+  --text-lead: 18px;
+  --text-body: 16px;
+  --text-sm: 14px;
+  --text-caption: 12px;
+  --text-label: 13px;
+  --text-eyebrow: 12px;
+  --text-spec: 26px;
+
+  /* Spacing — 4px base */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px;
+  --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+  --section-y-desktop: 104px; --section-y-tablet: 76px; --section-y-phone: 52px;
+
+  /* Radii */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-overlay: 0 24px 64px rgba(0, 0, 0, 0.6);
+
+  /* Focus */
+  --focus-ring: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--fg);
+  --focus-ring-accent: 0 0 0 2px var(--bg-canvas), 0 0 0 4px var(--accent);
+
+  /* Motion */
+  --motion-fast: 130ms; --motion-base: 220ms; --motion-reveal: 400ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-max: 1440px;
+  --gutter-desktop: 40px; --gutter-tablet: 28px; --gutter-phone: 18px;
+  --nav-height: 72px;
+
+  /* Light surfaces (alternating two-tone sections) */
+  --bg-light: #f2f2f3;
+  --bg-light-2: #ffffff;
+  --ink: #101013;
+  --ink-body: #3f3f46;
+  --ink-muted: #71717a;
+  --border-light: rgba(16, 16, 19, 0.1);
+  --border-light-strong: rgba(16, 16, 19, 0.22);
+
+  /* Brand extras */
+  --whatsapp: #25d366;
+  --mail: #9aa0a6;
+}

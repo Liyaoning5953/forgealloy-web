@@ -1,0 +1,126 @@
+import { useParams, Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
+import Seo from '../components/Seo.jsx';
+import CtaBand from '../components/CtaBand.jsx';
+import SpecTable from '../components/SpecTable.jsx';
+import Reveal from '../components/Reveal.jsx';
+import { getModel, getModelsBySeries } from '../data/models.js';
+import { getSeries } from '../data/series.js';
+
+// Every fitment parameter is customizable; confirmed against the vehicle before production.
+const customRows = (sizeRange) => [
+  { label: 'Size', value: sizeRange || 'On request' },
+  { label: 'Width', value: 'Custom' },
+  { label: 'Offset (ET)', value: 'Custom' },
+  { label: 'PCD', value: 'Custom' },
+  { label: 'Center bore', value: 'Custom' },
+  { label: 'Finish & color', value: 'Custom' },
+];
+
+const FEATURES = [
+  { title: 'Forged 6061-T6', copy: 'Dense, grain-aligned construction from forged billet — lighter and stiffer than cast alternatives at the same strength target.' },
+  { title: 'Fully custom fitment', copy: 'Size, width, offset, PCD and center bore are all customizable and confirmed against your vehicle before production. A wrong PCD is a safety issue, not a fitment inconvenience.' },
+  { title: 'Custom color & finish', copy: 'Custom colors and finishes are available — send us your color chart or a sample and we match it. Matte, gloss, brushed, gunmetal, bronze and custom RAL are common.' },
+  { title: 'OEM / private label', copy: 'Center caps, laser marking and packaging can carry your brand under a private-label program.' },
+];
+
+export default function ProductDetail() {
+  const { model } = useParams();
+  const m = getModel(model);
+  if (!m) {
+    return (
+      <section className="section container">
+        <h1>Model not found</h1>
+        <p className="lede"><Link to="/products">Back to all models</Link></p>
+      </section>
+    );
+  }
+
+  const series = getSeries(m.series);
+  const related = getModelsBySeries(m.series).filter((x) => x.model !== m.model).slice(0, 3);
+
+  return (
+    <>
+      <Seo
+        title={`${m.model} ${m.kind} Forged Wheel | ForgeAlloy`}
+        description={`${m.model} — ${m.kind} forged wheel in the ${series.name} series. 6061-T6, fully customizable: size 15"-26", width, offset, PCD, center bore and color.`}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: `${m.model} ${m.kind} Forged Wheel`,
+          brand: { '@type': 'Brand', name: 'ForgeAlloy' },
+          image: m.image,
+          material: '6061-T6 aluminum',
+          description: `${m.model} ${m.kind} forged wheel, ${series.name}.`,
+        }}
+      />
+
+      <section className="product-hero section" data-component="product-hero">
+        <div className="container product-hero-inner">
+          <div className="product-gallery">
+            <img src={m.image} alt={`${m.model} ${m.kind} forged wheel`} referrerPolicy="no-referrer" />
+            <span className="product-gallery-code">{m.model}</span>
+          </div>
+          <div className="product-info">
+            <nav className="crumbs" aria-label="Breadcrumb">
+              <Link to="/products">Products</Link> <span className="crumb-sep">/</span>
+              <Link to={`/series/${series.slug}`}>{series.name}</Link> <span className="crumb-sep">/</span>
+              <span>{m.model}</span>
+            </nav>
+            <span className="eyebrow">{series.code}</span>
+            <h1>{m.model}</h1>
+            <p className="lede">{m.kind} forged wheel — fully customizable. Size, width, offset, PCD, center bore and color are all made to your spec.</p>
+            <SpecTable rows={customRows(series.sizeRange)} />
+            <div className="custom-chip-row">
+              {[`Size ${series.sizeRange}`.trim(), 'Width', 'Offset', 'PCD', 'Center bore', 'Color & finish'].map((c) => (
+                <span className="custom-chip" key={c}><Check size={13} /> {c}</span>
+              ))}
+            </div>
+            <p className="custom-note">Every parameter is confirmed against your vehicle data before production. Color chart and finish options on request.</p>
+            <div className="product-info-actions">
+              <Link to={`/contact?model=${m.model}`} className="btn btn-primary btn-lg">Request quote — {m.model}</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section container">
+        <Reveal className="section-head">
+          <span className="eyebrow">Built to spec</span>
+          <h2>What you get</h2>
+        </Reveal>
+        <div className="features-grid">
+          {FEATURES.map((f) => (
+            <div className="spec-cell" key={f.title}>
+              <span className="spec-label">{f.title}</span>
+              <p>{f.copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {related.length > 0 && (
+        <section className="section container">
+          <Reveal className="section-head">
+            <span className="eyebrow">Related models</span>
+            <h2>More from {series.name}</h2>
+          </Reveal>
+          <div className="related-grid">
+            {related.map((r) => (
+              <Link to={`/products/${r.model.toLowerCase()}`} className="related-card" key={r.model}>
+                <img src={r.image} alt={r.model} loading="lazy" referrerPolicy="no-referrer" />
+                <span className="related-code">{r.model}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <CtaBand
+        headline={`Build ${m.model} to your spec`}
+        sub={`Send your target size, width, offset, PCD, center bore, color and quantity — we confirm feasibility and reply with pricing.`}
+        image={m.image}
+      />
+    </>
+  );
+}
