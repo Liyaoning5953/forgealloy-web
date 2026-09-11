@@ -14,7 +14,7 @@ export function SeriesCard({ s, compact = false, showCount = false }) {
   return (
     <Link to={`/series/${s.slug}`} className={`series-card${compact ? ' compact' : ''}`} data-component="series-card">
       <div className="series-card-media">
-        <img src={s.image} alt={`${s.name} forged wheels`} loading="lazy" referrerPolicy="no-referrer" />
+        <img src={s.image} alt={`${s.name} ${s.wheelType.noun}s`} loading="lazy" referrerPolicy="no-referrer" />
         <span className="series-card-code">{s.code}</span>
       </div>
       <div className="series-card-body">

@@ -1,4 +1,4 @@
-// products.js — generated from the factory Alibaba product library (2026-09-10).
+// products.js — generated from the factory Alibaba product library + wire-wheel set (2026-09-10).
 // Numbered catalog (no titles); images hotlinked from the factory CDN.
 export const MODELS = [
   { model: 'P-001', series: 'passenger', kind: 'monoblock', image: 'https://s.alicdn.com/@sc04/kf/H92679c242ec4491dbbc3b9bfd5953bb35/Duaxen-Forgealloy-Wheels-1-Piece-17.png', sizes: '17"–26"', pcd: ["5x114.3", "5x120"], colors: ["chrome", "polished"], specs: { size: null, offset: null, pcd: null, weight: null } },
@@ -1256,6 +1256,19 @@ export const MODELS = [
   { model: 'T-214', series: 'pickup', kind: 'Pickup', image: 'https://s.alicdn.com/@sc04/kf/Hbfa665a8c9814b53bf4a7347777ec45cv/Duaxen-Forgealloy-Alloy-Wheels-for-Pickup.jpg', sizes: '20"–30"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
   { model: 'T-215', series: 'pickup', kind: 'Pickup', image: 'https://s.alicdn.com/@sc04/kf/Hb775510f6f144ba0ba4585f6712d66f2q/Duaxen-Forgealloy-Suitable-for-Ford-Raptor.jpg', sizes: '20"–30"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
   { model: 'T-216', series: 'pickup', kind: 'Pickup', image: 'https://s.alicdn.com/@sc04/kf/H75a264b783814c63b022bfc6a83a6cfbD/Duaxen-Forgealloy-New-22-5-Inch.jpg', sizes: '20"–30"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-001', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/Hb6317532233e4b1ba8f6bce99a5622e79.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-002', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/Hb4e6b5ecec554f5e910b75be95cb5080N.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-003', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/Ha2f9f06e27a349a3854dc52d9424a249t.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-004', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/Hc41e499e92604a3a88066a278baf7b85Z.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-005', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/Hd604909bdf134025bbde13e70503f508a.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-006', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/Hc9ca5131aa1745d68059deca9fb9117dQ.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-007', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/H966536544da940a8ba7cc4a7fb3e225ci.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-008', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/H0e9d1385bcdc49acaeb088e39478b2f51.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-009', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/H5354255f4e5f4be0adf61d45da93a1eeC.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-010', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/H36c91d8248ee46f78cbf5fbc48483162M.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-011', series: 'wire', kind: 'Straight-lace', image: 'https://sc02.alicdn.com/kf/H1424e6d881674d6bbc982da5c9a63b77s.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-012', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/Hf9fe05c34aa24c6aa55eca506701ef32y.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
+  { model: 'W-013', series: 'wire', kind: 'Cross-lace', image: 'https://sc02.alicdn.com/kf/H5e034ab378a8457882fbd4db0ea7d349J.jpg', sizes: '13"–26"', pcd: [], colors: [], specs: { size: null, offset: null, pcd: null, weight: null } },
 ];
 
 export const getModel = (m) => MODELS.find((x) => x.model.toLowerCase() === String(m).toLowerCase());

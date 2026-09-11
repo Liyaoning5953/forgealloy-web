@@ -39,10 +39,10 @@ export default function AboutFactory() {
           <span className="eyebrow">Who we are</span>
           <h2>One forge, one standard</h2>
           <p className="lede">
-            ForgeAlloy designs and manufactures forged alloy wheels for the global aftermarket and OEM programs — passenger, race, off-road/SUV and pickup series, with a process that starts with 6061 billet and ends with a QC'd, export-packed wheel.
+            ForgeAlloy designs and manufactures alloy wheels for the global aftermarket and OEM programs — passenger, race, off-road/SUV, pickup and wire-spoke series. Forged wheels start as 6061 billet and finish as a QC'd, export-packed wheel.
           </p>
           <p>
-            Founding year, factory area and equipment list are being verified — they will be published here with the factory's confirmation. What we state now is limited to what is already verified: 6061-T6 construction, six wheel series, eighteen models, and OEM/ODM export capability.
+            Founding year, factory area and equipment list are being verified — they will be published here with the factory's confirmation. What we state now is limited to what is already verified: forged 6061-T6 construction, five product series, and OEM/ODM export capability.
           </p>
           <p>
             The official ForgeAlloy catalog declares ISO 9001 quality management and DOT (FMVSS) compliance, backed by an R&D team using FEA simulation, with fatigue and impact testing on every wheel.

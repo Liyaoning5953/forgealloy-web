@@ -6,7 +6,7 @@ export const LEGAL_NAME = 'Shandong Forgealloy Racing Tech Co., Ltd.';
 
 // Verified facts (from the live site + company files). Do not edit unless the factory confirms.
 export const VERIFIED_FACTS = [
-  { value: '4', label: 'Series' },
+  { value: '5', label: 'Series' },
   { value: '500+', label: 'Wheel designs' },
   { value: '6061-T6', label: 'Forged aluminum' },
   { value: 'OEM / ODM', label: 'Export programs' },
@@ -15,7 +15,7 @@ export const VERIFIED_FACTS = [
 export const PENDING = 'PENDING VERIFICATION';
 export const ON_REQUEST = 'On request';
 
-export const SERIES_COUNT = 4;
+export const SERIES_COUNT = 5;
 export const MODELS_COUNT = 0;
 
 // Verified commercial terms (factory-confirmed, 2026-08).

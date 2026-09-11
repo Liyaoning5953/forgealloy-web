@@ -34,7 +34,7 @@ export default function Products() {
     <>
       <Seo
         title="Custom Forged Wheels Catalog | ForgeAlloy"
-        description="Forged wheels across four series — passenger, race, off-road/SUV and pickup. 6061-T6, custom fitment and finishes."
+        description="Wheels across five series — passenger, race, off-road/SUV, pickup and wire-spoke. Custom fitment, finishes and OEM programs."
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
@@ -45,7 +45,7 @@ export default function Products() {
       <PageHero
         eyebrow="Catalog"
         title="All models"
-        lead="Four series of forged wheels — passenger, race, off-road/SUV and pickup. Filter by series, then request specs for the fitment you need."
+        lead="Five series — passenger, race, off-road/SUV, pickup and wire-spoke. Filter by series, then request specs for the fitment you need."
         image={HERO_BG}
       />
 

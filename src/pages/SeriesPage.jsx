@@ -40,14 +40,14 @@ export default function SeriesPage() {
   return (
     <>
       <Seo
-        title={`${series.name} Forged Wheels | ${series.code} — ForgeAlloy`}
-        description={`${series.name} forged wheels — ${series.blurb}`}
+        title={`${series.name} | ${series.code} — ForgeAlloy`}
+        description={`${series.name} — ${series.blurb}`}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'Product',
           name: `${series.code} ${series.name}`,
           brand: { '@type': 'Brand', name: 'ForgeAlloy' },
-          material: '6061-T6 aluminum',
+          ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
           description: series.blurb,
         }}
       />

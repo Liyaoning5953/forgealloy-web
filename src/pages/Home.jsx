@@ -16,7 +16,7 @@ import { FACTORY } from '../data/images.js';
 const HERO_BG = 'https://sc01.alicdn.com/kf/Af09b8da0393548558c1f3ce05d153f9fx.png';
 
 // One flagship design from each group.
-const FEATURED = ['passenger', 'race', 'off-road-suv', 'pickup']
+const FEATURED = ['passenger', 'race', 'off-road-suv', 'pickup', 'wire']
   .map((g) => MODELS.find((m) => m.series === g))
   .filter(Boolean);
 
@@ -39,7 +39,7 @@ export default function Home() {
     <>
       <Seo
         title="ForgeAlloy | Custom Forged Wheels — 6061-T6 Factory Direct"
-        description="Precision 6061-T6 forged wheels for dealers, tuners, race teams and OEM programs — passenger, race, off-road/SUV and pickup series, factory direct from Shandong, China."
+        description="Precision 6061-T6 forged wheels and wire-spoke wheels for dealers, tuners, race teams and OEM programs — passenger, race, off-road/SUV, pickup and wire series, factory direct from Shandong, China."
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'Organization',
@@ -108,7 +108,7 @@ export default function Home() {
           <Reveal className="section-head collections-head">
             <div>
               <span className="eyebrow">Wheel collections</span>
-              <h2>Four series. Zero compromise.</h2>
+              <h2>Five series. Zero compromise.</h2>
             </div>
             <Link to="/products" className="btn btn-outline-ink">View all products <ArrowRight size={15} /></Link>
           </Reveal>

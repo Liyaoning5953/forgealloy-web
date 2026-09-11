@@ -17,12 +17,20 @@ const customRows = (sizeRange) => [
   { label: 'Finish & color', value: 'Custom' },
 ];
 
-const FEATURES = [
-  { title: 'Forged 6061-T6', copy: 'Dense, grain-aligned construction from forged billet — lighter and stiffer than cast alternatives at the same strength target.' },
-  { title: 'Fully custom fitment', copy: 'Size, width, offset, PCD and center bore are all customizable and confirmed against your vehicle before production. A wrong PCD is a safety issue, not a fitment inconvenience.' },
-  { title: 'Custom color & finish', copy: 'Custom colors and finishes are available — send us your color chart or a sample and we match it. Matte, gloss, brushed, gunmetal, bronze and custom RAL are common.' },
-  { title: 'OEM / private label', copy: 'Center caps, laser marking and packaging can carry your brand under a private-label program.' },
-];
+// Construction copy follows the series, so a wire wheel never claims forged 6061-T6.
+const featuresFor = (series) => {
+  const t = series.wheelType;
+  const build = t.material
+    ? { title: `Forged ${t.material}`, copy: 'Dense, grain-aligned construction from forged billet — lighter and stiffer than cast alternatives at the same strength target.' }
+    : { title: 'Wire-spoke construction', copy: 'High-count steel wire laced to a formed rim — the classic lace pattern, finished and built to your fitment.' };
+
+  return [
+    build,
+    { title: 'Fully custom fitment', copy: `Size (${series.sizeRange}), width, offset, PCD and center bore are all customizable and confirmed against your vehicle before production. A wrong PCD is a safety issue, not a fitment inconvenience.` },
+    { title: 'Custom color & finish', copy: 'Custom colors and finishes are available — send us your color chart or a sample and we match it. Matte, gloss, brushed, chrome, gold, bronze and custom RAL are common.' },
+    { title: 'OEM / private label', copy: 'Center caps, laser marking and packaging can carry your brand under a private-label program.' },
+  ];
+};
 
 export default function ProductDetail() {
   const { model } = useParams();
@@ -42,23 +50,23 @@ export default function ProductDetail() {
   return (
     <>
       <Seo
-        title={`${m.model} ${m.kind} Forged Wheel | ForgeAlloy`}
-        description={`${m.model} — ${m.kind} forged wheel in the ${series.name} series. 6061-T6, fully customizable: size 15"-26", width, offset, PCD, center bore and color.`}
+        title={`${m.model} ${m.kind} ${series.wheelType.title} | ForgeAlloy`}
+        description={`${m.model} — ${m.kind} ${series.wheelType.noun} in the ${series.name} series. Fully customizable: size ${series.sizeRange}, width, offset, PCD, center bore and color.`}
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'Product',
-          name: `${m.model} ${m.kind} Forged Wheel`,
+          name: `${m.model} ${m.kind} ${series.wheelType.title}`,
           brand: { '@type': 'Brand', name: 'ForgeAlloy' },
           image: m.image,
-          material: '6061-T6 aluminum',
-          description: `${m.model} ${m.kind} forged wheel, ${series.name}.`,
+          ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
+          description: `${m.model} ${m.kind} ${series.wheelType.noun}, ${series.name}.`,
         }}
       />
 
       <section className="product-hero section" data-component="product-hero">
         <div className="container product-hero-inner">
           <div className="product-gallery">
-            <img src={m.image} alt={`${m.model} ${m.kind} forged wheel`} referrerPolicy="no-referrer" />
+            <img src={m.image} alt={`${m.model} ${m.kind} ${series.wheelType.noun}`} referrerPolicy="no-referrer" />
             <span className="product-gallery-code">{m.model}</span>
           </div>
           <div className="product-info">
@@ -69,7 +77,7 @@ export default function ProductDetail() {
             </nav>
             <span className="eyebrow">{series.code}</span>
             <h1>{m.model}</h1>
-            <p className="lede">{m.kind} forged wheel — fully customizable. Size, width, offset, PCD, center bore and color are all made to your spec.</p>
+            <p className="lede">{m.kind} {series.wheelType.noun} — fully customizable. Size, width, offset, PCD, center bore and color are all made to your spec.</p>
             <SpecTable rows={customRows(series.sizeRange)} />
             <div className="custom-chip-row">
               {[`Size ${series.sizeRange}`.trim(), 'Width', 'Offset', 'PCD', 'Center bore', 'Color & finish'].map((c) => (
@@ -90,7 +98,7 @@ export default function ProductDetail() {
           <h2>What you get</h2>
         </Reveal>
         <div className="features-grid">
-          {FEATURES.map((f) => (
+          {featuresFor(series).map((f) => (
             <div className="spec-cell" key={f.title}>
               <span className="spec-label">{f.title}</span>
               <p>{f.copy}</p>

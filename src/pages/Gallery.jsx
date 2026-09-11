@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { MODELS } from '../data/models.js';
+import { getSeries } from '../data/series.js';
 import { FACTORY, HERO_BG } from '../data/images.js';
 
 const FACTORY_SHOTS = [
@@ -31,7 +32,7 @@ export default function Gallery() {
           <div className="gallery-grid">
             {MODELS.slice(0, 60).map((m, i) => (
               <Reveal key={m.model} delay={(i % 4) * 40} className="gallery-item">
-                <img src={m.image} alt={`Duaxen Forgealloy forged wheel ${m.model}`} loading="lazy" referrerPolicy="no-referrer" />
+                <img src={m.image} alt={`Duaxen Forgealloy ${getSeries(m.series)?.wheelType.noun || 'wheel'} ${m.model}`} loading="lazy" referrerPolicy="no-referrer" />
                 <span className="gallery-code">{m.model}</span>
               </Reveal>
             ))}

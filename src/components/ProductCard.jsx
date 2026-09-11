@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { getSeries } from '../data/series.js';
 
 // Numbered product card: item code + fitment spec line (no titles by factory choice).
 export default function ProductCard({ m }) {
@@ -9,12 +10,14 @@ export default function ProductCard({ m }) {
     m.pcd && m.pcd.length ? m.pcd.slice(0, 2).join(' / ') : null,
   ].filter(Boolean);
 
+  const noun = getSeries(m.series)?.wheelType.noun || 'wheel';
+
   return (
     <Link to={`/products/${m.model.toLowerCase()}`} className="product-card" data-component="product-card">
       <div className="product-card-media">
         <img
           src={m.image}
-          alt={`Duaxen Forgealloy forged wheel ${m.model}`}
+          alt={`Duaxen Forgealloy ${noun} ${m.model}`}
           loading="lazy"
           referrerPolicy="no-referrer"
         />
