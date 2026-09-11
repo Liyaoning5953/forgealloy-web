@@ -39,7 +39,7 @@ export default function Products() {
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           name: 'ForgeAlloy forged wheel catalog',
-          url: 'https://forgealloyracing.com/products',
+          url: 'https://forgealloyracing.com/products/',
         }}
       />
       <PageHero
