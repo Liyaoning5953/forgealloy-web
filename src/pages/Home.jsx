@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Gem, Feather, Settings } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
@@ -29,12 +30,30 @@ const FEATURES = [
 
 const STORY_STATS = [
   { value: '500+', label: 'Wheel designs' },
-  { value: '10+', label: 'Years experience' },
-  { value: '80+', label: 'Countries served' },
-  { value: '100%', label: 'Quality guarantee' },
+  { value: '5', label: 'Product series' },
+  { value: '6061-T6', label: 'Forged aluminum' },
+  { value: 'OEM / ODM', label: 'Export programs' },
 ];
 
 export default function Home() {
+  const heroRef = useRef(null);
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection?.saveData;
+    if (reducedMotion || saveData || !heroRef.current) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setLoadVideo(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '160px' });
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Seo
@@ -51,10 +70,12 @@ export default function Home() {
         }}
       />
 
-      <section className="hero-home" data-component="hero-home">
-        <video className="hero-video" autoPlay muted loop playsInline poster={HERO_BG}>
-          <source src="/assets/videos/hero-h264.mp4" type="video/mp4" />
-        </video>
+      <section ref={heroRef} className="hero-home" data-component="hero-home" style={{ backgroundImage: `url(${HERO_BG})` }}>
+        {loadVideo && (
+          <video className="hero-video" autoPlay muted loop playsInline preload="metadata" poster={HERO_BG} aria-hidden="true">
+            <source src="/assets/videos/hero-h264.mp4" type="video/mp4" />
+          </video>
+        )}
         <div className="hero-scrim" />
         <div className="container hero-inner">
           <span className="eyebrow">Shandong Forgealloy Racing Tech</span>
@@ -82,11 +103,10 @@ export default function Home() {
             <span className="eyebrow">Our story</span>
             <h2>Crafted for precision. Engineered for durability.</h2>
             <p>
-              Shandong Forge Alloy Racing Tech Co., Ltd. is a fully integrated forged-wheel manufacturer rooted in
-              Shandong, dedicated to premium automotive wheel exports — end-to-end, from innovative design and advanced
-              R&D to a global sales network. Every wheel is forged from 6061-T6 aluminum and backed by an R&D team using
-              FEA simulation, ISO 9001 quality management and DOT (FMVSS) compliance, with fatigue and impact testing on
-              every wheel. Flexible OEM/ODM customization and robust after-sales support complete the package.
+               Shandong Forge Alloy Racing Tech Co., Ltd. manufactures custom wheel programs for global aftermarket and
+               OEM buyers. Current factory records document 6061-T6 forged programs, OEM/ODM customization and
+               JWTC/VIA-accredited fatigue and impact test equipment. Ask our sales team for the certificate or inspection
+               record that applies to your target product and order before purchase.
             </p>
           </Reveal>
           <div className="story-stats">
@@ -125,7 +145,7 @@ export default function Home() {
           <div className="featured-grid">
             {FEATURED.map((m, i) => (
               <Reveal key={m.model} delay={(i % 4) * 50}>
-                <ProductCard m={m} />
+                <ProductCard m={m} priority={i < 2} />
               </Reveal>
             ))}
           </div>

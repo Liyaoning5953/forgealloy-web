@@ -2,25 +2,31 @@ import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { SERIES } from '../data/series.js';
 import { CONTACT } from '../data/contact.js';
+import { trackEvent } from '../lib/analytics.js';
 import TrustBar from './TrustBar.jsx';
 
 const BUYER_TYPES = ['Dealer / distributor', 'Workshop / retailer', 'Racing team', 'E-commerce seller', 'OEM / ODM', 'Other'];
 
-// Client-side validated inquiry form. No backend connected — on submit we show
-// a success panel with next steps and the verified delivery channels.
+// Client-side validated inquiry form. A valid submission opens a prefilled WhatsApp message.
 export default function InquiryForm({ prefill = '' }) {
   const [form, setForm] = useState({
     name: '', company: '', country: '', email: '', whatsapp: '',
     buyerType: '', interest: [], quantity: '', message: prefill || '',
   });
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [started, setStarted] = useState(false);
+
+  const markStarted = () => {
+    if (started) return;
+    setStarted(true);
+    trackEvent('form_start', { form_name: 'inquiry', page_path: window.location.pathname });
+  };
 
   const set = (k) => (e) => {
     const v = e.target.type === 'checkbox'
       ? (e.target.checked ? [...form.interest, e.target.value] : form.interest.filter((x) => x !== e.target.value))
       : e.target.value;
+    markStarted();
     setForm((f) => ({ ...f, [k]: v }));
     if (errors[k]) setErrors((er) => ({ ...er, [k]: undefined }));
   };
@@ -39,38 +45,34 @@ export default function InquiryForm({ prefill = '' }) {
     const er = validate(form);
     setErrors(er);
     if (Object.keys(er).length) {
+      trackEvent('form_error', { form_name: 'inquiry', error_type: 'validation', error_count: Object.keys(er).length });
       const first = document.querySelector('.inquiry-form [aria-invalid="true"]');
       if (first) first.focus();
       return;
     }
-    setSending(true);
-    // Simulated delivery handoff — no backend connected yet.
-    setTimeout(() => { setSending(false); setSubmitted(true); }, 400);
-  };
 
-  if (submitted) {
-    return (
-      <div className="inquiry-success" role="status" data-component="inquiry-success">
-        <span className="eyebrow">Inquiry received</span>
-        <h3>Your inquiry is ready for our sales team.</h3>
-        <p>Here is what happens next: our sales team reviews your request and replies with pricing and lead time for your configuration.</p>
-        <p className="success-note">
-          Sales response time: {CONTACT.salesReplyHours ? `within ${CONTACT.salesReplyHours} business hours` : 'pending verification'}.
-          {!CONTACT.email && !CONTACT.whatsapp && ' Contact channels are being configured — the factory will confirm them shortly.'}
-        </p>
-        <div className="success-actions">
-          {CONTACT.whatsapp && (
-            <a className="btn btn-primary" href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer">
-              Continue on WhatsApp
-            </a>
-          )}
-          <button type="button" className="btn btn-ghost" onClick={() => { setSubmitted(false); setForm((f) => ({ ...f, message: '' })); }}>
-            Edit inquiry
-          </button>
-        </div>
-      </div>
-    );
-  }
+    const inquirySummary = [
+      `Name: ${form.name}`,
+      `Company: ${form.company || 'Not provided'}`,
+      `Email: ${form.email}`,
+      `Buyer WhatsApp: ${form.whatsapp || 'Not provided'}`,
+      `Country: ${form.country || 'Not provided'}`,
+      `Buyer type: ${form.buyerType || 'Not provided'}`,
+      `Product interest: ${form.interest.length ? form.interest.join(', ') : 'Not provided'}`,
+      `Estimated quantity: ${form.quantity || 'Not provided'}`,
+      `Request: ${form.message}`,
+      `Source page: ${window.location.href}`,
+    ].join('\n');
+    const whatsappUrl = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(`Hello ForgeAlloy, I would like a quote.\n\n${inquirySummary}`)}`;
+
+    trackEvent('whatsapp_handoff', {
+      form_name: 'inquiry',
+      buyer_type: form.buyerType,
+      product_interest: form.interest.join(','),
+      page_path: window.location.pathname,
+    });
+    window.location.assign(whatsappUrl);
+  };
 
   return (
     <form className="inquiry-form" data-component="inquiry-form" onSubmit={onSubmit} noValidate>
@@ -140,8 +142,9 @@ export default function InquiryForm({ prefill = '' }) {
         {errors.message && <span className="form-error" role="alert">{errors.message}</span>}
       </div>
 
-      <button type="submit" className="btn btn-primary btn-lg form-submit" disabled={sending}>
-        {sending ? 'Sending…' : 'Send inquiry'} <ArrowRight size={16} />
+      <p className="form-handoff-note">Submitting opens WhatsApp with your quote request prefilled. Review it, then tap Send to deliver it to ForgeAlloy sales.</p>
+      <button type="submit" className="btn btn-primary btn-lg form-submit">
+        Continue to WhatsApp <ArrowRight size={16} />
       </button>
     </form>
   );

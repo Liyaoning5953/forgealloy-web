@@ -9,7 +9,7 @@ import { HERO_BG, FACTORY } from '../data/images.js';
 const CAPABILITY_FACTS = [
   { value: '6061-T6', label: 'Forged aluminum' },
   { value: '15"–30"', label: 'Size range' },
-  { value: '4', label: 'Wheel series' },
+  { value: '5', label: 'Wheel series' },
   { value: 'OEM / ODM', label: 'Export programs' },
 ];
 
@@ -45,7 +45,7 @@ export default function AboutFactory() {
             Founding year, factory area and equipment list are being verified — they will be published here with the factory's confirmation. What we state now is limited to what is already verified: forged 6061-T6 construction, five product series, and OEM/ODM export capability.
           </p>
           <p>
-            The official ForgeAlloy catalog declares ISO 9001 quality management and DOT (FMVSS) compliance, backed by an R&D team using FEA simulation, with fatigue and impact testing on every wheel.
+             Certification and compliance claims are shown only where current supporting records are on file. Ask for the certificate, inspection record or test-equipment accreditation that applies to your target product and order.
           </p>
         </Reveal>
       </section>

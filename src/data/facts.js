@@ -30,14 +30,14 @@ export const ORDER_FACTS = [
   { value: '15"–30"', label: 'Size range' },
 ];
 
-// Why-ForgeAlloy advantages — sourced from factory materials & storefront evidence (2026-08).
+// Why-ForgeAlloy advantages — limited to the evidence currently documented in the repository.
 export const ADVANTAGES = [
-  { n: '01', title: '15,000-ton press forging', copy: 'High-pressure forging of 6061 blanks for dense, grain-aligned strength in every wheel.' },
-  { n: '02', title: 'VIA-accredited testing', copy: 'JWTC-accredited dynamic cornering fatigue, radial fatigue and impact test equipment (13° / 30°).' },
+  { n: '01', title: '6061-T6 forged programs', copy: 'Custom forged-wheel programs using 6061-T6 aluminum, with fitment and finish confirmed before production.' },
+  { n: '02', title: 'Documented test equipment', copy: 'Current factory records list JWTC/VIA-accredited dynamic cornering fatigue, radial fatigue and impact test equipment.' },
   { n: '03', title: 'MOQ from 1', copy: 'Start with a single wheel or set — validate fitment and finish before scaling.' },
-  { n: '04', title: 'Fast lead times', copy: '15–20 days after design approval; 45–60 days for large-size or multi-piece builds.' },
+  { n: '04', title: 'Published lead times', copy: '15–20 days after design approval; 45–60 days for large-size or multi-piece builds.' },
   { n: '05', title: 'OEM / ODM & private label', copy: 'Custom design, finishes, center caps, laser marking and export packaging under your brand.' },
-  { n: '06', title: 'Buyer-verified service', copy: '26 reviews on our Alibaba storefront — supplier service rated 5 stars by buyers.' },
+  { n: '06', title: 'Buyer review excerpts', copy: 'Eight buyer review excerpts are reproduced on this site from the factory storefront evidence on file.' },
 ];
 
 // Generic forging process — industry-standard steps, no invented claims.
@@ -56,7 +56,7 @@ export const OEM_CAPABILITIES = [
   { title: 'Finish library', copy: 'Matte, gloss, brushed, gunmetal, bronze, custom RAL and multi-stage finishes. Confirm current finish menu with sales.' },
   { title: 'Private label / branding', copy: 'Cap, center cap, laser marking and packaging can carry your brand.' },
   { title: 'Export packaging', copy: 'Individually boxed wheels with export-grade packing for sea or air freight.' },
-  { title: 'QC documentation', copy: 'Inspection records available per order. Certification scope pending verification.' },
+  { title: 'QC documentation', copy: 'Inspection records are available per order. Current certificates and their exact scope are listed on the factory page.' },
 ];
 
 export const DEALER_BENEFITS = [

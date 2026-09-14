@@ -4,8 +4,10 @@ import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import SpecTable from '../components/SpecTable.jsx';
 import Reveal from '../components/Reveal.jsx';
+import NotFound from './NotFound.jsx';
 import { getModel, getModelsBySeries } from '../data/models.js';
 import { getSeries } from '../data/series.js';
+import { trackEvent } from '../lib/analytics.js';
 
 // Every fitment parameter is customizable; confirmed against the vehicle before production.
 const customRows = (sizeRange) => [
@@ -35,14 +37,7 @@ const featuresFor = (series) => {
 export default function ProductDetail() {
   const { model } = useParams();
   const m = getModel(model);
-  if (!m) {
-    return (
-      <section className="section container">
-        <h1>Model not found</h1>
-        <p className="lede"><Link to="/products">Back to all models</Link></p>
-      </section>
-    );
-  }
+  if (!m) return <NotFound title="Model not found" backTo="/products" backLabel="Back to all models" />;
 
   const series = getSeries(m.series);
   const related = getModelsBySeries(m.series).filter((x) => x.model !== m.model).slice(0, 3);
@@ -66,7 +61,7 @@ export default function ProductDetail() {
       <section className="product-hero section" data-component="product-hero">
         <div className="container product-hero-inner">
           <div className="product-gallery">
-            <img src={m.image} alt={`${m.model} ${m.kind} ${series.wheelType.noun}`} referrerPolicy="no-referrer" />
+            <img src={m.image} alt={`${m.model} ${m.kind} ${series.wheelType.noun}`} decoding="async" fetchPriority="high" referrerPolicy="no-referrer" />
             <span className="product-gallery-code">{m.model}</span>
           </div>
           <div className="product-info">
@@ -86,7 +81,7 @@ export default function ProductDetail() {
             </div>
             <p className="custom-note">Every parameter is confirmed against your vehicle data before production. Color chart and finish options on request.</p>
             <div className="product-info-actions">
-              <Link to={`/contact?model=${m.model}`} className="btn btn-primary btn-lg">Request quote — {m.model}</Link>
+              <Link to={`/contact?model=${m.model}`} className="btn btn-primary btn-lg" onClick={() => trackEvent('request_quote', { model: m.model, series: m.series, page_path: window.location.pathname })}>Request quote — {m.model}</Link>
             </div>
           </div>
         </div>

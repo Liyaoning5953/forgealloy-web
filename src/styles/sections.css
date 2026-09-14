@@ -381,6 +381,7 @@ main { display: block; }
 }
 .form-field textarea { resize: vertical; min-height: 120px; }
 .form-error { color: var(--danger); font-size: var(--text-sm); }
+.form-handoff-note { color: var(--fg-muted); font-size: var(--text-sm); }
 .chip-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .chip {
   display: inline-flex; align-items: center; gap: var(--space-2);

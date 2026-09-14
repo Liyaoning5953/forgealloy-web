@@ -42,8 +42,8 @@ export default function TestimonialShowcase() {
           <h2>What buyers say</h2>
         </Reveal>
         <Reveal delay={80} className="testimonial-stat">
-          <span className="testimonial-stat-value">5.0</span>
-          <span className="testimonial-stat-label">Supplier service rating · {TESTIMONIALS.length} verified reviews</span>
+          <span className="testimonial-stat-value">{TESTIMONIALS.length}</span>
+          <span className="testimonial-stat-label">Buyer review excerpts reproduced from storefront evidence on file</span>
         </Reveal>
       </div>
       <div className="testimonial-marquee" data-component="testimonial-marquee">

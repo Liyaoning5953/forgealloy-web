@@ -3,7 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { getSeries } from '../data/series.js';
 
 // Numbered product card: item code + fitment spec line (no titles by factory choice).
-export default function ProductCard({ m }) {
+export default function ProductCard({ m, priority = false }) {
   const specs = [
     m.kind,
     m.sizes,
@@ -18,7 +18,9 @@ export default function ProductCard({ m }) {
         <img
           src={m.image}
           alt={`Duaxen Forgealloy ${noun} ${m.model}`}
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchPriority={priority ? 'high' : 'auto'}
           referrerPolicy="no-referrer"
         />
         <span className="product-card-code">{m.model}</span>
