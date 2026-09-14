@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Check, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import SpecTable from '../components/SpecTable.jsx';
@@ -8,6 +8,7 @@ import NotFound from './NotFound.jsx';
 import { getModel, getModelsBySeries } from '../data/models.js';
 import { getSeries } from '../data/series.js';
 import { trackEvent } from '../lib/analytics.js';
+import { whatsAppUrl } from '../lib/whatsapp.js';
 
 // Every fitment parameter is customizable; confirmed against the vehicle before production.
 const customRows = (sizeRange) => [
@@ -81,7 +82,15 @@ export default function ProductDetail() {
             </div>
             <p className="custom-note">Every parameter is confirmed against your vehicle data before production. Color chart and finish options on request.</p>
             <div className="product-info-actions">
-              <Link to={`/contact?model=${m.model}`} className="btn btn-primary btn-lg" onClick={() => trackEvent('request_quote', { model: m.model, series: m.series, page_path: window.location.pathname })}>Request quote — {m.model}</Link>
+              <a
+                className="btn btn-primary btn-lg"
+                href={whatsAppUrl(`Hello ForgeAlloy, I would like a quote for model ${m.model} (${series.name}). Please send pricing and lead time.`)}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent('request_quote', { model: m.model, series: m.series, link_location: 'product_detail', page_path: window.location.pathname })}
+              >
+                <MessageCircle size={17} /> Chat about {m.model}
+              </a>
             </div>
           </div>
         </div>
