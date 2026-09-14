@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShieldCheck, Gem, Feather, Settings } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Gem, Feather, Settings, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import StrengthBand from '../components/StrengthBand.jsx';
 import SeriesGrid from '../components/SeriesGrid.jsx';
@@ -13,6 +13,8 @@ import Reveal from '../components/Reveal.jsx';
 import { GUIDES } from '../data/guides.js';
 import { MODELS } from '../data/models.js';
 import { FACTORY } from '../data/images.js';
+import { whatsAppUrl } from '../lib/whatsapp.js';
+import { trackEvent } from '../lib/analytics.js';
 
 const HERO_BG = 'https://sc01.alicdn.com/kf/Af09b8da0393548558c1f3ce05d153f9fx.png';
 
@@ -90,8 +92,16 @@ export default function Home() {
             ))}
           </div>
           <div className="hero-actions">
-            <Link to="/products" className="btn btn-primary btn-lg">Shop all wheels <ArrowRight size={16} /></Link>
-            <Link to="/gallery" className="btn btn-ghost btn-lg">View gallery</Link>
+            <a
+              className="btn btn-primary btn-lg"
+              href={whatsAppUrl('Hello ForgeAlloy, I am looking for custom forged wheels. Please send pricing and lead time.')}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent('whatsapp_click', { link_location: 'hero_home', page_path: window.location.pathname })}
+            >
+              <MessageCircle size={17} /> Chat on WhatsApp
+            </a>
+            <Link to="/products" className="btn btn-ghost btn-lg">Shop all wheels <ArrowRight size={16} /></Link>
           </div>
           <span className="hero-scroll">Scroll to explore</span>
         </div>

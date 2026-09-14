@@ -1,6 +1,7 @@
 import { MessageCircle, Mail, FileText } from 'lucide-react';
 import { CONTACT } from '../data/contact.js';
 import { trackEvent } from '../lib/analytics.js';
+import { whatsAppUrl, DEFAULT_WA_MESSAGE } from '../lib/whatsapp.js';
 
 // Right-edge floating dock: WhatsApp / Email / Catalog. All links verified.
 export default function FloatingDock() {
@@ -8,7 +9,7 @@ export default function FloatingDock() {
     <div className="floating-dock" data-component="floating-dock">
       <a
         className="dock-btn dock-whatsapp"
-        href={`https://wa.me/${CONTACT.whatsapp}`}
+        href={whatsAppUrl(DEFAULT_WA_MESSAGE)}
         target="_blank"
         rel="noreferrer"
         aria-label="Chat on WhatsApp"

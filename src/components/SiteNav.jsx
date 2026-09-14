@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, ChevronDown, Phone, Download, User, Search } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Download, User, MessageCircle } from 'lucide-react';
 import Logo from './Logo.jsx';
 import { SERIES } from '../data/series.js';
 import { CONTACT } from '../data/contact.js';
 import { trackEvent } from '../lib/analytics.js';
+import { whatsAppUrl, DEFAULT_WA_MESSAGE } from '../lib/whatsapp.js';
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,15 @@ export default function SiteNav() {
         </nav>
 
         <div className="nav-actions">
-          <Link to="/contact" className="btn btn-primary nav-cta"><Search size={14} className="nav-cta-icon" /> Inquiry now</Link>
+          <a
+            href={whatsAppUrl(DEFAULT_WA_MESSAGE)}
+            className="btn btn-primary nav-cta"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent('whatsapp_click', { link_location: 'nav_primary', page_path: window.location.pathname })}
+          >
+            <MessageCircle size={14} className="nav-cta-icon" /> Chat now
+          </a>
           <button type="button" className="nav-burger" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -75,7 +84,15 @@ export default function SiteNav() {
             <NavLink to="/dealer-program" className={navLinkCls}>Dealer</NavLink>
             <NavLink to="/guides" className={navLinkCls}>Guides</NavLink>
             <NavLink to="/faq" className={navLinkCls}>FAQ</NavLink>
-            <Link to="/contact" className="btn btn-primary nav-mobile-cta">Inquiry now</Link>
+            <a
+              href={whatsAppUrl(DEFAULT_WA_MESSAGE)}
+              className="btn btn-primary nav-mobile-cta"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackEvent('whatsapp_click', { link_location: 'nav_mobile', page_path: window.location.pathname })}
+            >
+              <MessageCircle size={16} /> Chat on WhatsApp
+            </a>
           </div>
         </nav>
       )}
