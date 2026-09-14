@@ -4,11 +4,11 @@ import { Menu, X, ChevronDown, Phone, Download, User, Search } from 'lucide-reac
 import Logo from './Logo.jsx';
 import { SERIES } from '../data/series.js';
 import { CONTACT } from '../data/contact.js';
+import { trackEvent } from '../lib/analytics.js';
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
-  const [seriesOpen, setSeriesOpen] = useState(false);
-  const close = () => { setOpen(false); setSeriesOpen(false); };
+  const close = () => { setOpen(false); };
   const navLinkCls = ({ isActive }) => `nav-link${isActive ? ' active' : ''}`;
 
   return (
@@ -18,8 +18,8 @@ export default function SiteNav() {
           <span className="nav-top-tagline">Forged performance. Built without compromise.</span>
           <div className="nav-top-links">
             <Link to="/dealer-program"><User size={13} /> Dealer</Link>
-            <Link to="/products"><Download size={13} /> Download catalog</Link>
-            <a href={`tel:${CONTACT.whatsapp ? '+' + CONTACT.whatsapp : ''}`}><Phone size={13} /> {CONTACT.whatsappDisplay || '+86 178 6062 5953'}</a>
+             <Link to="/products#catalog" onClick={() => trackEvent('catalog_nav_click', { link_location: 'nav_top', page_path: window.location.pathname })}><Download size={13} /> Download catalog</Link>
+             <a href={`tel:${CONTACT.whatsapp ? '+' + CONTACT.whatsapp : ''}`} onClick={() => trackEvent('phone_click', { link_location: 'nav_top', page_path: window.location.pathname })}><Phone size={13} /> {CONTACT.whatsappDisplay || '+86 178 6062 5953'}</a>
           </div>
         </div>
       </div>

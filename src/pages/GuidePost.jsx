@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
+import NotFound from './NotFound.jsx';
 import { getGuide, GUIDES } from '../data/guides.js';
 
 function Block({ block }) {
@@ -18,14 +19,7 @@ function Block({ block }) {
 export default function GuidePost() {
   const { slug } = useParams();
   const guide = getGuide(slug);
-  if (!guide) {
-    return (
-      <section className="section container">
-        <h1>Guide not found</h1>
-        <p className="lede"><Link to="/guides">Back to guides</Link></p>
-      </section>
-    );
-  }
+  if (!guide) return <NotFound title="Guide not found" backTo="/guides" backLabel="Back to guides" />;
   const related = GUIDES.filter((g) => g.slug !== guide.slug).slice(0, 3);
 
   return (

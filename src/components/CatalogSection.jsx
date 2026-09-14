@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Download, Mail } from 'lucide-react';
 import { CATALOG } from '../data/catalog.js';
 import Reveal from './Reveal.jsx';
+import { trackEvent } from '../lib/analytics.js';
 
 // Product materials / catalog section. Scrolls into view when navigated with #catalog.
 export default function CatalogSection() {
@@ -31,12 +32,12 @@ export default function CatalogSection() {
             {c.ready ? (
               <div className="catalog-cta">
                 <span className="catalog-meta">PDF · {c.size}</span>
-                <a className="btn btn-primary" href={c.file} download>
+                 <a className="btn btn-primary" href={c.file} download onClick={() => trackEvent('catalog_download', { catalog_name: c.title, file_name: c.file.split('/').pop(), page_path: window.location.pathname })}>
                   Download PDF <Download size={15} />
                 </a>
               </div>
             ) : (
-              <Link className="btn btn-ghost" to={`/contact?interest=catalog-${i + 1}`}>
+               <Link className="btn btn-ghost" to={`/contact?interest=${encodeURIComponent(c.title.toLowerCase().replace(/\s+/g, '-'))}`} onClick={() => trackEvent('catalog_request', { catalog_name: c.title, page_path: window.location.pathname })}>
                 Request the file <Mail size={15} />
               </Link>
             )}

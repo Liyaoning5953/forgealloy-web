@@ -6,6 +6,7 @@ import PageHero from '../components/PageHero.jsx';
 import ProductCard from '../components/ProductCard.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
+import NotFound from './NotFound.jsx';
 import { getSeries } from '../data/series.js';
 import { getModelsBySeries } from '../data/models.js';
 import { IMG } from '../data/images.js';
@@ -26,14 +27,7 @@ export default function SeriesPage() {
   const models = getModelsBySeries(slug);
   const visible = models.slice(0, shown);
 
-  if (!series) {
-    return (
-      <section className="section container">
-        <h1>Series not found</h1>
-        <p className="lede"><Link to="/products">Back to all models</Link></p>
-      </section>
-    );
-  }
+  if (!series) return <NotFound title="Series not found" backTo="/products" backLabel="Back to all models" />;
 
   const processNote = PROCESS_NOTES[series.slug];
 

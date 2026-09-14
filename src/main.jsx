@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/tokens.css';
@@ -10,18 +10,23 @@ import SiteNav from './components/SiteNav.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import FloatingDock from './components/FloatingDock.jsx';
 
-import Home from './pages/Home.jsx';
-import Products from './pages/Products.jsx';
-import SeriesPage from './pages/SeriesPage.jsx';
-import ProductDetail from './pages/ProductDetail.jsx';
-import Gallery from './pages/Gallery.jsx';
-import OemOdm from './pages/OemOdm.jsx';
-import AboutFactory from './pages/AboutFactory.jsx';
-import Faq from './pages/Faq.jsx';
-import Guides from './pages/Guides.jsx';
-import GuidePost from './pages/GuidePost.jsx';
-import Contact from './pages/Contact.jsx';
-import DealerProgram from './pages/DealerProgram.jsx';
+import { initAnalytics } from './lib/analytics.js';
+
+const Home = lazy(() => import('./pages/Home.jsx'));
+const Products = lazy(() => import('./pages/Products.jsx'));
+const SeriesPage = lazy(() => import('./pages/SeriesPage.jsx'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail.jsx'));
+const Gallery = lazy(() => import('./pages/Gallery.jsx'));
+const OemOdm = lazy(() => import('./pages/OemOdm.jsx'));
+const AboutFactory = lazy(() => import('./pages/AboutFactory.jsx'));
+const Faq = lazy(() => import('./pages/Faq.jsx'));
+const Guides = lazy(() => import('./pages/Guides.jsx'));
+const GuidePost = lazy(() => import('./pages/GuidePost.jsx'));
+const Contact = lazy(() => import('./pages/Contact.jsx'));
+const DealerProgram = lazy(() => import('./pages/DealerProgram.jsx'));
+const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+
+initAnalytics();
 
 function App() {
   return (
@@ -29,6 +34,7 @@ function App() {
       <ScrollToTop />
       <SiteNav />
       <main>
+        <Suspense fallback={<div className="section container" role="status">Loading…</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
@@ -42,8 +48,10 @@ function App() {
           <Route path="/guides/:slug" element={<GuidePost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dealer-program" element={<DealerProgram />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/about" element={<NotFound title="This page has moved" backTo="/about-factory" backLabel="Visit our factory page" />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <SiteFooter />
       <FloatingDock />

@@ -8,7 +8,12 @@ import { HERO_BG } from '../data/images.js';
 export default function Contact() {
   const [params] = useSearchParams();
   const model = params.get('model');
-  const prefill = model ? `I would like a quote for model ${model.toUpperCase()}.` : '';
+  const interest = params.get('interest');
+  const prefill = model
+    ? `I would like a quote for model ${model.toUpperCase()}.`
+    : interest
+      ? `I would like to request ${interest.replace(/-/g, ' ')}.`
+      : '';
 
   return (
     <>
