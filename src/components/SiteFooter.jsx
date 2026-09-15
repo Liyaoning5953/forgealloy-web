@@ -23,6 +23,7 @@ export default function SiteFooter() {
           {SERIES.map((s) => (
             <Link key={s.slug} to={`/series/${s.slug}`}>{s.name}</Link>
           ))}
+          <Link to="/accessories">Accessories</Link>
         </div>
 
         <div className="footer-col">

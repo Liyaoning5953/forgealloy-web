@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path';
 import { MODELS } from '../src/data/products.js';
 import { SERIES } from '../src/data/series.js';
 import { GUIDES } from '../src/data/guides.js';
+import { ACCESSORIES } from '../src/data/accessories.js';
 
 const dist = 'dist';
 const origin = 'https://forgealloyracing.com';
@@ -16,6 +17,7 @@ const staticPages = [
   { route: 'about-factory', title: 'Forged Wheel Factory in Shandong, China | ForgeAlloy', description: 'See ForgeAlloy factory capabilities, process, quality records and current certification status.' },
   { route: 'faq', title: 'Forged Wheel Buying FAQ | ForgeAlloy', description: 'Answers about custom forged wheel fitment, MOQ, samples, lead times, finishes, testing and shipping.' },
   { route: 'guides', title: 'Forged Wheel Buyer Guides | ForgeAlloy', description: 'Technical and sourcing guides for forged wheel specifications, fitment, construction, supplier checks and shipping.' },
+  { route: 'accessories', title: 'Workshop Accessories — Wheel & Tyre Tools | ForgeAlloy', description: 'Workshop tools that ship with our wheels — starting with a 12V electric hydraulic jack kit at US$20 per set, priced for dealers and tyre shops.' },
   { route: 'contact', title: 'Request a Forged Wheel Quote | ForgeAlloy', description: 'Request pricing and lead time for custom forged wheels. Send your target series, size, fitment, finish, quantity and destination.' },
   { route: 'dealer-program', title: 'Forged Wheel Dealer Program | ForgeAlloy', description: 'Factory-direct forged wheel support for dealers, distributors, workshops, racing teams and private-label programs.' },
 ];
@@ -33,6 +35,12 @@ const routePages = [
     title: `${guide.title} | ForgeAlloy`,
     description: guide.excerpt,
     image: guide.cover,
+  })),
+  ...ACCESSORIES.map((item) => ({
+    route: `accessories/${item.slug}`,
+    title: `${item.name} — ${item.price} ${item.priceUnit} | ForgeAlloy`,
+    description: `${item.name}: ${item.summary}`,
+    image: item.image,
   })),
   ...MODELS.map((model) => {
     const series = SERIES.find((item) => item.slug === model.series);
@@ -90,7 +98,7 @@ writeFileSync(join(dist, 'about', 'index.html'), moved);
 
 const sitemapPages = [{ route: '', priority: '1.0' }, ...routePages.map((page) => ({
   route: page.route,
-  priority: page.route.startsWith('products/') ? '0.5' : page.route.startsWith('guides/') ? '0.6' : '0.8',
+  priority: page.route.startsWith('products/') ? '0.5' : page.route.startsWith('guides/') ? '0.6' : page.route.startsWith('accessories/') ? '0.7' : '0.8',
 }))];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapPages.map(({ route, priority }) => `  <url><loc>${origin}${route ? `/${route}/` : '/'}</loc><priority>${priority}</priority></url>`).join('\n')}\n</urlset>\n`;
 writeFileSync(join(dist, 'sitemap.xml'), sitemap);

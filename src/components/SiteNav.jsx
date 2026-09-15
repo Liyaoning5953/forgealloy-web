@@ -48,6 +48,7 @@ export default function SiteNav() {
             </div>
           </div>
           <NavLink to="/gallery" className={navLinkCls}>Gallery</NavLink>
+          <NavLink to="/accessories" className={navLinkCls}>Accessories</NavLink>
           <NavLink to="/oem-odm" className={navLinkCls}>OEM / ODM</NavLink>
           <NavLink to="/about-factory" className={navLinkCls}>About us</NavLink>
           <NavLink to="/dealer-program" className={navLinkCls}>Dealer</NavLink>
@@ -79,6 +80,7 @@ export default function SiteNav() {
               <NavLink key={s.slug} to={`/series/${s.slug}`} className={navLinkCls}>{s.name}</NavLink>
             ))}
             <NavLink to="/gallery" className={navLinkCls}>Gallery</NavLink>
+            <NavLink to="/accessories" className={navLinkCls}>Accessories</NavLink>
             <NavLink to="/oem-odm" className={navLinkCls}>OEM / ODM</NavLink>
             <NavLink to="/about-factory" className={navLinkCls}>About us</NavLink>
             <NavLink to="/dealer-program" className={navLinkCls}>Dealer</NavLink>

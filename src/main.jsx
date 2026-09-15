@@ -17,6 +17,8 @@ const Products = lazy(() => import('./pages/Products.jsx'));
 const SeriesPage = lazy(() => import('./pages/SeriesPage.jsx'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail.jsx'));
 const Gallery = lazy(() => import('./pages/Gallery.jsx'));
+const Accessories = lazy(() => import('./pages/Accessories.jsx'));
+const AccessoryDetail = lazy(() => import('./pages/AccessoryDetail.jsx'));
 const OemOdm = lazy(() => import('./pages/OemOdm.jsx'));
 const AboutFactory = lazy(() => import('./pages/AboutFactory.jsx'));
 const Faq = lazy(() => import('./pages/Faq.jsx'));
@@ -41,6 +43,8 @@ function App() {
           <Route path="/series/:slug" element={<SeriesPage />} />
           <Route path="/products/:model" element={<ProductDetail />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/accessories" element={<Accessories />} />
+          <Route path="/accessories/:slug" element={<AccessoryDetail />} />
           <Route path="/oem-odm" element={<OemOdm />} />
           <Route path="/about-factory" element={<AboutFactory />} />
           <Route path="/faq" element={<Faq />} />
