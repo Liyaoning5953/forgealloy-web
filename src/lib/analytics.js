@@ -26,6 +26,19 @@ export function initAnalytics() {
   document.body.prepend(noscript);
 }
 
+// SPA route change: the initial load is reported by the GTM container itself,
+// so we only push page_view for client-side navigations after that.
+export function trackPageView(path, title) {
+  if (typeof window === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'page_view',
+    page_path: path,
+    page_title: title || (typeof document !== 'undefined' ? document.title : ''),
+    page_location: window.location.href,
+  });
+}
+
 export function trackEvent(event, params = {}) {
   if (typeof window === 'undefined') return;
   const safeParams = Object.fromEntries(

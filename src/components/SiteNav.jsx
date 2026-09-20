@@ -49,9 +49,20 @@ export default function SiteNav() {
           </div>
           <NavLink to="/gallery" className={navLinkCls}>Gallery</NavLink>
           <NavLink to="/accessories" className={navLinkCls}>Accessories</NavLink>
-          <NavLink to="/oem-odm" className={navLinkCls}>OEM / ODM</NavLink>
+          <div className="nav-drop">
+            <NavLink to="/oem-odm" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>
+              Programs <ChevronDown size={14} className="nav-chev" />
+            </NavLink>
+            <div className="nav-drop-panel">
+              <Link to="/oem-odm" onClick={close}>OEM / ODM</Link>
+              <Link to="/wholesale" onClick={close}>Wholesale</Link>
+              <Link to="/private-label" onClick={close}>Private label</Link>
+              <Link to="/dealer-program" onClick={close}>Dealer program</Link>
+              <Link to="/fitment" onClick={close}>Fitment check</Link>
+            </div>
+          </div>
           <NavLink to="/about-factory" className={navLinkCls}>About us</NavLink>
-          <NavLink to="/dealer-program" className={navLinkCls}>Dealer</NavLink>
+          <NavLink to="/guides" className={navLinkCls}>Guides</NavLink>
           <NavLink to="/contact" className={navLinkCls}>Contact</NavLink>
         </nav>
 
@@ -82,8 +93,11 @@ export default function SiteNav() {
             <NavLink to="/gallery" className={navLinkCls}>Gallery</NavLink>
             <NavLink to="/accessories" className={navLinkCls}>Accessories</NavLink>
             <NavLink to="/oem-odm" className={navLinkCls}>OEM / ODM</NavLink>
+            <NavLink to="/wholesale" className={navLinkCls}>Wholesale</NavLink>
+            <NavLink to="/private-label" className={navLinkCls}>Private label</NavLink>
             <NavLink to="/about-factory" className={navLinkCls}>About us</NavLink>
             <NavLink to="/dealer-program" className={navLinkCls}>Dealer</NavLink>
+            <NavLink to="/fitment" className={navLinkCls}>Fitment check</NavLink>
             <NavLink to="/guides" className={navLinkCls}>Guides</NavLink>
             <NavLink to="/faq" className={navLinkCls}>FAQ</NavLink>
             <a

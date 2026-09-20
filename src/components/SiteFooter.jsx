@@ -30,7 +30,10 @@ export default function SiteFooter() {
           <h4>Company</h4>
           <Link to="/about-factory">Factory</Link>
           <Link to="/oem-odm">OEM / ODM</Link>
+          <Link to="/wholesale">Wholesale</Link>
+          <Link to="/private-label">Private label</Link>
           <Link to="/dealer-program">Dealer program</Link>
+          <Link to="/fitment">Fitment check</Link>
           <Link to="/guides">Guides</Link>
           <Link to="/faq">FAQ</Link>
           <Link to="/contact">Contact</Link>

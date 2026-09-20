@@ -20,6 +20,9 @@ const staticPages = [
   { route: 'accessories', title: 'Workshop Accessories — Wheel & Tyre Tools | ForgeAlloy', description: 'Workshop tools that ship with our wheels — starting with a 12V electric hydraulic jack kit at US$20 per set, priced for dealers and tyre shops.' },
   { route: 'contact', title: 'Request a Forged Wheel Quote | ForgeAlloy', description: 'Request pricing and lead time for custom forged wheels. Send your target series, size, fitment, finish, quantity and destination.' },
   { route: 'dealer-program', title: 'Forged Wheel Dealer Program | ForgeAlloy', description: 'Factory-direct forged wheel support for dealers, distributors, workshops, racing teams and private-label programs.' },
+  { route: 'wholesale', title: 'Wholesale Forged Wheels | Factory Direct Pricing — ForgeAlloy', description: 'Buy forged wheels wholesale direct from the factory: MOQ from 1, custom fitment, mixed-model orders, custom finishes and private-label programs.' },
+  { route: 'private-label', title: 'Private Label Forged Wheels | Your Brand on the Forge — ForgeAlloy', description: 'Private label forged wheel programs with your center caps, laser marking, packaging, model names and catalogue imagery.' },
+  { route: 'fitment', title: 'Wheel Fitment Check — PCD, Offset & Center Bore | ForgeAlloy', description: 'Send your vehicle details and get size, width, offset, PCD, center bore and load target confirmed in writing before production.' },
 ];
 
 const routePages = [
