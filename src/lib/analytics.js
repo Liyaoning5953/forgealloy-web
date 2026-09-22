@@ -49,8 +49,10 @@ function loadGa4(id) {
     window.dataLayer.push(arguments);
   };
   window.gtag('js', new Date());
-  // GA4 reports the initial page_view itself; route changes are sent by trackPageView.
-  window.gtag('config', id, { send_page_view: true });
+  // Page views are reported by reportRouteView for the initial load and for every
+  // client-side route change, so GA4's own automatic page_view is switched off to
+  // avoid counting each navigation twice.
+  window.gtag('config', id, { send_page_view: false });
 }
 
 // Configures measurement. A GTM container wins when both IDs are present.
@@ -79,35 +81,38 @@ export function initAnalytics() {
   if (GA4_ID) console.warn('VITE_GA4_ID is not a valid GA4 measurement ID.');
 }
 
-// SPA route change: the first load is reported by the loader itself, so we only
-// report client-side navigations after that.
-export function trackPageView(path, title) {
+// One event goes out through exactly one channel: the data layer for a GTM
+// container, or gtag for a direct GA4 stream. Sending both would double-count.
+function send(event, params) {
   if (typeof window === 'undefined') return;
-  const payload = {
-    page_path: path,
-    page_title: title || (typeof document !== 'undefined' ? document.title : ''),
-    page_location: window.location.href,
-  };
 
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: 'page_view', ...payload });
+  if (mode === 'ga4') {
+    if (typeof window.gtag === 'function') window.gtag('event', event, params);
+    return;
+  }
 
-  if (mode === 'ga4' && typeof window.gtag === 'function') {
-    window.gtag('event', 'page_view', payload);
+  if (mode === 'gtm') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, ...params });
   }
 }
 
-// Called by the component that writes the page title, so the reported title is the
-// new page's title even when the page chunk loads asynchronously. The first call of
-// a session is skipped because the loader already reports the initial page view.
+// SPA route change: reported by the component that writes the page title, so the
+// title is always the page the visitor is looking at.
+export function trackPageView(path, title) {
+  if (typeof window === 'undefined') return;
+  send('page_view', {
+    page_path: path,
+    page_title: title || (typeof document !== 'undefined' ? document.title : ''),
+    page_location: window.location.href,
+  });
+}
+
+// Repeat calls for the same path are ignored so one route is counted once.
 let lastReportedPath = null;
 
 export function reportRouteView(path, title) {
   if (typeof window === 'undefined') return;
-  if (lastReportedPath === null) {
-    lastReportedPath = path;
-    return;
-  }
   if (lastReportedPath === path) return;
   lastReportedPath = path;
   trackPageView(path, title);
@@ -118,11 +123,5 @@ export function trackEvent(event, params = {}) {
   const safeParams = Object.fromEntries(
     Object.entries(params).filter(([, value]) => value !== undefined && value !== null && value !== '')
   );
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...safeParams });
-
-  if (mode === 'ga4' && typeof window.gtag === 'function') {
-    window.gtag('event', event, safeParams);
-  }
+  send(event, safeParams);
 }
