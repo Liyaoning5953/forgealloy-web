@@ -1,13 +1,17 @@
 const GTM_ID = import.meta.env.VITE_GTM_ID?.trim();
 
 export function initAnalytics() {
-  if (!GTM_ID || typeof document === 'undefined') return;
+  if (typeof window === 'undefined') return;
+  // The queue exists even before a container ID is configured, so events pushed
+  // while GTM is being set up are not lost.
+  window.dataLayer = window.dataLayer || [];
+
+  if (!GTM_ID) return;
   if (!/^GTM-[A-Z0-9]+$/i.test(GTM_ID)) {
     console.warn('VITE_GTM_ID is not a valid GTM container ID.');
     return;
   }
 
-  window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
 
   const script = document.createElement('script');
