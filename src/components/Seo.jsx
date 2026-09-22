@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { reportRouteView } from '../lib/analytics.js';
 
 const SITE_URL = 'https://forgealloyracing.com';
 
@@ -33,6 +34,10 @@ export default function Seo({ title, description, jsonLd, canonicalPath, robots 
       document.head.appendChild(canonical);
     }
     canonical.href = canonicalUrl;
+
+    // Report the route only after the title for this page has been written, so the
+    // analytics title always matches the page the visitor is looking at.
+    reportRouteView(`${window.location.pathname}${window.location.search}`, title || document.title);
 
     let script = null;
     if (jsonLd) {

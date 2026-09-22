@@ -97,6 +97,22 @@ export function trackPageView(path, title) {
   }
 }
 
+// Called by the component that writes the page title, so the reported title is the
+// new page's title even when the page chunk loads asynchronously. The first call of
+// a session is skipped because the loader already reports the initial page view.
+let lastReportedPath = null;
+
+export function reportRouteView(path, title) {
+  if (typeof window === 'undefined') return;
+  if (lastReportedPath === null) {
+    lastReportedPath = path;
+    return;
+  }
+  if (lastReportedPath === path) return;
+  lastReportedPath = path;
+  trackPageView(path, title);
+}
+
 export function trackEvent(event, params = {}) {
   if (typeof window === 'undefined') return;
   const safeParams = Object.fromEntries(
