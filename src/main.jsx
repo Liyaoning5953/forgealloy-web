@@ -34,15 +34,19 @@ const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 initAnalytics();
 
 // Reports client-side route changes to the data layer (the first load is reported by GTM itself).
+// The push is deferred so document.title has already been updated by the page's Seo effect.
 function RouteAnalytics() {
   const location = useLocation();
   const isFirst = useRef(true);
   useEffect(() => {
     if (isFirst.current) {
       isFirst.current = false;
-      return;
+      return undefined;
     }
-    trackPageView(`${location.pathname}${location.search}`);
+    const timer = window.setTimeout(() => {
+      trackPageView(`${location.pathname}${location.search}`);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [location.pathname, location.search]);
   return null;
 }
