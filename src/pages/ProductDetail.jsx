@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { Check, MessageCircle } from 'lucide-react';
+import { Check, MessageCircle, ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import SpecTable from '../components/SpecTable.jsx';
@@ -11,6 +11,17 @@ import { trackEvent } from '../lib/analytics.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 
 // Every fitment parameter is customizable; confirmed against the vehicle before production.
+const SITE_URL = 'https://forgealloyracing.com';
+
+// Parameter checklist a buyer can copy straight into a WhatsApp message.
+const SEND_LIST = [
+  'Vehicle make, model, year and trim',
+  'Target size, width, offset (ET), PCD and center bore — or the vehicle list you sell to',
+  'Finish and colour reference',
+  'Quantity for the first order',
+  'Destination port or door and the incoterm you import on',
+];
+
 const customRows = (sizeRange) => [
   { label: 'Size', value: sizeRange || 'On request' },
   { label: 'Width', value: 'Custom' },
@@ -50,12 +61,27 @@ export default function ProductDetail() {
         description={`${m.model} — ${m.kind} ${series.wheelType.noun} in the ${series.name} series. Fully customizable: size ${series.sizeRange}, width, offset, PCD, center bore and color.`}
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: `${m.model} ${m.kind} ${series.wheelType.title}`,
-          brand: { '@type': 'Brand', name: 'ForgeAlloy' },
-          image: m.image,
-          ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
-          description: `${m.model} ${m.kind} ${series.wheelType.noun}, ${series.name}.`,
+          '@graph': [
+            {
+              '@type': 'Product',
+              name: `${m.model} ${m.kind} ${series.wheelType.title}`,
+              sku: m.model,
+              category: series.name,
+              url: `${SITE_URL}/products/${m.model.toLowerCase()}/`,
+              brand: { '@type': 'Brand', name: 'ForgeAlloy' },
+              image: m.image,
+              ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
+              description: `${m.model} ${m.kind} ${series.wheelType.noun} in the ${series.name} series. Size ${series.sizeRange}, width, offset, PCD, center bore and finish made to order.`,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Products', item: `${SITE_URL}/products/` },
+                { '@type': 'ListItem', position: 2, name: series.name, item: `${SITE_URL}/series/${series.slug}/` },
+                { '@type': 'ListItem', position: 3, name: m.model, item: `${SITE_URL}/products/${m.model.toLowerCase()}/` },
+              ],
+            },
+          ],
         }}
       />
 
@@ -108,6 +134,40 @@ export default function ProductDetail() {
               <p>{f.copy}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section container">
+        <div className="series-intro">
+          <Reveal>
+            <span className="eyebrow">Send this first</span>
+            <h2>What to send for a {m.model} quote</h2>
+            <p className="lede">A quote you can act on needs six lines. Send them in one message and sales comes back with pricing and lead time.</p>
+            <ul className="check-list">
+              {SEND_LIST.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal className="series-intro-spec" delay={100}>
+            <div className="spec-cell">
+              <span className="spec-label">Series</span>
+              <span className="spec-value">{series.name}</span>
+            </div>
+            <div className="spec-cell">
+              <span className="spec-label">Size range</span>
+              <span className="spec-value">{series.sizeRange}</span>
+            </div>
+            <div className="spec-cell">
+              <span className="spec-label">Construction</span>
+              <span className="spec-value">{series.wheelType.title}</span>
+            </div>
+            <div className="spec-cell">
+              <span className="spec-label">Fitment</span>
+              <span className="spec-value">Confirmed before production</span>
+            </div>
+            <Link to="/fitment" className="link-inline">Run a fitment check <ArrowRight size={14} /></Link>
+          </Reveal>
         </div>
       </section>
 

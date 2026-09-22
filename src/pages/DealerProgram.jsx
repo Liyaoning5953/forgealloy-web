@@ -18,7 +18,7 @@ export default function DealerProgram() {
   return (
     <>
       <Seo
-        title="Dealer Program — Forge ForgeAlloy Wheels | ForgeAlloy"
+        title="Forged Wheel Dealer Program | ForgeAlloy"
         description="Join the ForgeAlloy dealer network: factory pricing, tiered programs, priority lead times and marketing support."
       />
       <PageHero

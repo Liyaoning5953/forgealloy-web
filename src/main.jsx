@@ -1,6 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/sections.css';
@@ -10,7 +10,7 @@ import SiteNav from './components/SiteNav.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import FloatingDock from './components/FloatingDock.jsx';
 
-import { initAnalytics } from './lib/analytics.js';
+import { initAnalytics, trackPageView } from './lib/analytics.js';
 
 const Home = lazy(() => import('./pages/Home.jsx'));
 const Products = lazy(() => import('./pages/Products.jsx'));
@@ -26,13 +26,31 @@ const Guides = lazy(() => import('./pages/Guides.jsx'));
 const GuidePost = lazy(() => import('./pages/GuidePost.jsx'));
 const Contact = lazy(() => import('./pages/Contact.jsx'));
 const DealerProgram = lazy(() => import('./pages/DealerProgram.jsx'));
+const Wholesale = lazy(() => import('./pages/Wholesale.jsx'));
+const PrivateLabel = lazy(() => import('./pages/PrivateLabel.jsx'));
+const Fitment = lazy(() => import('./pages/Fitment.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 initAnalytics();
 
+// Reports client-side route changes to the data layer (the first load is reported by GTM itself).
+function RouteAnalytics() {
+  const location = useLocation();
+  const isFirst = useRef(true);
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+    trackPageView(`${location.pathname}${location.search}`);
+  }, [location.pathname, location.search]);
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <RouteAnalytics />
       <ScrollToTop />
       <SiteNav />
       <main>
@@ -52,6 +70,9 @@ function App() {
           <Route path="/guides/:slug" element={<GuidePost />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/dealer-program" element={<DealerProgram />} />
+          <Route path="/wholesale" element={<Wholesale />} />
+          <Route path="/private-label" element={<PrivateLabel />} />
+          <Route path="/fitment" element={<Fitment />} />
           <Route path="/about" element={<NotFound title="This page has moved" backTo="/about-factory" backLabel="Visit our factory page" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

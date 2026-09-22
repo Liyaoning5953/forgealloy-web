@@ -172,6 +172,31 @@ export default function Home() {
 
       <AdvantagesSection />
 
+      <section className="section container">
+        <Reveal className="section-head">
+          <span className="eyebrow">Programs</span>
+          <h2>Ways to buy from the forge</h2>
+          <p className="lede">Wholesale, private label and fitment confirmation — pick the route that matches how you sell.</p>
+        </Reveal>
+        <div className="programs-grid">
+          <Link to="/wholesale" className="program-card">
+            <h3>Wholesale forged wheels</h3>
+            <p>Factory-direct pricing for dealers and distributors. MOQ from 1, mixed-model orders, your fitment list and finishes.</p>
+            <span className="link-inline">Wholesale pricing <ArrowRight size={14} /></span>
+          </Link>
+          <Link to="/private-label" className="program-card">
+            <h3>Private label program</h3>
+            <p>Your center caps, laser marking, packaging and model names — approved on a sample before production.</p>
+            <span className="link-inline">Brand your wheels <ArrowRight size={14} /></span>
+          </Link>
+          <Link to="/fitment" className="program-card">
+            <h3>Fitment confirmation</h3>
+            <p>Send your vehicle details and get size, offset, PCD, center bore and load target confirmed in writing first.</p>
+            <span className="link-inline">Check fitment <ArrowRight size={14} /></span>
+          </Link>
+        </div>
+      </section>
+
       <section className="oem-teaser" data-component="oem-teaser" style={{ backgroundImage: `linear-gradient(90deg, rgba(10,10,11,0.9) 0%, rgba(10,10,11,0.55) 60%, rgba(10,10,11,0.35) 100%), url(${FACTORY.warehouse})` }}>
         <div className="container oem-teaser-inner">
           <Reveal>
