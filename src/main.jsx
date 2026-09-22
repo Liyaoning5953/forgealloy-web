@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useEffect, useRef } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/tokens.css';
 import './styles/base.css';
 import './styles/sections.css';
@@ -10,7 +10,7 @@ import SiteNav from './components/SiteNav.jsx';
 import SiteFooter from './components/SiteFooter.jsx';
 import FloatingDock from './components/FloatingDock.jsx';
 
-import { initAnalytics, trackPageView } from './lib/analytics.js';
+import { initAnalytics } from './lib/analytics.js';
 
 const Home = lazy(() => import('./pages/Home.jsx'));
 const Products = lazy(() => import('./pages/Products.jsx'));
@@ -33,28 +33,9 @@ const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 initAnalytics();
 
-// Reports client-side route changes to the data layer (the first load is reported by GTM itself).
-// The push is deferred so document.title has already been updated by the page's Seo effect.
-function RouteAnalytics() {
-  const location = useLocation();
-  const isFirst = useRef(true);
-  useEffect(() => {
-    if (isFirst.current) {
-      isFirst.current = false;
-      return undefined;
-    }
-    const timer = window.setTimeout(() => {
-      trackPageView(`${location.pathname}${location.search}`);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [location.pathname, location.search]);
-  return null;
-}
-
 function App() {
   return (
     <BrowserRouter>
-      <RouteAnalytics />
       <ScrollToTop />
       <SiteNav />
       <main>
