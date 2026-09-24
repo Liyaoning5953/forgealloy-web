@@ -29,6 +29,8 @@ const DealerProgram = lazy(() => import('./pages/DealerProgram.jsx'));
 const Wholesale = lazy(() => import('./pages/Wholesale.jsx'));
 const PrivateLabel = lazy(() => import('./pages/PrivateLabel.jsx'));
 const Fitment = lazy(() => import('./pages/Fitment.jsx'));
+const SizesHub = lazy(() => import('./pages/SizesHub.jsx'));
+const SizePage = lazy(() => import('./pages/SizePage.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
 
 initAnalytics();
@@ -58,6 +60,8 @@ function App() {
           <Route path="/wholesale" element={<Wholesale />} />
           <Route path="/private-label" element={<PrivateLabel />} />
           <Route path="/fitment" element={<Fitment />} />
+          <Route path="/forged-wheels-by-size" element={<SizesHub />} />
+          <Route path="/forged-wheels-by-size/:size" element={<SizePage />} />
           <Route path="/about" element={<NotFound title="This page has moved" backTo="/about-factory" backLabel="Visit our factory page" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
