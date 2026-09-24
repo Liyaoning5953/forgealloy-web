@@ -137,6 +137,15 @@ main { display: block; }
 .page-hero .container { padding-block: var(--space-16) var(--space-12); }
 .page-hero h1 { font-size: var(--text-h1); margin-top: var(--space-4); max-width: 22ch; }
 .page-hero .lede { max-width: 60ch; }
+/* A photo hero sits on a dark scrim, so its text needs the same light ramp the
+   home hero uses. Without this the headline inherits --fg (near black) and
+   disappears into the image. */
+.page-hero.has-image { color: var(--fg-dark-body); }
+.page-hero.has-image h1 { color: var(--fg-dark); text-shadow: 0 2px 32px rgba(0, 0, 0, 0.55); }
+.page-hero.has-image .lede { color: var(--fg-dark-body); }
+.page-hero.has-image .eyebrow { color: var(--accent-bright); }
+.page-hero.has-image .crumbs { color: rgba(236, 236, 236, 0.6); }
+.page-hero.has-image .crumbs a:hover { color: #fff; }
 
 .crumbs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-6); font-family: var(--font-mono); font-size: var(--text-caption); letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); }
 .crumbs a:hover { color: var(--fg); }
