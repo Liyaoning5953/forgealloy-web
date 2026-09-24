@@ -39,6 +39,11 @@ export default function Seo({ title, description, jsonLd, canonicalPath, robots 
     // analytics title always matches the page the visitor is looking at.
     reportRouteView(`${window.location.pathname}${window.location.search}`, title || document.title);
 
+    // The prerendered copy of this page ships with the structured data already in
+    // the head. Drop it before writing a fresh one so the head never carries two
+    // copies of the same markup.
+    document.head.querySelectorAll('script[data-page-jsonld="true"]').forEach((node) => node.remove());
+
     let script = null;
     if (jsonLd) {
       script = document.createElement('script');
