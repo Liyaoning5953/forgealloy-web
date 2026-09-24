@@ -49,7 +49,7 @@ export default function SiteFooter() {
 
       <div className="container footer-meta">
         <span>© {new Date().getFullYear()} {LEGAL_NAME}.</span>
-        <span className="footer-certs">{CERTS.map((c) => c.name).join(' · ')}</span>
+        <span className="footer-certs">{CERTS.map((c) => c.shortName || c.name).join(' · ')}</span>
       </div>
     </footer>
   );

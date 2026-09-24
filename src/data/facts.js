@@ -5,9 +5,10 @@ export const BRAND = 'ForgeAlloy';
 export const LEGAL_NAME = 'Shandong Forgealloy Racing Tech Co., Ltd.';
 
 // Verified facts (from the live site + company files). Do not edit unless the factory confirms.
+// Compliance and test accreditation lead the row — both are backed by on-file documents.
 export const VERIFIED_FACTS = [
-  { value: '5', label: 'Series' },
-  { value: '500+', label: 'Wheel designs' },
+  { value: 'DOT / NHTSA', label: 'U.S. agent of record' },
+  { value: 'VIA / JWTC', label: 'Accredited test lab' },
   { value: '6061-T6', label: 'Forged aluminum' },
   { value: 'OEM / ODM', label: 'Export programs' },
 ];
@@ -33,7 +34,7 @@ export const ORDER_FACTS = [
 // Why-ForgeAlloy advantages — limited to the evidence currently documented in the repository.
 export const ADVANTAGES = [
   { n: '01', title: '6061-T6 forged programs', copy: 'Custom forged-wheel programs using 6061-T6 aluminum, with fitment and finish confirmed before production.' },
-  { n: '02', title: 'Documented test equipment', copy: 'Current factory records list JWTC/VIA-accredited dynamic cornering fatigue, radial fatigue and impact test equipment.' },
+  { n: '02', title: 'VIA / JWTC accredited test laboratory', copy: 'JWTC accredits our dynamic cornering fatigue, radial fatigue and impact test equipment (approvals VIA A-366 · A-367 · B-328 · B-329 · C-405 · C-406, in force to 2033-12-03).' },
   { n: '03', title: 'MOQ from 1', copy: 'Start with a single wheel or set — validate fitment and finish before scaling.' },
   { n: '04', title: 'Published lead times', copy: '15–20 days after design approval; 45–60 days for large-size or multi-piece builds.' },
   { n: '05', title: 'OEM / ODM & private label', copy: 'Custom design, finishes, center caps, laser marking and export packaging under your brand.' },
