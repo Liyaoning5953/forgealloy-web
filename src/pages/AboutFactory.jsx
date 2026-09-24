@@ -3,7 +3,7 @@ import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { PROCESS_STEPS } from '../data/facts.js';
-import { CERTS } from '../data/certs.js';
+import { CERTS, EXPIRED_CERTS, TEST_REPORTS } from '../data/certs.js';
 import { HERO_BG, FACTORY } from '../data/images.js';
 
 const CAPABILITY_FACTS = [
@@ -99,7 +99,7 @@ export default function AboutFactory() {
       <section className="section container">
         <Reveal className="section-head">
           <span className="eyebrow">Certifications</span>
-          <h2>Certification status</h2>
+          <h2>DOT / NHTSA and VIA accreditations first</h2>
         </Reveal>
         <div className="certs-row">
           {CERTS.map((c) => (
@@ -120,8 +120,50 @@ export default function AboutFactory() {
             </div>
           ))}
         </div>
+        {EXPIRED_CERTS.length > 0 && (
+          <div className="certs-row certs-row-muted">
+            {EXPIRED_CERTS.map((c) => (
+              <div className="cert-card" key={c.name}>
+                <div className="cert-card-head">
+                  <span className="cert-card-name">{c.name}</span>
+                  <span className="pending-chip">Expired {c.validUntil}</span>
+                </div>
+                <span className="cert-card-number">{c.number}</span>
+                <span className="cert-card-issuer">{c.issuer}</span>
+                <span className="cert-card-scope">{c.scope}</span>
+              </div>
+            ))}
+          </div>
+        )}
         <p className="muted-note">
-          Verified from factory certificate documents (August 2026). The IATF 16949 certificate on file shows an expiry of 2025-02-26 — the renewal copy is in verification before it is claimed as current.
+          Transcribed from factory certificate documents. The DOT / NHTSA entry is the designation of a U.S. agent for service of process — a U.S. market entry requirement recorded with NHTSA, not a certificate issued by the agency: under 49 CFR Part 571 the DOT marking is a certification made by the manufacturer. Current certificate copies and the full test reports are available from sales on request.
+        </p>
+      </section>
+
+      <section className="section container">
+        <Reveal className="section-head">
+          <span className="eyebrow">Test reports</span>
+          <h2>Structural test reports, issued per part number</h2>
+          <p className="lede">New forgings are validated on the JWTC-accredited equipment before shipment. Two reports for MB797 are shown below; equivalents are issued per model.</p>
+        </Reveal>
+        <div className="report-grid">
+          {TEST_REPORTS.map((r) => (
+            <article className="report-card" key={r.id}>
+              <a className="report-media" href={r.image} target="_blank" rel="noreferrer">
+                <img src={r.image} alt={`${r.title} report for ${r.model}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+              </a>
+              <div className="report-body">
+                <span className="report-standard">{r.standard} standard</span>
+                <h3>{r.title} — {r.model}</h3>
+                <span className="report-spec">{r.spec}</span>
+                <span className="report-line"><strong>Parameters: </strong>{r.parameters}</span>
+                <span className="report-line"><strong>Result: </strong>{r.result}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p className="muted-note">
+          Reports shown for MB797 (19×9.5, 5×120, ET28, 690 kg design load) — the sample carries the test technician's name and internal test numbers, as issued by the laboratory. Ask sales for the report matching your target part number.
         </p>
       </section>
 

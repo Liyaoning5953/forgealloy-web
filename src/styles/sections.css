@@ -501,6 +501,18 @@ main { display: block; }
 .cert-card-issuer, .cert-card-scope { font-size: var(--text-sm); color: var(--fg-body); }
 .cert-card-date { font-family: var(--font-mono); font-size: var(--text-caption); color: var(--fg-muted); letter-spacing: 0.06em; }
 .footer-certs { font-family: var(--font-mono); font-size: var(--text-caption); color: var(--fg-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.certs-row-muted { opacity: 0.62; }
+.report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); margin-top: var(--space-8); }
+.report-card { border: 1px solid var(--border); background: var(--bg-surface); display: flex; flex-direction: column; }
+.report-media { display: block; background: var(--bg); border-bottom: 1px solid var(--border); }
+.report-media img { width: 100%; height: auto; display: block; }
+.report-body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+.report-standard { font-family: var(--font-mono); font-size: var(--text-caption); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-bright); }
+.report-body h3 { font-size: var(--text-h3); }
+.report-spec { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--fg-muted); }
+.report-line { font-size: var(--text-sm); color: var(--fg-body); }
+.report-line strong { color: var(--fg); }
+@media (max-width: 960px) { .report-grid { grid-template-columns: 1fr; } }
 
 /* ============ Order facts (MOQ / lead time) ============ */
 .order-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
