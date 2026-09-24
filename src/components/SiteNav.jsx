@@ -59,6 +59,7 @@ export default function SiteNav() {
               <Link to="/private-label" onClick={close}>Private label</Link>
               <Link to="/dealer-program" onClick={close}>Dealer program</Link>
               <Link to="/fitment" onClick={close}>Fitment check</Link>
+              <Link to="/forged-wheels-by-size" onClick={close}>Wheels by size</Link>
             </div>
           </div>
           <NavLink to="/about-factory" className={navLinkCls}>About us</NavLink>

@@ -5,6 +5,7 @@ import { MODELS } from '../src/data/products.js';
 import { SERIES } from '../src/data/series.js';
 import { GUIDES } from '../src/data/guides.js';
 import { ACCESSORIES } from '../src/data/accessories.js';
+import { SIZE_PAGES } from '../src/data/sizes.js';
 
 const dist = 'dist';
 const origin = 'https://forgealloyracing.com';
@@ -23,6 +24,12 @@ const staticPages = [
   { route: 'wholesale', title: 'Wholesale Forged Wheels | Factory Direct Pricing — ForgeAlloy', description: 'Buy forged wheels wholesale direct from the factory: MOQ from 1, custom fitment, mixed-model orders, custom finishes and private-label programs.' },
   { route: 'private-label', title: 'Private Label Forged Wheels | Your Brand on the Forge — ForgeAlloy', description: 'Private label forged wheel programs with your center caps, laser marking, packaging, model names and catalogue imagery.' },
   { route: 'fitment', title: 'Wheel Fitment Check — PCD, Offset & Center Bore | ForgeAlloy', description: 'Send your vehicle details and get size, width, offset, PCD, center bore and load target confirmed in writing before production.' },
+  { route: 'forged-wheels-by-size', title: 'Forged Wheels by Size | 17–30 inch Custom Forged Rims — ForgeAlloy', description: 'Custom forged wheels by diameter: 19, 20, 21 and 22 inch programs built to your width, offset, PCD and centre bore. Factory direct, MOQ from 1.' },
+  ...SIZE_PAGES.map((page) => ({
+    route: `forged-wheels-by-size/${page.slug}`,
+    title: `${page.inch}-Inch Forged Wheels | Custom Made to Your Fitment — ForgeAlloy`,
+    description: `${page.inch}-inch custom forged wheels machined to your width, offset, PCD and centre bore. ${page.series.length} series available in ${page.inch} inch.`,
+  })),
 ];
 
 const routePages = [
