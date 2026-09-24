@@ -4,9 +4,9 @@ import { ArrowRight } from 'lucide-react';
 export default function PageHero({ eyebrow, title, lead, image, crumbs = [] }) {
   return (
     <section
-      className="page-hero"
+      className={image ? 'page-hero has-image' : 'page-hero'}
       data-component="page-hero"
-      style={image ? { backgroundImage: `linear-gradient(90deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 55%, rgba(10,10,11,0.35) 100%), url(${image})` } : undefined}
+      style={image ? { backgroundImage: `linear-gradient(90deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.82) 55%, rgba(10,10,11,0.62) 100%), url(${image})` } : undefined}
     >
       <div className="container">
         {crumbs.length > 0 && (
