@@ -12,6 +12,7 @@ export const CERTS = [
     issued: '2026-01-02',
     validUntil: null,
     status: 'valid',
+    image: '/assets/certificates/nhtsa-us-agent-designation.jpg',
   },
   {
     name: 'VIA / JWTC accredited wheel test laboratory',
@@ -22,6 +23,7 @@ export const CERTS = [
     issued: '2019-11-05 (re-approved 2023-12-04)',
     validUntil: '2033-12-03',
     status: 'valid',
+    image: '/assets/certificates/jwtc-via-accreditation-2023.jpg',
   },
   {
     name: 'IATF 16949:2016 quality management system',

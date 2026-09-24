@@ -13,6 +13,7 @@ import Reveal from '../components/Reveal.jsx';
 import { GUIDES } from '../data/guides.js';
 import { MODELS } from '../data/models.js';
 import { FACTORY } from '../data/images.js';
+import CredentialsBand from '../components/CredentialsBand.jsx';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
 
@@ -103,9 +104,16 @@ export default function Home() {
             </a>
             <Link to="/products" className="btn btn-ghost btn-lg">Shop all wheels <ArrowRight size={16} /></Link>
           </div>
+          <div className="hero-creds">
+            <span><ShieldCheck size={14} /> DOT / NHTSA U.S. agent</span>
+            <span><ShieldCheck size={14} /> VIA / JWTC accredited test lab</span>
+            <span><ShieldCheck size={14} /> 6061-T6 forged aluminium</span>
+          </div>
           <span className="hero-scroll">Scroll to explore</span>
         </div>
       </section>
+
+      <CredentialsBand />
 
       <section className="story-section" data-component="story">
         <div className="container story-inner">
