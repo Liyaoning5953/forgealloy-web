@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
+import { breadcrumb, graph, service } from '../lib/schema.js';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { OEM_CAPABILITIES } from '../data/facts.js';
 import { OEM_IMG } from '../data/images.js';
+
+// Structured data for this page. The labels and description mirror the on-page copy.
+const PAGE_SCHEMA = graph(
+  breadcrumb([{ name: 'Home', path: '/' }, { name: 'OEM / ODM', path: '/oem-odm/' }]),
+  service({
+    name: 'OEM and ODM forged wheel manufacturing',
+    serviceType: 'OEM and ODM manufacturing of forged wheels',
+    description: 'Custom 6061-T6 forged wheel programs for brands, wholesalers and dealers — design, sample, production, QC and private label from one factory.',
+    path: '/oem-odm/',
+  })
+);
 
 const OEM_PROCESS = [
   { n: '01', title: 'Brief & drawing', copy: 'Your drawing, reference model or target vehicle fitment defines the starting point.' },
@@ -28,6 +40,7 @@ export default function OemOdm() {
       <Seo
         title="OEM / ODM Custom Forged Wheel Manufacturing | ForgeAlloy"
         description="Custom 6061-T6 forged wheel programs for brands, wholesalers and dealers — design, sample, production, QC and private label from one factory."
+        jsonLd={PAGE_SCHEMA}
       />
       <PageHero
         eyebrow="OEM / ODM"
