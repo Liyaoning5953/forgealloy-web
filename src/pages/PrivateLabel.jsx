@@ -1,12 +1,24 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
+import { breadcrumb, graph, service } from '../lib/schema.js';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { GUIDE_COVERS } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
+
+// Structured data for this page. The labels and description mirror the on-page copy.
+const PAGE_SCHEMA = graph(
+  breadcrumb([{ name: 'Home', path: '/' }, { name: 'Private label', path: '/private-label/' }]),
+  service({
+    name: 'Private label forged wheel program',
+    serviceType: 'Private label manufacturing of forged wheels',
+    description: 'Private label forged wheel programs: your center caps, laser marking, packaging, model names and catalogue imagery, produced to your approved specification.',
+    path: '/private-label/',
+  })
+);
 
 const WA_MESSAGE = 'Hello ForgeAlloy, I would like to set up a private label wheel program. My brand details to follow.';
 
@@ -49,6 +61,7 @@ export default function PrivateLabel() {
       <Seo
         title="Private Label Forged Wheels | Your Brand on the Forge — ForgeAlloy"
         description="Private label forged wheel programs: your center caps, laser marking, packaging, model names and catalogue imagery, produced to your approved specification."
+        jsonLd={PAGE_SCHEMA}
       />
       <PageHero
         eyebrow="Private label"

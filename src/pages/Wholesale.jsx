@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
+import { breadcrumb, graph, service } from '../lib/schema.js';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
@@ -8,6 +9,17 @@ import { SERIES } from '../data/series.js';
 import { HERO_BG, FACTORY } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
+
+// Structured data for this page. The labels and description mirror the on-page copy.
+const PAGE_SCHEMA = graph(
+  breadcrumb([{ name: 'Home', path: '/' }, { name: 'Wholesale', path: '/wholesale/' }]),
+  service({
+    name: 'Wholesale forged wheel program',
+    serviceType: 'Wholesale supply of custom forged wheels',
+    description: 'Buy forged wheels wholesale direct from the factory. MOQ from 1, custom fitment, mixed-model orders, custom finishes and private-label programs for dealers and distributors.',
+    path: '/wholesale/',
+  })
+);
 
 const WA_MESSAGE = 'Hello ForgeAlloy, I would like wholesale pricing for forged wheels. My target market and volume to follow.';
 
@@ -49,6 +61,7 @@ export default function Wholesale() {
       <Seo
         title="Wholesale Forged Wheels | Factory Direct Pricing — ForgeAlloy"
         description="Buy forged wheels wholesale direct from the factory. MOQ from 1, custom fitment, mixed-model orders, custom finishes and private-label programs for dealers and distributors."
+        jsonLd={PAGE_SCHEMA}
       />
       <PageHero
         eyebrow="Wholesale"

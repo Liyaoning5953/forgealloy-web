@@ -1,10 +1,22 @@
 import Seo from '../components/Seo.jsx';
+import { breadcrumb, graph, service } from '../lib/schema.js';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { PROCESS_STEPS } from '../data/facts.js';
 import { CERTS, EXPIRED_CERTS, TEST_REPORTS } from '../data/certs.js';
 import { HERO_BG, FACTORY } from '../data/images.js';
+
+// Structured data for this page. The labels and description mirror the on-page copy.
+const PAGE_SCHEMA = graph(
+  breadcrumb([{ name: 'Home', path: '/' }, { name: 'Factory', path: '/about-factory/' }]),
+  service({
+    name: 'Factory-direct forged wheel manufacturing',
+    serviceType: 'Forged wheel manufacturing',
+    description: 'ForgeAlloy Racing Tech — a 6061-T6 forged wheel factory in Shandong, China. Process, capability facts and certification status.',
+    path: '/about-factory/',
+  })
+);
 
 const CAPABILITY_FACTS = [
   { value: '6061-T6', label: 'Forged aluminum' },
@@ -26,6 +38,7 @@ export default function AboutFactory() {
       <Seo
         title="Factory — ForgeAlloy Forged Wheel Manufacturer, Shandong China"
         description="ForgeAlloy Racing Tech — a 6061-T6 forged wheel factory in Shandong, China. Process, capability facts and certification status."
+        jsonLd={PAGE_SCHEMA}
       />
       <PageHero
         eyebrow="Factory"

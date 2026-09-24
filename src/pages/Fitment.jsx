@@ -1,12 +1,24 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
+import { breadcrumb, graph, service } from '../lib/schema.js';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { IMG } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
+
+// Structured data for this page. The labels and description mirror the on-page copy.
+const PAGE_SCHEMA = graph(
+  breadcrumb([{ name: 'Home', path: '/' }, { name: 'Fitment', path: '/fitment/' }]),
+  service({
+    name: 'Forged wheel fitment service',
+    serviceType: 'Wheel fitment specification and confirmation',
+    description: 'Send your vehicle details and get size, width, offset, PCD, center bore and load target confirmed in writing before production.',
+    path: '/fitment/',
+  })
+);
 
 const WA_MESSAGE = 'Hello ForgeAlloy, I need a fitment check. I will send my vehicle details and current wheel specs.';
 
@@ -55,6 +67,7 @@ export default function Fitment() {
       <Seo
         title="Wheel Fitment Check — PCD, Offset & Center Bore | ForgeAlloy"
         description="Send your vehicle details and get size, width, offset, PCD, center bore and load target confirmed in writing before production. Forged wheel fitment service."
+        jsonLd={PAGE_SCHEMA}
       />
       <PageHero
         eyebrow="Fitment"
