@@ -63,6 +63,13 @@ export function initAnalytics() {
   // measurement is being set up is lost.
   window.dataLayer = window.dataLayer || [];
 
+  // The tag is normally already in the served HTML head. When it has run, gtag is
+  // defined and configuring it a second time would double-count every event.
+  if (typeof window.gtag === 'function') {
+    mode = 'ga4';
+    return;
+  }
+
   const gtmId = validGtmId();
   if (gtmId) {
     mode = 'gtm';
