@@ -27,6 +27,7 @@ export default function CtaBand({
           <span className="eyebrow">Factory direct</span>
           <h2>{headline}</h2>
           <p className="lede">{sub}</p>
+          <TrustBar className="cta-trust" />
           <div className="cta-band-actions">
             <a
               className="btn btn-primary btn-lg"
@@ -39,7 +40,6 @@ export default function CtaBand({
             </a>
             <Link to="/oem-odm" className="btn btn-ghost btn-lg">OEM / ODM inquiry</Link>
           </div>
-          <TrustBar className="cta-trust" />
         </Reveal>
       </div>
     </section>
