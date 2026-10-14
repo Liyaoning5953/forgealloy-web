@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MessageCircle, Mail, Phone } from 'lucide-react';
 import { CONTACT, hasWhatsApp } from '../data/contact.js';
 import { BRAND } from '../data/facts.js';
+import TrustBar from './TrustBar.jsx';
 import { whatsAppUrl, DEFAULT_WA_MESSAGE } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
 
@@ -80,6 +81,8 @@ export default function DirectContact({ context, eyebrow, title, lead, intro, to
             </div>
           </>
         )}
+
+        <TrustBar className="direct-contact-trust" />
 
         <div className="direct-contact-actions">
           {hasWhatsApp && (

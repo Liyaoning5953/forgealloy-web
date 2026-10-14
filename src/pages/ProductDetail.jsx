@@ -3,10 +3,12 @@ import { Check, MessageCircle, ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import SpecTable from '../components/SpecTable.jsx';
+import TrustBar from '../components/TrustBar.jsx';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 import { getModel, getModelsBySeries } from '../data/models.js';
 import { getSeries } from '../data/series.js';
+import { ORDER_FACTS } from '../data/facts.js';
 import { trackEvent } from '../lib/analytics.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 
@@ -107,6 +109,7 @@ export default function ProductDetail() {
               ))}
             </div>
             <p className="custom-note">Every parameter is confirmed against your vehicle data before production. Color chart and finish options on request.</p>
+            <TrustBar items={ORDER_FACTS} className="product-trust" />
             <div className="product-info-actions">
               <a
                 className="btn btn-primary btn-lg"

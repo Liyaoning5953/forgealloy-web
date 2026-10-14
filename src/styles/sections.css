@@ -310,8 +310,12 @@ main { display: block; }
 .cta-band-inner { padding-block: var(--space-24); max-width: 720px; }
 .cta-band-inner h2 { margin-top: var(--space-4); font-size: var(--text-h1); }
 .cta-band-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8); }
-.cta-trust { margin-top: var(--space-12); border-color: var(--border-strong); }
+/* The facts row sits directly above the buttons, not below them: the buyer sees
+   proof at the moment of the click. */
+.cta-trust { margin-top: var(--space-10); border-color: var(--border-strong); }
 .cta-trust .trust-item { border-right-color: var(--border-strong); }
+.direct-contact-trust { margin-top: var(--space-8); }
+.product-trust { margin-top: var(--space-6); }
 
 /* ============ Product detail ============ */
 .product-hero-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-16); align-items: start; }
