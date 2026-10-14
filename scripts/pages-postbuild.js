@@ -5,7 +5,35 @@ import { routePages } from './route-manifest.js';
 
 const dist = 'dist';
 const origin = 'https://forgealloyracing.com';
-const baseShell = readFileSync(join(dist, 'index.html'), 'utf8');
+
+// The measurement tag is written into the served HTML instead of being injected by
+// the app bundle. It then loads before the bundle (so a slow connection does not
+// lose the first page view) and it is present in the page source, which is what
+// verification tools — including Search Console's Analytics method — read.
+const GTM_PATTERN = /^GTM-[A-Z0-9]+$/i;
+const GA4_PATTERN = /^G-[A-Z0-9]+$/i;
+const DEFAULT_GA4_ID = 'G-E9YDPGMC8N';
+
+function analyticsSnippet() {
+  const gtmId = (process.env.VITE_GTM_ID || '').trim();
+  if (GTM_PATTERN.test(gtmId)) {
+    // A container takes precedence; the GA4 stream is configured inside it, so the
+    // direct tag is deliberately left out to avoid double counting.
+    return `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`;
+  }
+
+  const ga4Id = (process.env.VITE_GA4_ID || DEFAULT_GA4_ID).trim();
+  if (!GA4_PATTERN.test(ga4Id)) return '';
+
+  // Page views are reported per route by the app, so automatic page_view stays off.
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${ga4Id}"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga4Id}',{send_page_view:false});</script>`;
+}
+
+const analytics = analyticsSnippet();
+const baseShell = analytics
+  ? readFileSync(join(dist, 'index.html'), 'utf8').replace('</head>', () => `    ${analytics}\n  </head>`)
+  : readFileSync(join(dist, 'index.html'), 'utf8');
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -30,6 +58,9 @@ function renderShell({ route = '', title, description, image, robots = 'index,fo
 }
 
 writeFileSync(join(dist, '.nojekyll'), '');
+
+// The home page is the base shell itself, so it needs the injected head too.
+if (analytics) writeFileSync(join(dist, 'index.html'), baseShell);
 
 for (const page of routePages) {
   const target = join(dist, page.route, 'index.html');
