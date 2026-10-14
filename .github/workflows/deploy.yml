@@ -54,3 +54,18 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Announced only after the deploy completes, so the pages are live when the
+      # crawlers arrive. Bing feeds ChatGPT's retrieval, so this is the fastest way
+      # to get new content into AI answers.
+      - name: Notify IndexNow
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
