@@ -134,6 +134,13 @@ export default function AboutFactory() {
           ))}
         </div>
         {EXPIRED_CERTS.length > 0 && (
+          <>
+          <div className="certs-history-head">
+            <span className="eyebrow">Historical — not current certification</span>
+            <p className="muted-note">
+              The certificates below were held by the same factory and have expired. They stay on record as history only, with their real expiry dates, and are not presented as current certification.
+            </p>
+          </div>
           <div className="certs-row certs-row-muted">
             {EXPIRED_CERTS.map((c) => (
               <div className="cert-card" key={c.name}>
@@ -147,6 +154,7 @@ export default function AboutFactory() {
               </div>
             ))}
           </div>
+          </>
         )}
         <p className="muted-note">
           Transcribed from factory certificate documents. The DOT / NHTSA entry is the designation of a U.S. agent for service of process — a U.S. market entry requirement recorded with NHTSA, not a certificate issued by the agency: under 49 CFR Part 571 the DOT marking is a certification made by the manufacturer. Current certificate copies and the full test reports are available from sales on request.
@@ -176,7 +184,7 @@ export default function AboutFactory() {
           ))}
         </div>
         <p className="muted-note">
-          Reports shown for MB797 (19×9.5, 5×120, ET28, 690 kg design load) — the sample carries the test technician's name and internal test numbers, as issued by the laboratory. Ask sales for the report matching your target part number.
+          Reports shown for MB797 (19×9.5, 5×120, ET28, 690 kg design load). The test technician's name is masked in the copies published here; the unmasked original, including the laboratory's internal reference, is available from sales on request. Ask for the report matching your target part number.
         </p>
       </section>
 
