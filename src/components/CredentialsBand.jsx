@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import Reveal from './Reveal.jsx';
-import { CERTS, TEST_REPORTS } from '../data/certs.js';
+import { CERTS, TEST_REPORTS, thumbFor } from '../data/certs.js';
 import { trackEvent } from '../lib/analytics.js';
 
 // Homepage credentials band — placed directly under the hero so a first-time
@@ -24,7 +24,7 @@ export default function CredentialsBand() {
           {documented.map((c, i) => (
             <Reveal key={c.name} delay={i * 70} className="cred-doc">
               <a className="cred-doc-media" href={c.image} target="_blank" rel="noreferrer" onClick={() => trackEvent('credential_open', { document: c.shortName || c.name, page_path: window.location.pathname })}>
-                <img src={c.image} alt={`${c.name} certificate`} loading="eager" decoding="async" referrerPolicy="no-referrer" />
+                <img src={thumbFor(c.image)} alt={`${c.name} certificate`} loading="eager" decoding="async" referrerPolicy="no-referrer" />
               </a>
               <div className="cred-doc-body">
                 <span className="cred-doc-tag"><ShieldCheck size={13} /> {c.status === 'valid' ? 'In force' : 'Renewal in progress'}</span>
@@ -41,7 +41,7 @@ export default function CredentialsBand() {
           {TEST_REPORTS.map((r, i) => (
             <Reveal key={r.id} delay={(documented.length + i) * 70} className="cred-doc">
               <a className="cred-doc-media" href={r.image} target="_blank" rel="noreferrer">
-                <img src={r.image} alt={`${r.title} report for ${r.model}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                <img src={thumbFor(r.image)} alt={`${r.title} report for ${r.model}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
               </a>
               <div className="cred-doc-body">
                 <span className="cred-doc-tag"><ShieldCheck size={13} /> {r.standard} test report</span>

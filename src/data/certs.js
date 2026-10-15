@@ -2,6 +2,10 @@
 // status: 'valid' = in force; 'renewal' = certificate on file but expiry passed, renewal in verification.
 // Only documents whose scope and legal entity cover this factory's wheel manufacturing are listed.
 
+// Tiles render the 640 px WebP thumbnail; clicking through still opens the full-size
+// original so the document stays saveable and printable at full quality.
+export const thumbFor = (image) => image.replace(/\.jpe?g$/i, '-thumb.webp');
+
 export const CERTS = [
   {
     name: 'DOT / NHTSA — U.S. agent for service of process',

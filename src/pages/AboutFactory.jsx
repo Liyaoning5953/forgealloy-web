@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { PROCESS_STEPS } from '../data/facts.js';
-import { CERTS, EXPIRED_CERTS, TEST_REPORTS } from '../data/certs.js';
+import { CERTS, EXPIRED_CERTS, TEST_REPORTS, thumbFor } from '../data/certs.js';
 import { HERO_BG, FACTORY } from '../data/images.js';
 
 // Structured data for this page. The labels and description mirror the on-page copy.
@@ -171,7 +171,7 @@ export default function AboutFactory() {
           {TEST_REPORTS.map((r) => (
             <article className="report-card" key={r.id}>
               <a className="report-media" href={r.image} target="_blank" rel="noreferrer">
-                <img src={r.image} alt={`${r.title} report for ${r.model}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                <img src={thumbFor(r.image)} alt={`${r.title} report for ${r.model}`} loading="lazy" decoding="async" referrerPolicy="no-referrer" />
               </a>
               <div className="report-body">
                 <span className="report-standard">{r.standard} standard</span>
