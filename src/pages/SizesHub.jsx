@@ -4,7 +4,7 @@ import Seo from '../components/Seo.jsx';
 import PageHero from '../components/PageHero.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
-import { SIZE_PAGES } from '../data/sizes.js';
+import { SIZE_PAGES, SIZE_RANGE_LABEL, SIZE_LIST_LABEL } from '../data/sizes.js';
 import { HERO_BG } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
@@ -15,8 +15,8 @@ export default function SizesHub() {
   return (
     <>
       <Seo
-        title="Forged Wheels by Size | 17–30 inch Custom Forged Rims — ForgeAlloy"
-        description="Custom forged wheels by diameter: 19, 20, 21 and 22 inch programs built to your width, offset, PCD and centre bore. Factory direct, MOQ from 1."
+        title={`Forged Wheels by Size | ${SIZE_RANGE_LABEL} Custom Forged Rims — ForgeAlloy`}
+        description={`Custom forged wheels by diameter: ${SIZE_LIST_LABEL} inch programs built to your width, offset, PCD and centre bore. Factory direct, MOQ from 1.`}
       />
       <PageHero
         eyebrow="By size"
@@ -46,7 +46,7 @@ export default function SizesHub() {
       <section className="section container">
         <div className="series-intro">
           <Reveal>
-            <span className="eyebrow">Beyond these four</span>
+            <span className="eyebrow">The full range</span>
             <h2>Our full diameter range</h2>
             <p className="lede">The factory builds forged wheels from 13&quot; to 30&quot; depending on the series — wire wheels start at 13&quot;, pickups run to 30&quot;.</p>
             <div className="product-info-actions">

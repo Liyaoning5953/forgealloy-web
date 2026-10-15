@@ -55,7 +55,7 @@ export default function SizePage() {
       <section className="section container">
         <Reveal className="section-head">
           <span className="eyebrow">Series available in {page.label}</span>
-          <h2>{page.series.length} programs can be built in {page.inch} inch</h2>
+          <h2>{page.series.length} {page.series.length === 1 ? 'program can' : 'programs can'} be built in {page.inch} inch</h2>
           <p className="lede">Sizes below are the factory range for each series. Your exact width and offset are set by the order.</p>
         </Reveal>
         <div className="series-grid">
