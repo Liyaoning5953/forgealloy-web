@@ -3,6 +3,7 @@ import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
+import { breadcrumb, fitTitle } from '../lib/schema.js';
 import { getGuide, GUIDES } from '../data/guides.js';
 
 function Block({ block }) {
@@ -25,14 +26,22 @@ export default function GuidePost() {
   return (
     <>
       <Seo
-        title={`${guide.title} | ForgeAlloy`}
+        title={fitTitle(guide.title)}
         description={guide.excerpt}
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: guide.title,
-          datePublished: guide.date,
-          author: { '@type': 'Organization', name: 'ForgeAlloy' },
+          '@graph': [
+            {
+              '@type': 'Article',
+              headline: guide.title,
+              datePublished: guide.date,
+              author: { '@type': 'Organization', name: 'ForgeAlloy' },
+            },
+            breadcrumb([
+              { name: 'Guides', path: '/guides/' },
+              { name: guide.title, path: `/guides/${guide.slug}/` },
+            ]),
+          ],
         }}
       />
 
@@ -49,7 +58,7 @@ export default function GuidePost() {
         </header>
 
         <div className="article-hero container">
-          <img src={guide.cover} alt="" referrerPolicy="no-referrer" />
+          <img src={guide.cover} alt={guide.title} referrerPolicy="no-referrer" />
         </div>
 
         <div className="container article-prose">
@@ -65,7 +74,7 @@ export default function GuidePost() {
             {related.map((g) => (
               <Link to={`/guides/${g.slug}`} className="article-card" key={g.slug}>
                 <div className="article-card-media">
-                  <img src={g.cover} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                  <img src={g.cover} alt={g.title} loading="lazy" referrerPolicy="no-referrer" />
                 </div>
                 <div className="article-card-body">
                   <span className="article-card-cat">{g.category}</span>

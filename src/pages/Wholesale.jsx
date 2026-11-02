@@ -59,7 +59,7 @@ export default function Wholesale() {
   return (
     <>
       <Seo
-        title="Wholesale Forged Wheels | Factory Direct Pricing — ForgeAlloy"
+        title="Wholesale Forged Wheels | Factory Direct — ForgeAlloy"
         description="Buy forged wheels wholesale direct from the factory. MOQ from 1, custom fitment, mixed-model orders, custom finishes and private-label programs for dealers and distributors."
         jsonLd={PAGE_SCHEMA}
       />

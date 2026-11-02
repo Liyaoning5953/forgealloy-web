@@ -9,6 +9,7 @@ import { getSizePage, SIZE_PAGES, SIZE_SPEC_LIST } from '../data/sizes.js';
 import { HERO_BG } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
+import { breadcrumb } from '../lib/schema.js';
 
 export default function SizePage() {
   const { size } = useParams();
@@ -21,10 +22,12 @@ export default function SizePage() {
   return (
     <>
       <Seo
-        title={`${page.inch}-Inch Forged Wheels | Custom Made to Your Fitment — ForgeAlloy`}
+        title={`${page.inch}-Inch Forged Wheels | Made to Your Fitment — ForgeAlloy`}
         description={`${page.inch}-inch custom forged wheels machined to your width, offset, PCD and centre bore. ${page.series.length} series available in ${page.inch} inch. Factory direct, quoted per order.`}
         jsonLd={{
           '@context': 'https://schema.org',
+          '@graph': [
+            {
           '@type': 'FAQPage',
           mainEntity: [
             {
@@ -42,6 +45,12 @@ export default function SizePage() {
               name: 'Are these wheels tested?',
               acceptedAnswer: { '@type': 'Answer', text: 'Structural testing runs on JWTC-accredited equipment for dynamic cornering fatigue, radial fatigue and impact. Reports are issued per part number and shared with the order.' },
             },
+          ],
+            },
+            breadcrumb([
+              { name: 'Wheels by size', path: '/forged-wheels-by-size/' },
+              { name: `${page.inch}-inch`, path: `/forged-wheels-by-size/${page.slug}/` },
+            ]),
           ],
         }}
       />

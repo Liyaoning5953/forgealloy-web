@@ -6,6 +6,7 @@ import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { GUIDES } from '../data/guides.js';
 import { HERO_BG } from '../data/images.js';
+import { breadcrumb, collection } from '../lib/schema.js';
 
 export default function Guides() {
   const [featured, ...rest] = GUIDES;
@@ -14,6 +15,17 @@ export default function Guides() {
       <Seo
         title="Buyer Guides — Forged Wheel Sourcing & Fitment | ForgeAlloy"
         description="Procurement education for wheel buyers: reading specs, construction comparison, supplier verification, bolt patterns and shipping incoterms."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            collection({
+              name: 'Forged wheel buyer guides',
+              description: 'Procurement guides for wheel buyers: specs, construction, supplier verification, fitment and shipping terms.',
+              path: '/guides/',
+            }),
+            breadcrumb([{ name: 'Guides', path: '/guides/' }]),
+          ],
+        }}
       />
       <PageHero
         eyebrow="Guides"
@@ -26,7 +38,7 @@ export default function Guides() {
         <Reveal className="featured-guide">
           <Link to={`/guides/${featured.slug}`} className="featured-guide-inner" data-component="featured-guide">
             <div className="featured-guide-media">
-              <img src={featured.cover} alt="" referrerPolicy="no-referrer" />
+              <img src={featured.cover} alt={featured.title} referrerPolicy="no-referrer" />
             </div>
             <div className="featured-guide-body">
               <span className="article-card-cat">{featured.category} · {featured.date}</span>
@@ -43,7 +55,7 @@ export default function Guides() {
           {rest.map((g) => (
             <Link to={`/guides/${g.slug}`} className="article-card" key={g.slug} data-component="article-card">
               <div className="article-card-media">
-                <img src={g.cover} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                <img src={g.cover} alt={g.title} loading="lazy" referrerPolicy="no-referrer" />
               </div>
               <div className="article-card-body">
                 <span className="article-card-cat">{g.category} · {g.date}</span>

@@ -6,6 +6,7 @@ import Reveal from '../components/Reveal.jsx';
 import { MODELS } from '../data/models.js';
 import { getSeries } from '../data/series.js';
 import { FACTORY, HERO_BG } from '../data/images.js';
+import { breadcrumb, collection } from '../lib/schema.js';
 
 const FACTORY_SHOTS = [
   { src: FACTORY.floor, caption: 'Production floor' },
@@ -20,6 +21,17 @@ export default function Gallery() {
       <Seo
         title="Gallery — Forged Wheels & Factory | ForgeAlloy"
         description="ForgeAlloy forged wheel models and real factory floor — machining, finishing and finished stock."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            collection({
+              name: 'ForgeAlloy wheel models and factory gallery',
+              description: 'Every model currently in the lineup, plus the factory floor where they are machined, finished and stored.',
+              path: '/gallery/',
+            }),
+            breadcrumb([{ name: 'Gallery', path: '/gallery/' }]),
+          ],
+        }}
       />
       <PageHero eyebrow="Gallery" title="Wheels & workshop" lead="Every model currently in the lineup, plus the floor where they are made." image={HERO_BG} />
 

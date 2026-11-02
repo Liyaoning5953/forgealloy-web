@@ -4,18 +4,24 @@ import FaqAccordion from '../components/FaqAccordion.jsx';
 import CtaBand from '../components/CtaBand.jsx';
 import { FAQ_GROUPS } from '../data/faqs.js';
 import { HERO_BG } from '../data/images.js';
+import { breadcrumb } from '../lib/schema.js';
 
 const FLATTENED = FAQ_GROUPS.flatMap((g) => g.items.map((i) => ({ ...i, group: g.group })));
 
 export default function Faq() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: FLATTENED.map((i) => ({
-      '@type': 'Question',
-      name: i.q,
-      acceptedAnswer: { '@type': 'Answer', text: i.a },
-    })),
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        mainEntity: FLATTENED.map((i) => ({
+          '@type': 'Question',
+          name: i.q,
+          acceptedAnswer: { '@type': 'Answer', text: i.a },
+        })),
+      },
+      breadcrumb([{ name: 'FAQ', path: '/faq/' }]),
+    ],
   };
 
   return (

@@ -7,6 +7,7 @@ export default function FaqAccordion() {
 
   return (
     <div className="faq-accordion" data-component="faq-accordion">
+      <h2 className="sr-only">Questions by topic</h2>
       {FAQ_GROUPS.map((g, gi) => (
         <div className="faq-group" key={g.group}>
           <h3 className="faq-group-title">{g.group}</h3>

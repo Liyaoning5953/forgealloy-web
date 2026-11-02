@@ -34,6 +34,7 @@ export function SeriesCard({ s, compact = false, showCount = false }) {
 export default function SeriesGrid({ compact = false, showCount = false }) {
   return (
     <div className={`series-grid${compact ? ' compact' : ''}`} data-component="series-grid">
+      <h2 className="sr-only">Five wheel series</h2>
       {SERIES.map((s, i) => (
         <Reveal key={s.slug} delay={(i % 3) * 60}>
           <SeriesCard s={s} compact={compact} showCount={showCount} />

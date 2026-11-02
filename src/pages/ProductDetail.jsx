@@ -7,6 +7,7 @@ import TrustBar from '../components/TrustBar.jsx';
 import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 import { getModel, getModelsBySeries } from '../data/models.js';
+import { offer } from '../lib/schema.js';
 import { getSeries } from '../data/series.js';
 import { ORDER_FACTS } from '../data/facts.js';
 import { trackEvent } from '../lib/analytics.js';
@@ -74,6 +75,7 @@ export default function ProductDetail() {
               image: m.image,
               ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
               description: `${m.model} ${m.kind} ${series.wheelType.noun} in the ${series.name} series. Size ${series.sizeRange}, width, offset, PCD, center bore and finish made to order.`,
+              offers: offer(`/products/${m.model.toLowerCase()}/`),
             },
             {
               '@type': 'BreadcrumbList',

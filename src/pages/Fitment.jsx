@@ -65,7 +65,7 @@ export default function Fitment() {
   return (
     <>
       <Seo
-        title="Wheel Fitment Check — PCD, Offset & Center Bore | ForgeAlloy"
+        title="Fitment Check — PCD, Offset & Center Bore | ForgeAlloy"
         description="Send your vehicle details and get size, width, offset, PCD, center bore and load target confirmed in writing before production. Forged wheel fitment service."
         jsonLd={PAGE_SCHEMA}
       />
