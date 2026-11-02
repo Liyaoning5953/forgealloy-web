@@ -59,7 +59,7 @@ export default function PrivateLabel() {
   return (
     <>
       <Seo
-        title="Private Label Forged Wheels | Your Brand on the Forge — ForgeAlloy"
+        title="Private Label Forged Wheels | Your Brand — ForgeAlloy"
         description="Private label forged wheel programs: your center caps, laser marking, packaging, model names and catalogue imagery, produced to your approved specification."
         jsonLd={PAGE_SCHEMA}
       />

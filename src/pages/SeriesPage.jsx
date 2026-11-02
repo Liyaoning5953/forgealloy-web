@@ -9,6 +9,7 @@ import Reveal from '../components/Reveal.jsx';
 import NotFound from './NotFound.jsx';
 import { getSeries } from '../data/series.js';
 import { getModelsBySeries } from '../data/models.js';
+import { breadcrumb, product, trimMeta } from '../lib/schema.js';
 import { IMG } from '../data/images.js';
 
 const PROCESS_NOTES = {
@@ -35,14 +36,23 @@ export default function SeriesPage() {
     <>
       <Seo
         title={`${series.name} | ${series.code} — ForgeAlloy`}
-        description={`${series.name} — ${series.blurb}`}
+        description={trimMeta(`${series.name} — ${series.blurb}`)}
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: `${series.code} ${series.name}`,
-          brand: { '@type': 'Brand', name: 'ForgeAlloy' },
-          ...(series.wheelType.materialLong ? { material: series.wheelType.materialLong } : {}),
-          description: series.blurb,
+          '@graph': [
+            product({
+              name: `${series.code} ${series.name}`,
+              description: series.blurb,
+              path: `/series/${series.slug}/`,
+              material: series.wheelType.materialLong,
+              image: series.image,
+              category: series.name,
+            }),
+            breadcrumb([
+              { name: 'Products', path: '/products/' },
+              { name: series.name, path: `/series/${series.slug}/` },
+            ]),
+          ],
         }}
       />
       <PageHero eyebrow={series.code} title={series.name} lead={series.blurb} image={series.image} />

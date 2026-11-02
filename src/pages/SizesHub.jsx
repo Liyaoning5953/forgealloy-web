@@ -8,6 +8,7 @@ import { SIZE_PAGES, SIZE_RANGE_LABEL, SIZE_LIST_LABEL } from '../data/sizes.js'
 import { HERO_BG } from '../data/images.js';
 import { whatsAppUrl } from '../lib/whatsapp.js';
 import { trackEvent } from '../lib/analytics.js';
+import { breadcrumb, collection, trimMeta } from '../lib/schema.js';
 
 const WA_MESSAGE = 'Hello ForgeAlloy, I am looking for forged wheels by size. Please advise on availability and pricing.';
 
@@ -15,8 +16,19 @@ export default function SizesHub() {
   return (
     <>
       <Seo
-        title={`Forged Wheels by Size | ${SIZE_RANGE_LABEL} Custom Forged Rims — ForgeAlloy`}
-        description={`Custom forged wheels by diameter: ${SIZE_LIST_LABEL} inch programs built to your width, offset, PCD and centre bore. Factory direct, MOQ from 1.`}
+        title={`Forged Wheels by Size | ${SIZE_RANGE_LABEL} Custom Rims — ForgeAlloy`}
+        description={trimMeta(`Custom forged wheels by diameter: ${SIZE_LIST_LABEL} inch, built to your width, offset, PCD and centre bore.`)}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            collection({
+              name: `Forged wheels by diameter — ${SIZE_RANGE_LABEL}`,
+              description: `Custom forged wheel programs from ${SIZE_RANGE_LABEL}, built to your width, offset, PCD and centre bore.`,
+              path: '/forged-wheels-by-size/',
+            }),
+            breadcrumb([{ name: 'Wheels by size', path: '/forged-wheels-by-size/' }]),
+          ],
+        }}
       />
       <PageHero
         eyebrow="By size"

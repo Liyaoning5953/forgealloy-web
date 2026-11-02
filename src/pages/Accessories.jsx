@@ -6,6 +6,7 @@ import CtaBand from '../components/CtaBand.jsx';
 import Reveal from '../components/Reveal.jsx';
 import { ACCESSORIES } from '../data/accessories.js';
 import { HERO_BG } from '../data/images.js';
+import { breadcrumb, collection } from '../lib/schema.js';
 
 export default function Accessories() {
   return (
@@ -13,6 +14,17 @@ export default function Accessories() {
       <Seo
         title="Workshop Accessories — Wheel & Tyre Tools | ForgeAlloy"
         description="Workshop tools that ship with our wheels — starting with a 12V electric hydraulic jack kit at US$20 per set, priced for dealers and tyre shops."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            collection({
+              name: 'Workshop accessories for forged wheel orders',
+              description: 'Tools and accessories that ship with a forged wheel order, priced per set for dealers and tyre shops.',
+              path: '/accessories/',
+            }),
+            breadcrumb([{ name: 'Accessories', path: '/accessories/' }]),
+          ],
+        }}
       />
       <PageHero
         eyebrow="Accessories"
@@ -23,6 +35,7 @@ export default function Accessories() {
 
       <section className="section container">
         <div className="guide-teaser-grid">
+          <h2 className="sr-only">Accessories available to order</h2>
           {ACCESSORIES.map((a) => (
             <Link to={`/accessories/${a.slug}`} className="article-card" key={a.slug} data-component="accessory-card">
               <div className="article-card-media">

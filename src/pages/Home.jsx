@@ -61,7 +61,7 @@ export default function Home() {
     <>
       <Seo
         title="ForgeAlloy | Custom Forged Wheels — 6061-T6 Factory Direct"
-        description="Precision 6061-T6 forged wheels and wire-spoke wheels for dealers, tuners, race teams and OEM programs — passenger, race, off-road/SUV, pickup and wire series, factory direct from Shandong, China."
+        description="Precision 6061-T6 forged wheels and wire-spoke wheels for dealers, tuners, race teams and OEM programs — factory direct from Shandong, China."
         jsonLd={{
           '@context': 'https://schema.org',
           '@type': 'Organization',
@@ -225,7 +225,7 @@ export default function Home() {
           {GUIDES.slice(0, 3).map((g) => (
             <Link to={`/guides/${g.slug}`} className="article-card" key={g.slug} data-component="article-card">
               <div className="article-card-media">
-                <img src={g.cover} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                <img src={g.cover} alt={g.title} loading="lazy" referrerPolicy="no-referrer" />
               </div>
               <div className="article-card-body">
                 <span className="article-card-cat">{g.category}</span>

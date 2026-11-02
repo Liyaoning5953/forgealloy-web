@@ -18,7 +18,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="footer-col">
-          <h4>Products</h4>
+          <h2>Products</h2>
           <Link to="/products">All models</Link>
           {SERIES.map((s) => (
             <Link key={s.slug} to={`/series/${s.slug}`}>{s.name}</Link>
@@ -27,7 +27,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="footer-col">
-          <h4>Company</h4>
+          <h2>Company</h2>
           <Link to="/about-factory">Factory</Link>
           <Link to="/oem-odm">OEM / ODM</Link>
           <Link to="/wholesale">Wholesale</Link>
@@ -41,7 +41,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="footer-col">
-          <h4>Contact</h4>
+          <h2>Contact</h2>
           <span className="footer-line">{contact}</span>
           <span className="footer-line">WhatsApp: {CONTACT.whatsapp ? CONTACT.whatsappDisplay : 'pending verification'}</span>
           <span className="footer-line">{CONTACT.address || 'Factory address — pending verification'}</span>

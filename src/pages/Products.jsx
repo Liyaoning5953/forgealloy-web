@@ -11,6 +11,7 @@ import Reveal from '../components/Reveal.jsx';
 import { MODELS } from '../data/models.js';
 import { SERIES } from '../data/series.js';
 import { HERO_BG } from '../data/images.js';
+import { breadcrumb, collection } from '../lib/schema.js';
 
 const FITMENT_NOTES = [
   { label: 'PCD', copy: 'Bolt pattern — 5x112, 5x114.3, 5x120, 6x139.7 and more. A wrong PCD is a safety issue.' },
@@ -37,9 +38,14 @@ export default function Products() {
         description="Wheels across five series — passenger, race, off-road/SUV, pickup and wire-spoke. Custom fitment, finishes and OEM programs."
         jsonLd={{
           '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: 'ForgeAlloy forged wheel catalog',
-          url: 'https://forgealloyracing.com/products/',
+          '@graph': [
+            collection({
+              name: 'ForgeAlloy forged wheel catalog',
+              description: 'Custom forged wheels across five series — passenger, race, off-road/SUV, pickup and wire-spoke.',
+              path: '/products/',
+            }),
+            breadcrumb([{ name: 'Products', path: '/products/' }]),
+          ],
         }}
       />
       <PageHero

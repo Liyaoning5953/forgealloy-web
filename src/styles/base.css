@@ -147,3 +147,16 @@ ul, ol { list-style: none; }
 /* One-shot scroll reveal */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--motion-reveal) var(--ease-standard), transform var(--motion-reveal) var(--ease-standard); }
 .reveal.in { opacity: 1; transform: none; }
+
+/* Visually hidden, still announced by screen readers and counted by crawlers. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
