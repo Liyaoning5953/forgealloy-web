@@ -3,6 +3,7 @@ import Seo from '../components/Seo.jsx';
 import PageHero from '../components/PageHero.jsx';
 import DirectContact from '../components/DirectContact.jsx';
 import { HERO_BG } from '../data/images.js';
+import { breadcrumb, contactPage } from '../lib/schema.js';
 
 export default function Contact() {
   const [params] = useSearchParams();
@@ -20,6 +21,17 @@ export default function Contact() {
       <Seo
         title="Contact — Chat with ForgeAlloy Sales on WhatsApp"
         description="Message ForgeAlloy sales directly on WhatsApp for forged wheel pricing, lead time and OEM programs. No form needed — one tap starts the conversation."
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            contactPage({
+              name: 'Contact ForgeAlloy sales',
+              description: 'Message ForgeAlloy sales on WhatsApp for forged wheel pricing, lead time and OEM programs.',
+              path: '/contact/',
+            }),
+            breadcrumb([{ name: 'Contact', path: '/contact/' }]),
+          ],
+        }}
       />
       <PageHero
         eyebrow="Contact"

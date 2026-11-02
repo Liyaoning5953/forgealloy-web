@@ -75,6 +75,16 @@ export function collection({ name, description, path }) {
   };
 }
 
+export function contactPage({ name, description, path }) {
+  return {
+    '@type': 'ContactPage',
+    name,
+    description,
+    url: `${SITE}${path}`,
+    about: ORGANIZATION,
+  };
+}
+
 // SERP titles are cut around 60 characters. When the brand suffix would push a
 // title past that, the suffix is what gets dropped — never the topic.
 export function fitTitle(text, brand = 'ForgeAlloy', max = 60) {
