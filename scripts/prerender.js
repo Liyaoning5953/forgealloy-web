@@ -115,6 +115,73 @@ function shellPathFor(route) {
   return route ? join(dist, route, 'index.html') : join(dist, 'index.html');
 }
 
+// Wait until the app has actually painted the route we asked for: the router has
+// moved to the right path, the main region carries copy, and the page's own SEO
+// effect (title + JSON-LD) has run. Waiting on these signals beats a fixed sleep
+// now that the run covers 1,310 routes instead of 42.
+// The cold load resolves its lazy route chunk asynchronously, so "some text is on
+// screen" is not enough: the header and footer alone clear a 200-character bar.
+// Wait until the main region stops growing before serializing, otherwise a heavy
+// page such as the homepage is captured half-rendered.
+async function waitForColdLoad(page, path) {
+  await page.waitForFunction((targetPath) => location.pathname === targetPath, { timeout: 45000 }, path);
+
+  let previous = -1;
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    const length = await page.evaluate(() => {
+      const main = document.querySelector('#root main');
+      return main ? main.textContent.replace(/\s+/g, ' ').trim().length : 0;
+    });
+    if (length > 400 && length === previous) return;
+    previous = length;
+    await new Promise((done) => setTimeout(done, 100));
+  }
+
+  throw new Error(`cold load did not settle (main text ${previous} chars)`);
+}
+
+function waitForRenderedPage(page, path, expectedTitle) {
+  return page
+    .waitForFunction(
+      (targetPath) => {
+        if (location.pathname !== targetPath) return false;
+        const main = document.querySelector('#root main');
+        return Boolean(main && main.textContent.replace(/\s+/g, ' ').trim().length > 200);
+      },
+      { timeout: 15000 },
+      path
+    )
+    .then(async () => {
+      if (!expectedTitle) return;
+      try {
+        await page.waitForFunction((title) => document.title === title, { timeout: 2500 }, expectedTitle);
+      } catch {
+        // A handful of pages ship a generic shell title and set their real one on
+        // hydration. The body is already in place, so settle briefly and move on
+        // rather than failing a route over a title string.
+        await new Promise((done) => setTimeout(done, 150));
+      }
+    });
+}
+
+// Reuse the loaded app: push the next route and let React Router re-render. This
+// skips the bundle fetch/parse that a full page load pays for, which is what makes
+// prerendering all 1,268 model pages affordable. Falls back to a real load when the
+// soft transition does not settle.
+async function softNavigate(page, origin, path, expectedTitle) {
+  await page.evaluate((next) => {
+    history.pushState({}, '', next);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  }, path);
+
+  try {
+    await waitForRenderedPage(page, path, expectedTitle);
+  } catch {
+    await page.goto(`${origin}${path}`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await waitForRenderedPage(page, path, expectedTitle);
+  }
+}
+
 async function main() {
   const chromePath = findChrome();
   if (!chromePath) {
@@ -150,23 +217,26 @@ async function main() {
       else request.abort();
     });
 
+    let coldLoad = true;
+
     for (const route of PRERENDER_ROUTES) {
       const shellFile = shellPathFor(route);
       const url = `${origin}/${route ? `${route}/` : ''}`;
+      const path = route ? `/${route}/` : '/';
 
       try {
         if (!existsSync(shellFile)) throw new Error(`shell missing at ${shellFile}`);
 
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
-        await page.waitForFunction(
-          () => {
-            const main = document.querySelector('#root main');
-            return Boolean(main && main.textContent.replace(/\s+/g, ' ').trim().length > 200);
-          },
-          { timeout: 25000 }
-        );
-        // Let the page's own effects (title, JSON-LD) finish before serializing.
-        await new Promise((done) => setTimeout(done, 200));
+        const shellSource = readFileSync(shellFile, 'utf8');
+        const expectedTitle = (shellSource.match(/<title>([^<]*)<\/title>/) || [])[1];
+
+        if (coldLoad) {
+          await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+          await waitForColdLoad(page, path);
+          coldLoad = false;
+        } else {
+          await softNavigate(page, origin, path, expectedTitle);
+        }
 
         const rendered = await page.evaluate(() => {
           const root = document.getElementById('root');
@@ -178,11 +248,10 @@ async function main() {
           throw new Error(`rendered body too small (${rendered.html.length} chars)`);
         }
 
-        const shell = readFileSync(shellFile, 'utf8');
         const marker = '<div id="root"></div>';
-        if (!shell.includes(marker)) throw new Error('shell has no empty #root placeholder');
+        if (!shellSource.includes(marker)) throw new Error('shell has no empty #root placeholder');
 
-        let html = shell.replace(marker, `<div id="root">${rendered.html}</div>`);
+        let html = shellSource.replace(marker, `<div id="root">${rendered.html}</div>`);
         if (rendered.jsonLd.length) {
           html = html.replace('</head>', `    ${rendered.jsonLd.join('\n    ')}\n  </head>`);
         }

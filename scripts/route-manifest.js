@@ -71,15 +71,21 @@ export const routePages = [
   ...modelPages,
 ];
 
-// The pages worth paying prerender time for: commercial landing pages, the size
-// hub, guides and series pages. The 1268 model pages keep their shells only —
-// prerendering all of them would add minutes to every build for little gain.
+// Every route that ships real HTML gets prerendered — including the model pages.
+//
+// Model pages used to keep their shells only, to save build time. That left 1,269
+// of the 1,310 sitemap URLs with no body copy in the HTML: GPTBot, PerplexityBot
+// and ClaudeBot do not run JavaScript, so they saw an empty page for 96.9% of the
+// site. prerender.js now soft-navigates the already-loaded app (pushState +
+// popstate) instead of cold-loading every route, which brings the full 1,310-route
+// run down to roughly the cost the old partial run paid.
 export const PRERENDER_ROUTES = [
   '',
   ...staticPages.map((page) => page.route),
   ...seriesPages.map((page) => page.route),
   ...guidePages.map((page) => page.route),
   ...accessoryPages.map((page) => page.route),
+  ...modelPages.map((page) => page.route),
 ];
 
 export { seriesPages, guidePages, accessoryPages, modelPages };
