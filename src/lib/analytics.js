@@ -55,6 +55,23 @@ function loadGa4(id) {
   window.gtag('config', id, { send_page_view: false });
 }
 
+// Repeat calls for the same path are ignored so one route is counted once.
+let lastReportedPath = null;
+
+// The first page_view is sent here rather than waiting for a component effect.
+// Hydration on a 100 KB page can lag behind the first scroll or click, and a
+// page_view that depends on mount is what leaves GA4 sessions with a "(not set)"
+// landing page: the session opens on a scroll or click hit, and the entry URL is
+// never recorded. Sending it immediately after config pins the entry page, its
+// title and its URL to the very first hit of the session.
+function reportInitialPageView() {
+  const path = `${window.location.pathname}${window.location.search}`;
+  // Seed the dedupe key so the page component's own effect does not send the
+  // same route a second time once React takes over.
+  lastReportedPath = path;
+  trackPageView(path, typeof document !== 'undefined' ? document.title : '');
+}
+
 // Configures measurement. A GTM container wins when both IDs are present.
 export function initAnalytics() {
   if (typeof window === 'undefined') return;
@@ -67,6 +84,7 @@ export function initAnalytics() {
   // defined and configuring it a second time would double-count every event.
   if (typeof window.gtag === 'function') {
     mode = 'ga4';
+    reportInitialPageView();
     return;
   }
 
@@ -74,6 +92,7 @@ export function initAnalytics() {
   if (gtmId) {
     mode = 'gtm';
     loadGtm(gtmId);
+    reportInitialPageView();
     return;
   }
 
@@ -81,6 +100,7 @@ export function initAnalytics() {
   if (ga4Id) {
     mode = 'ga4';
     loadGa4(ga4Id);
+    reportInitialPageView();
     return;
   }
 
@@ -114,9 +134,6 @@ export function trackPageView(path, title) {
     page_location: window.location.href,
   });
 }
-
-// Repeat calls for the same path are ignored so one route is counted once.
-let lastReportedPath = null;
 
 export function reportRouteView(path, title) {
   if (typeof window === 'undefined') return;

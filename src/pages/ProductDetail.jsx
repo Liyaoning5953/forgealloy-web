@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from '../lib/router.js';
 import { Check, MessageCircle, ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import CtaBand from '../components/CtaBand.jsx';

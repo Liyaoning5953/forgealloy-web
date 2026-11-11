@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { SERIES } from '../data/series.js';
 import { BRAND, LEGAL_NAME } from '../data/facts.js';
 import { CERTS } from '../data/certs.js';

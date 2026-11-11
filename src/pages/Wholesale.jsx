@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import { breadcrumb, graph, service } from '../lib/schema.js';

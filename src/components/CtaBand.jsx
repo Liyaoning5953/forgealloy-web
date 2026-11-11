@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { MessageCircle } from 'lucide-react';
 import TrustBar from './TrustBar.jsx';
 import Reveal from './Reveal.jsx';

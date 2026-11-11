@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowUpRight } from 'lucide-react';
 import { getSeries } from '../data/series.js';
 

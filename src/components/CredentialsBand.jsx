@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import Reveal from './Reveal.jsx';
 import { CERTS, TEST_REPORTS, thumbFor } from '../data/certs.js';

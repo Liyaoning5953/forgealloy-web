@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from '../lib/router.js';
 import { Download, Mail } from 'lucide-react';
 import { CATALOG } from '../data/catalog.js';
 import Reveal from './Reveal.jsx';

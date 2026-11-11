@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import Seo from '../components/Seo.jsx';
 
 export default function NotFound({ title = 'Page not found', backTo = '/', backLabel = 'Back to homepage' }) {

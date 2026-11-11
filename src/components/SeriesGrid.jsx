@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowRight } from 'lucide-react';
 import { SERIES } from '../data/series.js';
 import { MODELS } from '../data/models.js';
