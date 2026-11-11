@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from '../lib/router.js';
 import { Menu, X, ChevronDown, Phone, Download, User, MessageCircle } from 'lucide-react';
 import Logo from './Logo.jsx';
 import { SERIES } from '../data/series.js';

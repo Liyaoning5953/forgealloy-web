@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowRight } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import PageHero from '../components/PageHero.jsx';

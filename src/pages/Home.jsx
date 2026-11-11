@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '../lib/router.js';
 import { ArrowRight, ShieldCheck, Gem, Feather, Settings, MessageCircle } from 'lucide-react';
 import Seo from '../components/Seo.jsx';
 import StrengthBand from '../components/StrengthBand.jsx';
