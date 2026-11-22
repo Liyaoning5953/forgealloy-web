@@ -20,7 +20,7 @@ export default function FloatingDock() {
       <a className="dock-btn dock-mail" href={`mailto:${CONTACT.email}`} aria-label="Email us" onClick={() => trackEvent('email_click', { link_location: 'floating_dock', page_path: window.location.pathname })}>
         <Mail size={22} />
       </a>
-      <a className="dock-btn dock-catalog" href="/products#catalog" aria-label="Product catalog" onClick={() => trackEvent('catalog_nav_click', { link_location: 'floating_dock', page_path: window.location.pathname })}>
+      <a className="dock-btn dock-catalog" href="/products/#catalog" aria-label="Product catalog" onClick={() => trackEvent('catalog_nav_click', { link_location: 'floating_dock', page_path: window.location.pathname })}>
         <FileText size={22} />
       </a>
     </div>
