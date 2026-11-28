@@ -69,7 +69,7 @@ export default function SizePage() {
         </Reveal>
         <div className="series-grid">
           {page.series.map((s) => (
-            <Link className="series-card" to={`/products/${s.slug}`} key={s.slug} onClick={() => trackEvent('series_open', { series: s.slug, link_location: `size_${page.slug}`, page_path: window.location.pathname })}>
+            <Link className="series-card" to={`/series/${s.slug}`} key={s.slug} onClick={() => trackEvent('series_open', { series: s.slug, link_location: `size_${page.slug}`, page_path: window.location.pathname })}>
               <div className="series-card-body">
                 <span className="series-card-code">{s.sizeRange}</span>
                 <span className="series-card-name">{s.name}</span>
